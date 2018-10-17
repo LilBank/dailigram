@@ -1,5 +1,6 @@
 from django.db import models
 from django.urls import reverse
+from django.contrib.auth.models import User
 import datetime
 
 class Tag(models.Model):
@@ -14,7 +15,7 @@ class Page(models.Model):
     tag = models.ManyToManyField(Tag, help_text='Select a tag')
     date = datetime.date.today()
     def __str__(self):
-        return str(self.date)
+        return f'{str(self.date)}, {self.diary.__str__()}'
     
     def get_absolute_url(self):
         return reverse('diary-detail', args=[str(self.id)])
