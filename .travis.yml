@@ -5,9 +5,6 @@ python:
 
 git:
   depth: 1
-
+  
 services:
     - postgresql
-
-script:
-    - python manage.py test
