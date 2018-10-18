@@ -21,8 +21,7 @@ class Page(models.Model):
         return reverse('diary-detail', args=[str(self.id)])
 
 class Diary(models.Model):
-    first_name = models.CharField(max_length=100)
-    last_name = models.CharField(max_length=100)
+    first_name = models.CharField(max_length=100,unique=True)
     
     def get_absolute_url(self):
         return reverse('user-detail', args=[str(self.id)])
