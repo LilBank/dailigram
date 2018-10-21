@@ -15,14 +15,4 @@ ID           |           Name           |               Roles
 -------------|--------------------------|-------------------------------------
 6010545854   |   Piyawat Setthitikun    |  Scrum Master, Full Stack Developer
 6010545897   |   Vichaphol Thamsuthikul |  Full Stack Developer
-<<<<<<< HEAD
-6010545860   |   Kittin Vatabutr        |  Front-End and Back-End Developer
-=======
-<<<<<<< HEAD
-6010545860   |   Kittin Vatabutr        |  Front-End and Back-End Developer
-
-
-=======
-6010545860   |   Kittin Vatabutr        |  Front-End and Back-End Developer
->>>>>>> c03309a000d1d54c962a97ed07d056341340cae6
->>>>>>> d4eb138c5c54fd040776f5129cab320226d1c0e4
+6010546630   |   Kittin Vatabutr        |  Front-End and Back-End Developer
