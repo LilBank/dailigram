@@ -16,3 +16,5 @@ out/
 __pycache__/
 *.py[cod]
 *$py.class
+
+dailigram/settings.py
