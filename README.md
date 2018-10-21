@@ -1,7 +1,7 @@
 # Dailigram
 [![Build Status](https://travis-ci.com/bankkeez/dailigram.svg?branch=master)](https://travis-ci.com/bankkeez/dailigram)
 
-An **online diary website** which user can keep their memories instantly (including pictures) and portable for reading anytime instead of carrying a real diary. Our target group is a typical internet user who wishes to store their journal online.
+Dailigram is an online diary website which user can keep their memories instantly (including pictures) and portable for reading anytime instead of carrying a real diary. Our target group is a typical internet user who wishes to store their journal online.
 
 ## Documents
 
