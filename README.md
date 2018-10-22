@@ -6,7 +6,7 @@ An **online diary website** which user can keep their memories instantly (includ
 ## Documents
 
 - Iteration Plan - [Google Drive](https://docs.google.com/document/d/1y1627RIie1AMI3jERJbZHnNt9rR0pr2baXCQTu89Q1I/edit?usp=sharing)
-- Task Board - [Trello](https://trello.com/b/F2yv7lWS/dailigram-project)  
+- Task Board - [Trello](https://trello.com/b/F2yv7lWS/dailigram-big-sprint-%F0%9F%94%A5-13-10-18-30-11-18)  
 - Issue Tracker - [Github issues](https://github.com/bankkeez/dailigram/issues)
 
 ## Developers
