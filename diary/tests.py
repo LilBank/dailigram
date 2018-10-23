@@ -1,6 +1,7 @@
 from django.test import TestCase 
 from django.urls import reverse
 from diary.models import Page,Diary
+from django import forms
 
 class TestingModels(TestCase):
 
@@ -36,17 +37,6 @@ class TestingViews(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertIn(diary.first_name, response.content)
 
-class TestingForms(TestCase):
-    def test_setup1(self):
-        """
-        Test 
-        """
-
-class TestingAPI(TestCase):
-    def test_setup2(self):
-        """
-        Test 
-        """
 
 
     
