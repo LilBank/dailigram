@@ -3,13 +3,6 @@ bin/
 build/
 out/
 
-# eclipse junk
-.settings
-.project
-
-# inteliJ junk
-.iml
-
 # django junk
 .db.sqlite3
 
