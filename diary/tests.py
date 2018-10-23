@@ -1,14 +1,20 @@
 from django.test import TestCase , TransactionTestCase
 from django.urls import reverse 
-from .models import Page,Diary
+from diary.models import Page,Diary
 
 class IndexTestCase(TestCase):
-    def test_diary_exist(self):
+    def test_setup(self):
         """
         Test diary existance by the response status code.
         """
         response = self.client.get(reverse('diary:index'))
         self.assertEqual(response.status_code, 200)
+    def test_all_objects(self):
+        """
+        Test 
+        """
+        num_pages = Page.objects.all().count()
+        self.assertEqual(num_pages,0)
 
     
 
