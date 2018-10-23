@@ -3,21 +3,9 @@ bin/
 build/
 out/
 
-# eclipse junk
-.settings
-.project
-
-# inteliJ junk
-.iml
-
 # django junk
 __pycache__/
 *.py[cod]
 *$py.class
 db.sqlite3
 secret.py
-
-
-
-
-
