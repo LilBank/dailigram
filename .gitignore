@@ -4,9 +4,8 @@ build/
 out/
 
 # django junk
-.db.sqlite3
-
 __pycache__/
 *.py[cod]
 *$py.class
-
+db.sqlite3
+secret.py
