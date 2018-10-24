@@ -7,7 +7,7 @@ def index(request):
     num_diarys = Diary.objects.all()
     
     context = {
-        'num_diarys':  num_diarys,
+        'num_diarys': num_diarys,
         'num_pages': num_pages,
         'num_tags': num_tags,
     }
