@@ -11,8 +11,8 @@ class Tag(models.Model):
 
 class Page(models.Model):
     diary = models.ForeignKey('Diary', on_delete=models.SET_NULL, null=True)  
+    tag = models.ForeignKey('Tag', on_delete=models.SET_NULL, null=True) 
     story = models.CharField(max_length=1000, help_text='Write your story.')
-    tag = models.ManyToManyField('Tag', help_text='Select a tag')
     # date = datetime.date.today()
     date = models.DateField('Date')
     def __str__(self):

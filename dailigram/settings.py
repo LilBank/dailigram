@@ -81,7 +81,7 @@ WSGI_APPLICATION = 'dailigram.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'dailigramDB',                      
+        'NAME': 'testDB',                      
         'USER': 'adminbank',
         'PASSWORD': 'bank1234',
         'HOST': '35.240.129.207',
