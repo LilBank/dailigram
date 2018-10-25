@@ -9,3 +9,4 @@ __pycache__/
 *$py.class
 db.sqlite3
 secret.py
+Procfile.windows
