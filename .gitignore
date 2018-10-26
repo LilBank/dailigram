@@ -1,4 +1,6 @@
 # django junk
+secret.py
+Procfile.windows
 *.log
 *.pot
 *.pyc
@@ -6,5 +8,3 @@
 */*/*/__pycache__/
 */*/__pycache__/
 */__pycache__/
-secret.py
-Procfile.windows
