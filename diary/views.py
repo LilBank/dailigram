@@ -15,7 +15,7 @@ class IndexView(generic.ListView):
         """
         Return all of the objects in the list
         """
-        return Diary.objects.all()
+        return Page.objects.all()
 
 class DetailView(generic.DetailView):
     model = Diary

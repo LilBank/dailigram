@@ -6,9 +6,11 @@
   <h2>Content</h2>
   <ul>
     {% if all_diarys %}
-      {% for diary in all_diarys %}
-          <h3>{{diary.first_name}}</h3>
-          
+      {% for page in all_diarys %}
+          <h3>{{page.diary}}</h3>
+          <h3>{{page.tag}}</h3>
+          <h3>{{page.story}}</h3>
+
       {% endfor %}
     {% endif %}
   </ul>
