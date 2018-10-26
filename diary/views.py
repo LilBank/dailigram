@@ -5,7 +5,8 @@ def index(request):
     num_pages = Page.objects.all().count()
     num_tags = Tag.objects.count()   
     num_diarys = Diary.objects.count()
-    
+    print('helloo')
+
     context = {
         'num_diarys':  num_diarys,
         'num_pages': num_pages,
@@ -14,3 +15,8 @@ def index(request):
 
     # Render the HTML template index.html with the data in the context variable
     return render(request, 'index.html', context=context)
+
+def create(request):
+    return render(request, 'create.html')
+
+
