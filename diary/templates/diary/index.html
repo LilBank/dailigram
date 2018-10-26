@@ -2,7 +2,7 @@
 
 {% block content %}
   <h1>Home</h1>
-  <p>Hello user!</p>
+  <p>Hello {{ user.username }}!</p>
   <h2>Content</h2>
   <ul>
     {% if all_diarys %}
