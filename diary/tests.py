@@ -32,10 +32,8 @@ class TestingViews(TestCase):
         """
         Test diary existance by the response status code.
         """
-        diary = Diary(first_name = 'tony')
         response = self.client.get(reverse('diary:index'))
         self.assertEqual(response.status_code, 200)
-        self.assertIn(diary.first_name, response.content)
 
 
 
