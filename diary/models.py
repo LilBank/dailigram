@@ -28,5 +28,5 @@ class Diary(models.Model):
     def __str__(self):
         return self.first_name
     
-     def get_absolute_url(self):
+    def get_absolute_url(self):
         return reverse('user-detail', args=[str(self.id)])
