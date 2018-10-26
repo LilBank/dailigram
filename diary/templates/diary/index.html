@@ -1,0 +1,14 @@
+{% extends 'diary/base.html' %}
+
+{% block content %}
+  <h1>Home</h1>
+  <p>Hello user!</p>
+  <h2>Content</h2>
+  <ul>
+    {% if all_diarys %}
+      {% for diary in all_diarys %}
+          <h3>{{diary.first_name}}</h3>
+      {% endfor %}
+    {% endif %}
+  </ul>
+{% endblock %}
