@@ -15,6 +15,7 @@ class Page(models.Model):
     story = models.CharField(max_length=1000, help_text='Write your story.')
     # date = datetime.date.today()
     date = models.DateField('Date')
+    diary_logo = models.FileField()
     
     def __str__(self):
         return f'{str(self.date)}, {self.diary}, {self.tag}'

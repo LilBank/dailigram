@@ -10,8 +10,9 @@
           <h3>{{page.diary}}</h3>
           <h3>{{page.tag}}</h3>
           <h3>{{page.story}}</h3>
-
+          <img src="{{ page.diary_logo.url }}" class="img-responsive">
       {% endfor %}
     {% endif %}
+
   </ul>
 {% endblock %}
