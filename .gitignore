@@ -1,12 +1,9 @@
-*.classpath
-bin/
-build/
-out/
-
-# django junk
-__pycache__/
-*.py[cod]
-*$py.class
-db.sqlite3
 secret.py
 Procfile.windows
+*.log
+*.pot
+*.pyc
+*.py[cod]
+*/*/*/__pycache__/
+*/*/__pycache__/
+*/__pycache__/
