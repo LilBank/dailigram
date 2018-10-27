@@ -1,20 +1,8 @@
-*.classpath
-bin/
-build/
-out/
-
-# eclipse junk
-.settings
-.project
-
-# inteliJ junk
-.iml
-
-# django junk
-.db.sqlite3
-
-__pycache__/
+Procfile.windows
+*.log
+*.pot
+*.pyc
 *.py[cod]
-*$py.class
-
-
+*/*/*/__pycache__/
+*/*/__pycache__/
+*/__pycache__/
