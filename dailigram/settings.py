@@ -78,14 +78,24 @@ WSGI_APPLICATION = 'dailigram.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'testDB',                      
+#         'USER': 'adminbank',
+#         'PASSWORD': 'bank1234',
+#         'HOST': '35.240.129.207',
+#         'PORT': '3306',
+#     }
+# }
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'testDB',                      
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'bankDB',                      
         'USER': 'adminbank',
         'PASSWORD': 'bank1234',
-        'HOST': '35.240.129.207',
-        'PORT': '3306',
+        'HOST': '35.240.162.157',
+        'PORT': '5432',
     }
 }
 
