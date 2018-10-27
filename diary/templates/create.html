@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
   {% block title %}<title>Dailigram</title>{% endblock %}
@@ -8,18 +9,20 @@
   {% load static %}
   <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
-<body background="">
-  <form>
-    <fieldset>
-      <legend>Your Diary:</legend>
-      Title: <input type="text"><br>
-      Author: <input type="text"><br>
-      Bio: <input type="text">
-    </fieldset>
-  </form>  
+<body>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-3 "></div>
+      <div class="col-sm-6 ">{% block content %}page body{% endblock %}</div>
+      <div class="col-sm-3 "></div>
+    </div>
+
+  </div>
+    
   <div class="navbar">
-    <a href = "{{request.META.HTTP_REFERER}}" class="active">Home</a>
+      <a href = "{% url 'create' %}" class="active">Create</a>
+      <a href="#create">Manage</a>
+      <a href="#contact">Edit Profile</a>
   </div>
 </body>
-
-
+</html>
