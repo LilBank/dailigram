@@ -72,7 +72,7 @@ WSGI_APPLICATION = 'dailigram.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'dailigramDB',                      
+        'NAME': 'kimDB',                      
         'USER': 'adminbank',
         'PASSWORD': 'bank1234',
         'HOST': '35.240.162.157',
@@ -117,6 +117,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = '/static/'
+STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
 # Activate Django-Heroku.
 django_heroku.settings(locals())
