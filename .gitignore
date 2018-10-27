@@ -1,9 +1,20 @@
-secret.py
-Procfile.windows
-*.log
-*.pot
-*.pyc
+*.classpath
+bin/
+build/
+out/
+
+# eclipse junk
+.settings
+.project
+
+# inteliJ junk
+.iml
+
+# django junk
+.db.sqlite3
+
+__pycache__/
 *.py[cod]
-*/*/*/__pycache__/
-*/*/__pycache__/
-*/__pycache__/
+*$py.class
+
+
