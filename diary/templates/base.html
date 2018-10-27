@@ -33,7 +33,7 @@
               </div>
               <ul class="nav navbar-nav navbar-right ml-auto">
                   <li class="nav-item active"><a href="{{request.META.HTTP_REFERER}}" class="nav-link"><i class="fa fa-home"></i><span>Home</span></a></li>
-                  <li class="nav-item"><a href="#" class="nav-link"><i class="glyphicon glyphicon-plus"></i><span>Create</span></a></li>
+                  <li class="nav-item"><a href="{% url 'create' %}" class="nav-link"><i class="glyphicon glyphicon-plus"></i><span>Create</span></a></li>
                   <li class="nav-item"><a href="#" class="nav-link"><i class="fa fa-bell"></i><span>Notifications</span></a></li>
                 </ul>
             </form>
@@ -41,6 +41,6 @@
           </div>
         </nav>
   </div>
-  {% block content %}page body{% endblock %}              
+  {% block content %}{% endblock %}              
 </body>
 </html>                                                        
