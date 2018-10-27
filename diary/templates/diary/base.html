@@ -14,10 +14,11 @@
     <div class="row">
       <div class="col-sm-2">
       {% block sidebar %}
-        <ul class="sidebar-nav">
-          <li><a href="{% url 'diary:index' %}">Home</a></li>
-          <li><a href="">All diary</a></li>
-          <li><a href="">All page</a></li>
+        <ul class="sidebar-nav ">
+          <li><a href="{% url 'diary:index' %}" class="btn btn-primary btn-sm">Home</a></li><br>
+          <li><a href="" class="btn btn-primary btn-sm">All diary</a></li><br>
+          <li><a href="" class="btn btn-primary btn-sm">All page</a></li><br>
+          <li><a href="{% url 'diary:register' %}" class="btn btn-primary btn-sm" role="button">Register</a></li><br>
         </ul>
      {% endblock %}
       </div>

@@ -35,7 +35,7 @@ class TestingViews(TestCase):
         response = self.client.get(reverse('diary:index'))
         self.assertEqual(response.status_code, 200)
 
-    def test_no_questions(self):
+    def test_no_diary(self):
         """
         If no questions exist, an appropriate message is displayed.
         """

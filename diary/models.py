@@ -15,6 +15,8 @@ class Page(models.Model):
     story = models.CharField(max_length=1000, help_text='Write your story.')
     # date = datetime.date.today()
     date = models.DateField('Date')
+    # diary_logo = models.FileField()
+    
     def __str__(self):
         return f'{str(self.date)}, {self.diary}, {self.tag}'
     
@@ -23,9 +25,9 @@ class Page(models.Model):
 
 class Diary(models.Model):
     first_name = models.CharField(max_length=100,unique=True)
-    
-    def get_absolute_url(self):
-        return reverse('user-detail', args=[str(self.id)])
 
     def __str__(self):
         return self.first_name
+    
+    def get_absolute_url(self):
+        return reverse('user-detail', args=[str(self.id)])

@@ -1,0 +1,18 @@
+{% extends 'diary/base.html' %}
+
+{% block content %}
+  <h1>Home</h1>
+  <p>Hello {{ user.username }}!</p>
+  <h2>Content</h2>
+  <ul>
+    {% if all_diarys %}
+      {% for page in all_diarys %}
+          <h3>{{page.diary}}</h3>
+          <h3>{{page.tag}}</h3>
+          <h3>{{page.story}}</h3>
+          <img src="{{ page.diary_logo.url }}" class="img-responsive">
+      {% endfor %}
+    {% endif %}
+
+  </ul>
+{% endblock %}
