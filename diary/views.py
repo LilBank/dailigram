@@ -17,9 +17,17 @@ class IndexView(generic.ListView):
         """
         return Page.objects.all()
 
-class CreateView(generic.ListView):
-    model = Diary
-    template_name = 'diary/create.html'
+class DetailView(generic.ListView):
+    model = Page
+    template_name = 'diary/detail.html'
+
+class LoginView(generic.ListView):
+    model = Page
+    template_name = 'diary/login.html'
+
+class LogoutView(generic.ListView):
+    model = Page
+    template_name = 'diary/logout.html'
 
 class UserFormView(View):
     form_class = UserForm
