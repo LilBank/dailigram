@@ -25,7 +25,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('diary/', include('diary.urls')),
     path('', RedirectView.as_view(url='/diary/')),
-    path('login/', views.LoginView.as_view(), name='login'),
-    path('logout/', views.LogoutView.as_view(), name='logout'),
     path('auth/',include('social_django.urls',namespace='social')),  # <- Here
+    
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
