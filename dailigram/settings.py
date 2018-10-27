@@ -10,17 +10,8 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 import os
 # from secret import *
 import django_heroku
-# from django.db import connection
+
 SECRET_KEY = 'cg#p$g+j9tax!#a3cup@1$8obt2_+&k3q+pmu)5%asj6yjpkag'
-# def get_secret_key(self):
-#     with connection.cursor() as cursor:
-#         cursor.execute("SELECT key FROM secret_key")
-#         key = cursor.fetchone()
-#         print('method is used')
-#     return key
-
-# SECRET_KEY = get_secret_key
-
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -78,16 +69,6 @@ WSGI_APPLICATION = 'dailigram.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.mysql',
-#         'NAME': 'testDB',                      
-#         'USER': 'adminbank',
-#         'PASSWORD': 'bank1234',
-#         'HOST': '35.240.129.207',
-#         'PORT': '3306',
-#     }
-# }
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
