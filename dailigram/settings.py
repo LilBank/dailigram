@@ -8,15 +8,15 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 """
 
 import os
-# from secret import *
+from decouple import config
 import django_heroku
 
-SECRET_KEY = 'cg#p$g+j9tax!#a3cup@1$8obt2_+&k3q+pmu)5%asj6yjpkag'
+SECRET_KEY = config('SECRET_KEY')
 
-SOCIAL_AUTH_GITHUB_KEY = '51380e6c1fd79197849b'
-SOCIAL_AUTH_GITHUB_SECRET = '201645bec455456bea44c1fafde2ce5ab8c5193e'
-SOCIAL_AUTH_GOOGLE_OAUTH2_KEY ='285358522888-c5va3j1qjp7v9srerfrnaalnq41ikrae.apps.googleusercontent.com'
-SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'N-q_qhuayTGmwADwlFd5bV-q'
+SOCIAL_AUTH_GITHUB_KEY = config('SOCIAL_AUTH_GITHUB_KEY')
+SOCIAL_AUTH_GITHUB_SECRET = config('SOCIAL_AUTH_GITHUB_SECRET')
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = config('SOCIAL_AUTH_GOOGLE_OAUTH2_KEY')
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = config('SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET')
 
 LOGIN_URL = 'login'
 
@@ -25,12 +25,9 @@ LOGIN_REDIRECT_URL = '/'
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = config('DEBUG', cast=bool)
 
-ALLOWED_HOSTS = []
-
-# Application definition
+ALLOWED_HOSTS = ['.localhost','.herokuapp.com']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -85,10 +82,10 @@ WSGI_APPLICATION = 'dailigram.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'dailigramDB',                      
-        'USER': 'adminbank',
-        'PASSWORD': 'bank1234',
-        'HOST': '35.240.162.157',
+        'NAME': config('DB_NAME'),                      
+        'USER': config('DB_USER'),
+        'PASSWORD': config('DB_PASSWORD'),
+        'HOST': config('DB_HOST'),
         'PORT': '5432',
     }
 }
