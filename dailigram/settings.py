@@ -11,6 +11,9 @@ import os
 # from secret import *
 import django_heroku
 
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY ='715368377813-1if4901mgbsen03s3v5kdb09aor4uf1n.apps.googleusercontent.com'  #Paste CLient Key
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'aMjeSnRtbsEmcQ3ob9BuxP1c' #Paste Secret Key
+
 SECRET_KEY = 'cg#p$g+j9tax!#a3cup@1$8obt2_+&k3q+pmu)5%asj6yjpkag'
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -21,7 +24,7 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 LOGIN_URL = 'login'
-LOGIN_REDIRECT_URL = 'index'
+LOGIN_REDIRECT_URL = '/'
 
 
 # Application definition
