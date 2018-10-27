@@ -1,0 +1,11 @@
+{% extends "diary/base.html" %}
+
+{% block content %}
+{% if all_diarys %}
+      {% for page in all_diarys %}
+          <h3>{{page.diary}}</h3>
+          <h3>{{page.tag}}</h3>
+          <h3>{{page.story}}</h3>
+      {% endfor %}
+    {% endif %}
+{% endblock %}

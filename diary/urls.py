@@ -1,8 +1,13 @@
 from django.urls import path
 from diary import views
 
-
+app_name =  'diary'
 urlpatterns = [
-    path('', views.index, name='index'),
-    path('create', views.create, name='create'), 
+     # ex: /diary/
+    path('', views.IndexView.as_view(), name='index'),
+     # ex: /diary/register/
+    path('register/', views.UserFormView.as_view(), name = 'register'),
+     # ex: /diary/create/    
+    path('create/', views.CreateView.as_view(), name = 'create'),
+
 ]
