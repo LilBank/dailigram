@@ -85,7 +85,7 @@ WSGI_APPLICATION = 'dailigram.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'bankDB',                      
+        'NAME': 'dailigramDB',                      
         'USER': 'adminbank',
         'PASSWORD': 'bank1234',
         'HOST': '35.240.162.157',
