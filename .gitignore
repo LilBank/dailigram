@@ -1,4 +1,5 @@
 Procfile.windows
+.env
 *.log
 *.pot
 *.pyc
