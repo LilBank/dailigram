@@ -6,7 +6,9 @@ from django.views.generic.edit import UpdateView, DeleteView
 from .forms import UserForm
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
+from django.contrib.auth.decorators import login_required
 
+@login_required
 class IndexView(generic.ListView):
     template_name = 'diary/index.html'
     context_object_name = 'all_diarys'
@@ -17,6 +19,7 @@ class IndexView(generic.ListView):
         """
         return Page.objects.all()
 
+@login_required
 class CreateView(generic.ListView):
     model = Diary
     template_name = 'diary/create.html'
