@@ -12,14 +12,13 @@ from decouple import config
 import django_heroku
 
 SECRET_KEY = config('SECRET_KEY')
-
 SOCIAL_AUTH_GITHUB_KEY = config('SOCIAL_AUTH_GITHUB_KEY')
 SOCIAL_AUTH_GITHUB_SECRET = config('SOCIAL_AUTH_GITHUB_SECRET')
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = config('SOCIAL_AUTH_GOOGLE_OAUTH2_KEY')
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = config('SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET')
 
 LOGIN_URL = 'login'
-
+LOGOUT_URL = 'login'
 LOGIN_REDIRECT_URL = '/'
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -136,7 +135,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = '/static/'
-STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
 # Activate Django-Heroku.
 django_heroku.settings(locals())
