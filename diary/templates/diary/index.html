@@ -1,7 +1,6 @@
 {% extends "diary/base.html" %}
 
 {% block content %}
-{% if user.is_authenticated %}
 <div style="text-align: center">
   <h1>Hello {{user.username}}</h1>  
 </div>
@@ -15,7 +14,4 @@
       </div>
       {% endfor %}
     {% endif %}
-  {% else %}
-    <a class="lead" href="{% url 'diary:login' %}">Log in</a>
-	{% endif %}
 {% endblock %}
