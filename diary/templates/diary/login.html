@@ -1,4 +1,4 @@
-{% extends "diary/base.html" %}
+{% extends 'diary/base.html' %}
 
 {% block content %}
   <h2>Login</h2>
@@ -7,7 +7,7 @@
     {{ form.as_p }}
     <button type="submit">Login</button>
   </form>
-   <br>
+  <br>
   <p><strong>-- OR --</strong></p>
   <a href="{% url 'social:begin' 'google-oauth2' %}">Login with Google</a><br>
   <p><strong>-- OR --</strong></p>

@@ -8,28 +8,25 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 """
 
 import os
-# from secret import *
+from decouple import config
 import django_heroku
 
-SOCIAL_AUTH_GOOGLE_OAUTH2_KEY ='285358522888-6f87ef4s8809mh05ibcmkuirv8fjcnce.apps.googleusercontent.com'
-SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'Nh1rOD4JZEji-EfBYDgh2rXB'
-SOCIAL_AUTH_GITHUB_KEY = '51380e6c1fd79197849b'
-SOCIAL_AUTH_GITHUB_SECRET = '201645bec455456bea44c1fafde2ce5ab8c5193e'
+SECRET_KEY = config('SECRET_KEY')
+SOCIAL_AUTH_GITHUB_KEY = config('SOCIAL_AUTH_GITHUB_KEY')
+SOCIAL_AUTH_GITHUB_SECRET = config('SOCIAL_AUTH_GITHUB_SECRET')
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = config('SOCIAL_AUTH_GOOGLE_OAUTH2_KEY')
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = config('SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET')
 
-SECRET_KEY = 'cg#p$g+j9tax!#a3cup@1$8obt2_+&k3q+pmu)5%asj6yjpkag'
+LOGIN_URL = 'login'
+
+LOGIN_REDIRECT_URL = '/'
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = config('DEBUG', cast=bool)
 
-ALLOWED_HOSTS = []
-
-LOGIN_URL = 'login'
-LOGIN_REDIRECT_URL = '/'
-
-
-# Application definition
+ALLOWED_HOSTS = ['.localhost','.herokuapp.com']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -38,6 +35,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'social_django',
     'diary.apps.DiaryConfig',
     'social_django', # <- Here
 ]
@@ -50,6 +48,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'social_django.middleware.SocialAuthExceptionMiddleware',
 ]
 
 ROOT_URLCONF = 'dailigram.urls'
@@ -67,8 +66,13 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+<<<<<<< HEAD
                 'social_django.context_processors.backends',  # <- Here
                 'social_django.context_processors.login_redirect', # <- Here
+=======
+                'social_django.context_processors.backends',
+                'social_django.context_processors.login_redirect',
+>>>>>>> c1831a5ec4b412d9ee39178020665016f4ab96df
             ],
         },
     },
@@ -83,10 +87,10 @@ WSGI_APPLICATION = 'dailigram.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'dailigramDB',                      
-        'USER': 'adminbank',
-        'PASSWORD': 'bank1234',
-        'HOST': '35.240.162.157',
+        'NAME': config('DB_NAME'),                      
+        'USER': config('DB_USER'),
+        'PASSWORD': config('DB_PASSWORD'),
+        'HOST': config('DB_HOST'),
         'PORT': '5432',
     }
 }
@@ -116,6 +120,15 @@ AUTHENTICATION_BACKENDS = (
  'social_core.backends.facebook.FacebookOAuth2',  # for Facebook authentication
  
  'django.contrib.auth.backends.ModelBackend',
+)
+
+AUTHENTICATION_BACKENDS = (
+    'social_core.backends.open_id.OpenIdAuth',
+    'social_core.backends.google.GoogleOpenId',
+    'social_core.backends.google.GoogleOAuth2',
+    'social_core.backends.github.GithubOAuth2',
+    'social_core.backends.facebook.FacebookOAuth2',
+    'django.contrib.auth.backends.ModelBackend',
 )
 
 

@@ -22,9 +22,9 @@ from django.conf.urls.static import static
 from diary import views
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('admin/', admin.site.urls, name = 'admin'),
     path('diary/', include('diary.urls')),
     path('', RedirectView.as_view(url='/diary/')),
-    path('auth/',include('social_django.urls',namespace='social')),  # <- Here
-    
+    path('login/', views.LoginView.as_view(), name = 'login'),
+    path('auth/', include('social_django.urls', namespace = 'social')),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

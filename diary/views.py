@@ -2,7 +2,7 @@ from django.shortcuts import render
 from diary.models import Tag, Page, Diary
 from django.views import generic
 from django.views.generic import View
-from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.views.generic.edit import UpdateView, DeleteView
 from .forms import UserForm
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
@@ -17,17 +17,13 @@ class IndexView(generic.ListView):
         """
         return Page.objects.all()
 
-class DetailView(generic.ListView):
-    model = Page
-    template_name = 'diary/detail.html'
+class CreateView(generic.ListView):
+    model = Diary
+    template_name = 'diary/create.html'
 
 class LoginView(generic.ListView):
-    model = Page
+    model = Diary
     template_name = 'diary/login.html'
-
-class LogoutView(generic.ListView):
-    model = Page
-    template_name = 'diary/logout.html'
 
 class UserFormView(View):
     form_class = UserForm
