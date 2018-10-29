@@ -69,14 +69,13 @@ class UserFormView(View):
 # @login_required
 
 
-def settings(self, request):
-    form = self.form_class(request.POST)
+def settings(request):
     user = request.user
 
     try:
         google_login = user.social_auth.get(provider='google')
     except UserSocialAuth.DoesNotExist:
-        github_login = None
+        google_login = None
     try:
         github_login = user.social_auth.get(provider='github')
     except UserSocialAuth.DoesNotExist:
@@ -94,7 +93,7 @@ def settings(self, request):
 # @login_required
 
 
-def password(self, request):
+def password(request):
     if request.user.has_usable_password():
         PasswordForm = PasswordChangeForm
     else:
@@ -112,4 +111,4 @@ def password(self, request):
             messages.error(request, 'Please correct the error below.')
     else:
         form = PasswordForm(request.user)
-    return render(request, 'core/password.html', {'form': form})
+    return render(request, 'registration/password.html', {'form': form})
