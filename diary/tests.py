@@ -2,6 +2,7 @@ from django.test import TestCase
 from django.urls import reverse
 from diary.models import Page,Diary
 from django import forms
+from diary.forms import UserForm
 
 class TestingModels(TestCase):
 
@@ -45,10 +46,20 @@ class TestingViews(TestCase):
 
     def test_no_diary_by_view(self):
         """
-        Test that the co
+        Test that the total context object is 0 when nothing is inserted.
         """
         response = self.client.get(reverse('diary:index'))
         self.assertQuerysetEqual(response.context['all_diarys'], [])
+
+class TestingForms(TestCase):
+
+    def test_valid_forms(self):
+        """
+        Test if the form is valid or not.
+        """
+        form  = UserForm()
+        self.assertTrue(form.is_valid)
+        
 
 
 
