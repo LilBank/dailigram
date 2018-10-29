@@ -1,3 +1,4 @@
+.env
 Procfile.windows
 *.log
 *.pot
