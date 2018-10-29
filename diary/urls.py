@@ -13,7 +13,8 @@ urlpatterns = [
     path('login/', views.LoginView.as_view(), name='login'),
     # ex: /diary/settings
     path('settings/', views.SettingsView.as_view(), name='settings'),
-    
+    # ex: /diary/settings/password
+    path('settings/password/', views.PasswordView.as_view(), name='password'),
 
 
 
