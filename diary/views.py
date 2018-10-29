@@ -29,12 +29,12 @@ class IndexView(generic.ListView):
 
 
 class CreateView(generic.ListView):
-    model = Diary
+    model = Page
     template_name = 'diary/create.html'
 
 
 class LoginView(generic.ListView):
-    model = Diary
+    model = Page
     template_name = 'registration/login.html'
 
 
@@ -73,29 +73,30 @@ class UserFormView(View):
 # @login_required
 
 
-class SettingsView(View):
+class SettingsView(generic.ListView):
+    model = Page
+    template_name = 'registration/settings.html'
+    # def settings(self, request):
 
-    def settings(self, request):
+    #     user = request.user
 
-        user = request.user
+    #     try:
+    #         google_login = user.social_auth.get(provider='google')
+    #     except UserSocialAuth.DoesNotExist:
+    #         github_login = None
+    #     try:
+    #         github_login = user.social_auth.get(provider='github')
+    #     except UserSocialAuth.DoesNotExist:
+    #         github_login = None
 
-        try:
-            google_login = user.social_auth.get(provider='google')
-        except UserSocialAuth.DoesNotExist:
-            github_login = None
-        try:
-            github_login = user.social_auth.get(provider='github')
-        except UserSocialAuth.DoesNotExist:
-            github_login = None
+    #     can_disconnect = (user.social_auth.count() >
+    #                       1 or user.has_usable_password())
 
-        can_disconnect = (user.social_auth.count() >
-                          1 or user.has_usable_password())
-
-        return render(request, 'registration/settings.html', {
-            'github_login': github_login,
-            'google_login': google_login,
-            'can_disconnect': can_disconnect
-        })
+    #     return render(request, 'registration/settings.html', {
+    #         'github_login': github_login,
+    #         'google_login': google_login,
+    #         'can_disconnect': can_disconnect
+    #     })
 
 # @login_required
 
