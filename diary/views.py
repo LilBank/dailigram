@@ -6,6 +6,7 @@ from django.views.generic.edit import UpdateView, DeleteView
 from .forms import UserForm
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
+from social_django.models import UserSocialAuth
 # from django.contrib.auth.decorators import login_required
 
 # @login_required
@@ -59,3 +60,28 @@ class UserFormView(View):
                     return redirect('diary:index')
 
         return render(request, self.template_name, {'form': form})
+
+# @login_required
+class SettingsView(View):
+
+    def settings(self ,request):
+
+        user = request.user
+
+        try:
+            google_login = user.social_auth.get(provider='google')
+        except UserSocialAuth.DoesNotExist:
+            github_login = None
+        try:
+            github_login = user.social_auth.get(provider='github')
+        except UserSocialAuth.DoesNotExist:
+            github_login = None
+
+
+        can_disconnect = (user.social_auth.count() > 1 or user.has_usable_password())
+
+        return render(request, 'registration/settings.html', {
+            'github_login': github_login,
+            'google_login': google_login,
+            'can_disconnect': can_disconnect
+        })
