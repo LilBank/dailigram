@@ -16,7 +16,7 @@ class TestingModels(TestCase):
         """
         Test that the string is correctly represented.
         """
-        diary = Diary(first_name = 'tony')
+        diary = Diary.objects.create(first_name = 'tintin')
         self.assertEqual(str(diary), diary.first_name)
 
     def test_diary_max_length(self):
@@ -33,13 +33,6 @@ class TestingModels(TestCase):
         """
         num_diary = Diary.objects.all().count()
         self.assertEqual(num_diary,0)
-
-    def test_get_absolute_url(self):
-        """
-        Test that the getting absolute url is correct.
-        """
-        diary = Diary(first_name = 'tony')
-        self.assertEquals(diary.get_absolute_url(), '/diary/user/1')
 
 class TestingViews(TestCase):
 
