@@ -4,7 +4,7 @@ python:
     - "3.6.3"
 
 services:
-    - mysql
+    - postgresql
 
 install:
     - pip install -r requirements.txt
@@ -12,3 +12,5 @@ install:
 script:
     - python manage.py test
 
+env:
+    - TRAVIS_SECURE_ENV_VARS = true

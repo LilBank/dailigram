@@ -7,21 +7,29 @@ class TestingModels(TestCase):
 
     def test_string_representation(self):
         """
-        Test the string representation
+        Test that the string is 
         """
         diary = Diary(first_name = 'tony')
         self.assertEqual(str(diary), diary.first_name)
 
-    def test_page_pk(self):
+    def test_diary_pk(self):
         """
         Test that the primary key should be one for each object's creation. 
         """
         diary = Diary.objects.create(first_name = 'tintin')
         self.assertEqual(diary.pk ,1)
 
-    def test_all_objects(self):
+    def test_diary_max_length(self):
         """
-        Test the number of object in the list
+        Test that the max length of the field is equal or not
+        """
+        diary = Diary.objects.get(id=1)
+        max_length = diary._meta.get_field('first_name').max_length
+        self.assertEquals(max_length, 100)
+
+    def test_no_objects(self):
+        """
+        Test that the total number of object is 0 when nothing is created
         """
         num_diary = Diary.objects.all().count()
         self.assertEqual(num_diary,0)
@@ -37,7 +45,7 @@ class TestingViews(TestCase):
 
     def test_no_diary(self):
         """
-        If no questions exist, an appropriate message is displayed.
+        Test
         """
         response = self.client.get(reverse('diary:index'))
         self.assertQuerysetEqual(response.context['all_diarys'], [])
