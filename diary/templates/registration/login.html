@@ -1,5 +1,3 @@
-
-{% block content %}
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -8,18 +6,9 @@
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 
-<!-- <form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Login</button>
-  </form> -->
-  <!-- <br>
-  <p><strong>-- OR --</strong></p>
-  <a href="{% url 'social:begin' 'google-oauth2' %}">Login with Google</a><br>
-  <p><strong>-- OR --</strong></p>
-  <a href="{% url 'social:begin' 'github' %}">Login with GitHub</a><br> -->
-  <body background= "https://cdn.hipwallpaper.com/i/93/5/wuRQTG.jpg">
-  <section class="login-block">
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/styles.css' %}">
+
     <div class="container">
 	<div class="row">
 		<div class="col-md-4 login-sec">
@@ -44,7 +33,7 @@
     <form method="post">
     {% csrf_token %}
     {{ form.as_p }}
-    <button type="submit">Login</button>
+    <button type="submit">Submit</button>
     </form>
   </div>
   
@@ -60,7 +49,7 @@
                   </ol>
             <div class="carousel-inner" role="listbox">
     <div class="carousel-item active">
-      <img class="d-block img-fluid" src="https://c.wallhere.com/photos/21/1e/nature_photography_landscape_morning_sun_rays_lake_hiking_mountains-48390.jpg!d"  alt="First slide">
+      <img  src="https://c.wallhere.com/photos/21/1e/nature_photography_landscape_morning_sun_rays_lake_hiking_mountains-48390.jpg!d" height="480px" width="740px" alt="First slide">
       <div class="carousel-caption d-none d-md-block">
         <div class="banner-text">
             <h2>New Journey!</h2>
@@ -69,7 +58,7 @@
   </div>
     </div>
     <div class="carousel-item">
-      <img class="d-block img-fluid" src="https://images.pexels.com/photos/7097/people-coffee-tea-meeting.jpg" alt="First slide">
+      <img src="https://images.pexels.com/photos/7097/people-coffee-tea-meeting.jpg" height="480px" width="740px" alt="First slide">
       <div class="carousel-caption d-none d-md-block">
         <div class="banner-text">
             <h2>New Journey!</h2>
@@ -78,7 +67,7 @@
     </div>
     </div>
     <div class="carousel-item">
-      <img class="d-block img-fluid" src="https://images.pexels.com/photos/872957/pexels-photo-872957.jpeg" alt="First slide">
+      <img  src="https://images.pexels.com/photos/872957/pexels-photo-872957.jpeg" height="480px" width="740px" alt="First slide">
       <div class="carousel-caption d-none d-md-block">
         <div class="banner-text">
             <h2>New Journey!</h2>
@@ -91,7 +80,3 @@
 		</div>
 	</div>
 </div>
-</section>
-</body>
-
-  {% endblock %}
