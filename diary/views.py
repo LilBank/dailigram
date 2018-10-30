@@ -36,14 +36,15 @@ class LoginView(UpdateView):
 
 
 class LogoutView(UpdateView):
-
+    template_name = 'registration/logout.html'
+    
     def dispatch(self, request):
         if request.user.is_authenticated:
             return render(request, 'registration/logout.html')
 
-        return redirect('diary:index')
-    # user = request.user
+        return render(request, 'registration/login.html')
 
+    # user = request.user
     # try:
     #     google_login = user.social_auth.get(provider='google')
     # except UserSocialAuth.DoesNotExist:
@@ -55,7 +56,6 @@ class LogoutView(UpdateView):
 
     # can_disconnect = (user.social_auth.count() >
     #                   1 or user.has_usable_password())
-
     # return render(request, 'registration/logout.html', {
     #     'github_login': github_login,
     #     'google_login': google_login,
