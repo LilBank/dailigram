@@ -10,6 +10,7 @@ from social_django.models import UserSocialAuth
 from django.contrib.auth import update_session_auth_hash
 from django.contrib import messages
 from django.contrib.auth.forms import AdminPasswordChangeForm, PasswordChangeForm
+from django.contrib.auth import logout
 # from django.contrib.auth.decorators import login_required
 
 
@@ -65,9 +66,6 @@ class UserFormView(View):
                     return redirect('diary:index')
 
         return render(request, self.template_name, {'form': form})
-
-# @login_required
-
 
 def settings(request):
     user = request.user
