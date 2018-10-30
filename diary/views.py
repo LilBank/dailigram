@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from diary.models import Tag, Page, Diary
 from django.views.generic import View
+from django.views import generic
 from django.views.generic.edit import UpdateView, DeleteView
 from .forms import UserForm
 from django.shortcuts import render, redirect
@@ -13,44 +14,54 @@ from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 
-
-@login_required
-def index(request):
-    return render(request, 'diary/index.html')
-
+class IndexView(generic.ListView):
+    template_name = 'diary/index.html'
+    context_object_name = 'all_diarys'
+ 
+    def get_queryset(self):
+        """
+        Return all of the objects in the list
+        """
+        return Page.objects.all()
 
 def LoginView(request):
     if request.user.is_authenticated:
 
-        return HttpResponseRedirect('/diary/')
+        return HttpResponseRedirect('/diary')
 
     return render(request, 'registration/login.html')
+
+def LogoutView(request):
+    # user = request.user
+
+    # try:
+    #     google_login = user.social_auth.get(provider='google')
+    # except UserSocialAuth.DoesNotExist:
+    #     google_login = None
+    # try:
+    #     github_login = user.social_auth.get(provider='github')
+    # except UserSocialAuth.DoesNotExist:
+    #     github_login = None
+
+    # can_disconnect = (user.social_auth.count() >
+    #                   1 or user.has_usable_password())
+
+    # return render(request, 'registration/logout.html', {
+    #     'github_login': github_login,
+    #     'google_login': google_login,
+    #     'can_disconnect': can_disconnect
+    # })
+    if request.user.is_authenticated:
+        if request.user.social_auth.get(provider='google'):
+             return render(request, 'registration/login.html')
+
+    return HttpResponseRedirect('/diary')
 
 
 @login_required
 def create(request):
     return render(request, 'registration/create.html')
 
-def LogoutView(request):
-    user = request.user
-
-    try:
-        google_login = user.social_auth.get(provider='google')
-    except UserSocialAuth.DoesNotExist:
-        google_login = None
-    try:
-        github_login = user.social_auth.get(provider='github')
-    except UserSocialAuth.DoesNotExist:
-        github_login = None
-
-    can_disconnect = (user.social_auth.count() >
-                      1 or user.has_usable_password())
-
-    return render(request, 'registration/logout.html', {
-        'github_login': github_login,
-        'google_login': google_login,
-        'can_disconnect': can_disconnect
-    })
 
 #  class UserFormView(View):
 #     form_class = UserForm

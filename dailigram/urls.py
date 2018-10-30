@@ -28,6 +28,6 @@ urlpatterns = [
     path('', RedirectView.as_view(url='/login')),
     path('auth/', include('social_django.urls', namespace='social')),
     path('login/', views.LoginView, name='login'),
-    path('logout/', views.LoginView, name='logout'),
+    path('logout/', views.LogoutView, name='logout'),
     # path('accounts/', include('django.contrib.auth.urls')),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
