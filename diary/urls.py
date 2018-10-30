@@ -11,7 +11,7 @@ urlpatterns = [
     # ex: /diary/create/
     path('create/', views.CreateView.as_view(), name='create'),
     # ex: /diary/login
-    path('login/', auth_views.LoginView.as_view()),
+    path('login/', auth_views.LoginView.as_view(),name = 'login'),
     # ex: /diary/settings
     path('settings/', views.settings, name='settings'),
     # ex: /diary/settings/password
