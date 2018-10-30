@@ -17,14 +17,14 @@ def index(request):
 def LoginView(request):
     if request.user.is_authenticated:
 
-        return HttpResponseRedirect('/diary/')
+        return HttpResponseRedirect('/diary')
 
     return render(request, 'registration/login.html')
 
 
 @login_required
 def create(request):
-    return render(request, 'registration/create.html')
+    return render(request, 'diary/create.html')
 
 # class UserFormView(View):
 #     form_class = UserForm
