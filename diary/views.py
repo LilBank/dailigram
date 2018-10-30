@@ -27,11 +27,16 @@ class IndexView(generic.ListView):
 class LoginView(generic.DetailView):
     def post(self, request):
         if request.user.is_authenticated:
-            return HttpResponseRedirect('/diary')
+            return redirect('diary:index')
 
-        return render(request, 'registration/login.html')
+        return redirect('diary:login')
 
-def LogoutView(request):
+class LogoutView(generic.DetailView):
+    def post(self, request):
+        if request.user.is_authenticated:
+            return redirect('diary:logout')
+
+        return redirect('diary:index')
     # user = request.user
 
     # try:
@@ -51,12 +56,6 @@ def LogoutView(request):
     #     'google_login': google_login,
     #     'can_disconnect': can_disconnect
     # })
-    if request.user.is_authenticated:
-        if request.user.social_auth.get(provider='google'):
-             return render(request, 'registration/login.html')
-
-    return HttpResponseRedirect('/diary')
-
 
 @login_required
 def create(request):
