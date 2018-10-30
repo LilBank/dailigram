@@ -20,12 +20,14 @@ from django.views.generic import RedirectView
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib.auth import views as auth_views
-# from diary import views
+from diary import views
 
 urlpatterns = [
-    path('admin/', admin.site.urls, name = 'admin'),
+    path('admin/', admin.site.urls, name='admin'),
     path('diary/', include('diary.urls')),
-    path('', RedirectView.as_view(url='/diary/')),
-    path('auth/', include('social_django.urls', namespace = 'social')),
+    path('', RedirectView.as_view(url='/login')),
+    path('auth/', include('social_django.urls', namespace='social')),
+    path('login/', views.LoginView, name='login'),
+    path('logout/', views.LoginView, name='logout'),
     # path('accounts/', include('django.contrib.auth.urls')),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
