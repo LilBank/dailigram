@@ -24,12 +24,12 @@ class IndexView(generic.ListView):
         """
         return Page.objects.all()
 
-def LoginView(request):
-    if request.user.is_authenticated:
+class LoginView(generic.DetailView):
+    def post(self, request):
+        if request.user.is_authenticated:
+            return HttpResponseRedirect('/diary')
 
-        return HttpResponseRedirect('/diary')
-
-    return render(request, 'registration/login.html')
+        return render(request, 'registration/login.html')
 
 def LogoutView(request):
     # user = request.user
