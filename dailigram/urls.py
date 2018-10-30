@@ -20,11 +20,12 @@ from django.views.generic import RedirectView
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib.auth import views as auth_views
+from django.contrib.auth.decorators import login_required
 # from diary import views
 
 urlpatterns = [
     path('admin/', admin.site.urls, name = 'admin'),
-    path('diary/', include('diary.urls')),
+    path('diary/', login_required(function = include('diary.urls'),redirect_field_name = include('diary.urls'),login_url=None)),
     path('', RedirectView.as_view(url='/diary/')),
     path('auth/', include('social_django.urls', namespace = 'social')),
     # path('accounts/', include('django.contrib.auth.urls')),
