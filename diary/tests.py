@@ -62,3 +62,33 @@ class TestingForms(TestCase):
         """
         form = UserForm()
         self.assertTrue(form.is_valid)
+
+class GcloudTest(TestCase):
+
+    
+
+    def test_simple_upload(self):
+        """
+        Test if single upload success.
+        """
+
+    def test_multiple_upload(self):
+        """
+        Test if multiple upload success.
+        """
+
+    def test_get_list_blobs(self):
+        """
+        Test retrieving blobs.
+        """
+
+    def test_get_long_list(self)
+        """
+        Test retrieving lots of blobs.
+        """
+
+    def test_delete_blob(self)
+        """
+        Test deleting a blob
+        """
+
