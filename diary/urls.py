@@ -4,12 +4,12 @@ from diary import views
 app_name =  'diary'
 urlpatterns = [
      # ex: /diary/
-    path('', views.IndexView.as_view(), name='index'),
+    path('', views.index, name='index'),
      # ex: /diary/register/
-    path('register/', views.UserFormView.as_view(), name = 'register'),
+    # path('register/', views.UserFormView.as_view(), name = 'register'),
      # ex: /diary/create/    
-    path('create/', views.CreateView.as_view(), name = 'create'),
+    path('create/', views.create, name = 'create'),
     # ex: /diary/login
-    path('login/', views.LoginView.as_view(), name = 'login'),
+    # path('login/', views.LoginView, name = 'login'),
 
 ]

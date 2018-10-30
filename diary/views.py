@@ -6,56 +6,67 @@ from django.views.generic.edit import UpdateView, DeleteView
 from .forms import UserForm
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
-# from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required
 
 # @login_required
-class IndexView(generic.ListView):
-    template_name = 'diary/index.html'
-    context_object_name = 'all_diarys'
+# class IndexView(generic.ListView):
+#     template_name = 'diary/index.html'
+#     context_object_name = 'all_diarys'
 
-    def get_queryset(self):
-        """
-        Return all of the objects in the list
-        """
-        return Page.objects.all()
+#     def get_queryset(self):
+#         """
+#         Return all of the objects in the list
+#         """
+#         return Page.objects.all()
 
 # @login_required
-class CreateView(generic.ListView):
-    model = Diary
-    template_name = 'diary/create.html'
+# class CreateView(generic.ListView):
+#     model = Diary
+#     template_name = 'diary/create.html'
 
-class LoginView(generic.ListView):
-    model = Diary
-    template_name = 'registration/login.html'
+# class LoginView(generic.ListView):
+#     model = Diary
+#     template_name = 'registration/login.html'
 
-class UserFormView(View):
-    form_class = UserForm
-    template_name = 'diary/registration_form.html'
+@login_required
+def index(request):
+    return render(request,'diary/index.html')
 
-    # display black form
-    def get(self, request):
-        form = self.form_class(None)
-        return render(request, self.template_name, {'form': form})
+def LoginView(request):
+    return render(request,'registration/login.html')
 
-    # process form data
-    def post(self, request):
-        form = self.form_class(request.POST)
+@login_required
+def create(request):
+    return render(request,'registration/create.html')
 
-        if form.is_valid():
-            user = form.save(commit=False)
+# class UserFormView(View):
+#     form_class = UserForm
+#     template_name = 'diary/registration_form.html'
 
-            # cleaned data
-            username = form.cleaned_data['username']
-            password = form.cleaned_data['password']
-            user.set_password(password)
-            user.save()
+#     # display black form
+#     def get(self, request):
+#         form = self.form_class(None)
+#         return render(request, self.template_name, {'form': form})
 
-            # return User objects if credential are correct
-            user = authenticate(username=username, password=password)
+#     # process form data
+#     def post(self, request):
+#         form = self.form_class(request.POST)
 
-            if user is not None:
-                if user.is_active:
-                    login(request, user)
-                    return redirect('diary:index')
+#         if form.is_valid():
+#             user = form.save(commit=False)
 
-        return render(request, self.template_name, {'form': form})
+#             # cleaned data
+#             username = form.cleaned_data['username']
+#             password = form.cleaned_data['password']
+#             user.set_password(password)
+#             user.save()
+
+#             # return User objects if credential are correct
+#             user = authenticate(username=username, password=password)
+
+#             if user is not None:
+#                 if user.is_active:
+#                     login(request, user)
+#                     return redirect('diary:index')
+
+#         return render(request, self.template_name, {'form': form})
