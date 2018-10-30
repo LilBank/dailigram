@@ -1,43 +1,30 @@
 from django.shortcuts import render
 from diary.models import Tag, Page, Diary
-from django.views import generic
 from django.views.generic import View
 from django.views.generic.edit import UpdateView, DeleteView
 from .forms import UserForm
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
+from django.http import HttpResponseRedirect
 
-# @login_required
-# class IndexView(generic.ListView):
-#     template_name = 'diary/index.html'
-#     context_object_name = 'all_diarys'
-
-#     def get_queryset(self):
-#         """
-#         Return all of the objects in the list
-#         """
-#         return Page.objects.all()
-
-# @login_required
-# class CreateView(generic.ListView):
-#     model = Diary
-#     template_name = 'diary/create.html'
-
-# class LoginView(generic.ListView):
-#     model = Diary
-#     template_name = 'registration/login.html'
 
 @login_required
 def index(request):
-    return render(request,'diary/index.html')
+    return render(request, 'diary/index.html')
+
 
 def LoginView(request):
-    return render(request,'registration/login.html')
+    if request.user.is_authenticated:
+
+        return HttpResponseRedirect('/diary/')
+
+    return render(request, 'registration/login.html')
+
 
 @login_required
 def create(request):
-    return render(request,'registration/create.html')
+    return render(request, 'registration/create.html')
 
 # class UserFormView(View):
 #     form_class = UserForm

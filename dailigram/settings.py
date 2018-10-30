@@ -12,22 +12,22 @@ from decouple import config
 import django_heroku
 
 # SECRET_KEY = config('SECRET_KEY')
-SECRET_KEY='cg#p$g+j9tax!#a3cup@1$8obt2_+&k3q+pmu)5%asj6yjpkag'
+SECRET_KEY = 'cg#p$g+j9tax!#a3cup@1$8obt2_+&k3q+pmu)5%asj6yjpkag'
 SOCIAL_AUTH_GITHUB_KEY = config('SOCIAL_AUTH_GITHUB_KEY')
 SOCIAL_AUTH_GITHUB_SECRET = config('SOCIAL_AUTH_GITHUB_SECRET')
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = config('SOCIAL_AUTH_GOOGLE_OAUTH2_KEY')
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = config('SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET')
 
-LOGIN_URL = 'login'
-LOGOUT_URL = 'login'
-LOGIN_REDIRECT_URL = '/'
+LOGIN_URL = '/login'
+# LOGOUT_URL = 'login'
+LOGIN_REDIRECT_URL = '/diary'
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 DEBUG = config('DEBUG', cast=bool)
 
-ALLOWED_HOSTS = ['.localhost','.herokuapp.com']
+ALLOWED_HOSTS = ['.localhost', '.herokuapp.com']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -82,7 +82,7 @@ WSGI_APPLICATION = 'dailigram.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'dailigramDB',                      
+        'NAME': 'dailigramDB',
         'USER': config('DB_USER'),
         'PASSWORD': config('DB_PASSWORD'),
         'HOST': config('DB_HOST'),

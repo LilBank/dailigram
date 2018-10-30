@@ -23,10 +23,10 @@ from django.contrib.auth import views as auth_views
 from diary import views
 
 urlpatterns = [
-    path('admin/', admin.site.urls, name = 'admin'),
+    path('admin/', admin.site.urls, name='admin'),
     path('diary/', include('diary.urls')),
     path('', RedirectView.as_view(url='/login')),
-    path('auth/', include('social_django.urls', namespace = 'social')),
-    path('login/', views.LoginView, name = 'login'),
+    path('auth/', include('social_django.urls', namespace='social')),
+    path('login/', views.LoginView, name='login'),
     # path('accounts/', include('django.contrib.auth.urls')),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
