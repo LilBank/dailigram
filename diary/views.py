@@ -59,7 +59,7 @@ class LogoutView(generic.DetailView):
 
 @login_required
 def create(request):
-    return render(request, 'registration/create.html')
+    return render(request, 'diary/create.html')
 
 
 #  class UserFormView(View):
