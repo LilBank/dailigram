@@ -2,7 +2,6 @@ from django.urls import path,  include
 from diary import views
 from django.views.generic import TemplateView
 from django.contrib.auth.decorators import login_required, permission_required
-from django.contrib.auth import views as auth_views
 
 app_name = 'diary'
 urlpatterns = [

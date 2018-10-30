@@ -1,40 +1,45 @@
-from django.shortcuts import render
 from diary.models import Tag, Page, Diary
-from django.views.generic import View
-from django.views import generic
+from django.views import generic, View
 from django.views.generic.edit import UpdateView, DeleteView
 from .forms import UserForm
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from social_django.models import UserSocialAuth
-from django.contrib.auth import update_session_auth_hash
-from django.contrib import messages
 from django.contrib.auth.forms import AdminPasswordChangeForm, PasswordChangeForm
-from django.contrib.auth import logout
-from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
+from django.views.generic.detail import SingleObjectMixin
+from django.views.generic import TemplateView
+from django.urls import reverse
+
 
 class IndexView(generic.ListView):
     template_name = 'diary/index.html'
     context_object_name = 'all_diarys'
- 
+
     def get_queryset(self):
         """
         Return all of the objects in the list
         """
         return Page.objects.all()
 
-class LoginView(generic.DetailView):
-    def post(self, request):
+
+class LoginView(UpdateView):
+    template_name = 'registration/login.html'
+
+    def dispatch(self, request):
         if request.user.is_authenticated:
             return redirect('diary:index')
 
-        return redirect('diary:login')
+        return render(request, 'registration/login.html')
 
-class LogoutView(generic.DetailView):
-    def post(self, request):
+
+class LogoutView(UpdateView):
+
+    def dispatch(self, request):
         if request.user.is_authenticated:
-            return redirect('diary:logout')
+            return render(request, 'registration/logout.html')
 
         return redirect('diary:index')
     # user = request.user
@@ -57,12 +62,13 @@ class LogoutView(generic.DetailView):
     #     'can_disconnect': can_disconnect
     # })
 
+
 @login_required
 def create(request):
     return render(request, 'diary/create.html')
 
 
-#  class UserFormView(View):
+# class UserFormView(View):
 #     form_class = UserForm
 #     template_name = 'diary/registration_form.html'
 
