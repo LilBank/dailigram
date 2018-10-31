@@ -13,17 +13,21 @@ import django_heroku
 
 # SECRET_KEY = config('SECRET_KEY')
 SECRET_KEY = 'cg#p$g+j9tax!#a3cup@1$8obt2_+&k3q+pmu)5%asj6yjpkag'
+
 SOCIAL_AUTH_GITHUB_KEY = config('SOCIAL_AUTH_GITHUB_KEY')
 SOCIAL_AUTH_GITHUB_SECRET = config('SOCIAL_AUTH_GITHUB_SECRET')
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = config('SOCIAL_AUTH_GOOGLE_OAUTH2_KEY')
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = config('SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET')
-SOCIAL_AUTH_LOGIN_ERROR_URL = 'diary/settings/'
-SOCIAL_AUTH_LOGIN_REDIRECT_URL = '/diary/'
+
+SOCIAL_AUTH_LOGIN_ERROR_URL = '/diary'
+SOCIAL_AUTH_LOGIN_REDIRECT_URL = '/diary'
+SOCIAL_AUTH_LOGOUT_REDIRECT_URL = '/login'
 SOCIAL_AUTH_RAISE_EXCEPTIONS = False
 
 LOGIN_URL = '/login'
-# LOGOUT_URL = 'login'
+LOGOUT_URL = '/logout'
 LOGIN_REDIRECT_URL = '/diary'
+LOGOUT_REDIRECT_URL = '/login'
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))

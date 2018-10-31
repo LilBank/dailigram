@@ -37,7 +37,7 @@ class LoginView(UpdateView):
 
 class LogoutView(UpdateView):
     template_name = 'registration/logout.html'
-    
+
     def dispatch(self, request):
         if request.user.is_authenticated:
             return render(request, 'registration/logout.html')
@@ -62,10 +62,8 @@ class LogoutView(UpdateView):
     #     'can_disconnect': can_disconnect
     # })
 
-
-@login_required
-def create(request):
-    return render(request, 'diary/create.html')
+class CreateView(generic.CreateView):
+    template_name = 'diary/create.html'
 
 
 # class UserFormView(View):

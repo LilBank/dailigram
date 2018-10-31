@@ -1,30 +1,33 @@
+{% extends 'base.html' %}
 
+{% block content %}
 <h1>Registration</h1>
-<div class = "container-fluid">
-    <div class = "row">
+<div class="container-fluid">
+    <div class="row">
         <div class="panel panel-default">
-            <div class = "panel-body"></div>
-                <h3>Create a new account</h3>
-                {% if error_message %}
-                    <p><strong>{{ error_message }}</strong></p>
-                {% endif %}
-                <form class =  "form-horizontal" action="" method="post" enctype="multipart/form-data">
-                     {% csrf_token %}
-                     {% for field in form %}
-                        <div class="form-group">
-                              <div class="col-sm-offset-2 col-sm-10">
-                                   <span class = "text-danger small"> {{ field.errors }}</span>
-                        </div>
-                        <label class = "control-label col-sm-2">{{ field.label_tag }}</label>
-                            <div class="col-sm-10"> {{ field }}</div>
-                            </div>
-                    {% endfor %}
-                     <div class="form-group">
-                         <div class="col-sm-offset-2 col-sm-10">
-                            <button type="submit" class="btn btn-success">Submit</button>
-                         </div>  
-                     </div>
-                </form>
+            <div class="panel-body"></div>
+            <h3>Create a new account</h3>
+            {% if error_message %}
+            <p><strong>{{ error_message }}</strong></p>
+            {% endif %}
+            <form class="form-horizontal" action="" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {% for field in form %}
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <span class="text-danger small"> {{ field.errors }}</span>
+                    </div>
+                    <label class="control-label col-sm-2">{{ field.label_tag }}</label>
+                    <div class="col-sm-10"> {{ field }}</div>
+                </div>
+                {% endfor %}
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <button type="submit" class="btn btn-success">Submit</button>
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
 </div>
+{% endblock %}
