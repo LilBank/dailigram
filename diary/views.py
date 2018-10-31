@@ -37,6 +37,7 @@ class LoginView(UpdateView):
 
 class LogoutView(UpdateView):
     template_name = 'registration/logout.html'
+    
 
     def dispatch(self, request):
         if request.user.is_authenticated:
