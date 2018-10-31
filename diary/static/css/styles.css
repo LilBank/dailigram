@@ -186,7 +186,7 @@ div.fixed {
     border: 3px solid #73AD21;
 }
 
-button {
+.button {
     background-color: #4CAF50;
     color: white;
     padding: 14px 20px;
@@ -204,6 +204,30 @@ span.psw {
     float: right;
     padding-top: 16px;
 }
+
+.newbutton{
+    color: #31a6ff;
+    font-family: "proxima nova";
+    font-weight: 100; 
+    font-size: 20px;
+    text-align: center;
+
+    border: solid 3px #31a6ff;
+    border-radius: 40px;
+
+    padding: 4px 40px;
+
+    -webkit-transition-duration: 200ms;
+    transition-duration: 200ms;
+}
+
+.newbutton:hover{
+
+    background-color: #31a6ff;
+    color: #fff;
+}
+
+
 
 
 @import url("//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css");
