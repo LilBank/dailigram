@@ -170,7 +170,7 @@
 }
 
 body{
-    background: #eeeeee;
+    background: #ffffff;
     font-family: 'Varela Round', sans-serif;
 }
 
@@ -231,6 +231,14 @@ span.psw {
 
 
 @import url("//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css");
+
+.login-block{
+background: linear-gradient(to bottom, rgb(109, 221, 216), rgb(255, 255, 255)); 
+float:left;
+width:100%;
+padding : 50px 0;
+}
+
 
 
 .banner-sec{background:url(https://static.pexels.com/photos/33972/pexels-photo.jpg)  no-repeat left bottom; background-size:cover; min-height:500px; border-radius: 0 10px 10px 0; padding:0;}
