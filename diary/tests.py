@@ -3,7 +3,7 @@ from django.urls import reverse
 from diary.models import Page, Diary
 from django import forms
 from diary.forms import UserForm
-from util.GCloud.GStorage import util
+from utility.GCloud.GStorage import util
 
 
 class TestingModels(TestCase):
