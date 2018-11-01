@@ -19,16 +19,16 @@ SOCIAL_AUTH_GITHUB_SECRET = config('SOCIAL_AUTH_GITHUB_SECRET')
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = config('SOCIAL_AUTH_GOOGLE_OAUTH2_KEY')
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = config('SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET')
 
-SOCIAL_AUTH_URL_NAMESPACE = 'social'
-SOCIAL_AUTH_LOGIN_ERROR_URL = '/diary'
+# SOCIAL_AUTH_URL_NAMESPACE = 'social'
+# SOCIAL_AUTH_LOGIN_ERROR_URL = '/diary'
 SOCIAL_AUTH_LOGIN_REDIRECT_URL = '/diary'
-SOCIAL_AUTH_LOGOUT_REDIRECT_URL = '/diary'
-SOCIAL_AUTH_RAISE_EXCEPTIONS = False
+# SOCIAL_AUTH_LOGOUT_REDIRECT_URL = '/diary'
+# SOCIAL_AUTH_RAISE_EXCEPTIONS = False
 
-LOGIN_URL = '/auth/login/google-oauth2/'
+LOGIN_URL = '/login'
 LOGOUT_URL = '/logout'
-LOGIN_REDIRECT_URL = '/'
-LOGOUT_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = '/diary'
+LOGOUT_REDIRECT_URL = '/login'
 
 EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
 # EMAIL_FILE_PATH = os.path.join(BASE_DIR, "sent_emails")
@@ -149,7 +149,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 DEFAULT_FILE_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
-GS_BUCKET_NAME = 'userkim'
+# GS_BUCKET_NAME = 'userkim'
 
 # Activate Django-Heroku.
 django_heroku.settings(locals())

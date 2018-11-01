@@ -25,14 +25,10 @@ class IndexView(generic.ListView):
         return Page.objects.all()
 
 
-class LoginView(UpdateView):
+def LoginView(request):
     template_name = 'registration/login.html'
 
-    def dispatch(self, request):
-        if request.user.is_authenticated:
-            return redirect('diary:index')
-
-        return render(request, 'registration/login.html')
+    
 
 
 class LogoutView(UpdateView):
@@ -95,6 +91,6 @@ class UserFormView(View):
             if user is not None:
                 if user.is_active:
                     login(request, user)
-                    return redirect('diary:index')
+                    return redirect('login')
 
         return render(request, self.template_name, {'form': form})
