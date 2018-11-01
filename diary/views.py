@@ -25,7 +25,7 @@ class IndexView(generic.ListView):
         return Page.objects.all()
 
 
-class LoginView(UpdateView):
+# class LoginView(UpdateView):
     template_name = 'registration/login.html'
 
     def dispatch(self, request):
