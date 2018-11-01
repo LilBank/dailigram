@@ -3,7 +3,7 @@ from django.urls import reverse
 from diary.models import Page, Diary
 from django import forms
 from diary.forms import UserForm
-from util import GCloudUtil
+from util.GCloud.GStorage import util
 
 
 class TestingModels(TestCase):
@@ -68,17 +68,18 @@ class TestingForms(TestCase):
 class GcloudTest(TestCase):
 
     bucket_name = 'testBucket'
-    GCloudUtil.create_bucket(bucket_name)
+    util.create_bucket(bucket_name)
 
     def test_simple_upload(self):
         """
         Test if single upload success.
         """
-        local_file1 = open("test1.txt","x")
+        
         text = "Hello World!"
+        local_file1 = open("test1.txt","x")
         local_file1.write(text)
-        GCloudUtil.upload(bucket_name,"test1.txt")
-        file1_text = GCloudUtil.blob_metadata
+        util.upload(bucket_name,"test1.txt")
+        file1_text = util.blob_metadata
         self.assertEqual(text,file1_text)
 
 
