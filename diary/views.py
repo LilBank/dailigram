@@ -25,10 +25,14 @@ class IndexView(generic.ListView):
         return Page.objects.all()
 
 
-def LoginView(request):
+class LoginView(UpdateView):
     template_name = 'registration/login.html'
 
-    
+    def dispatch(self, request):
+        if request.user.is_authenticated:
+            return redirect('diary:index')
+
+        return render(request, 'registration/login.html')
 
 
 class LogoutView(UpdateView):
@@ -59,7 +63,7 @@ class LogoutView(UpdateView):
     #     'can_disconnect': can_disconnect
     # })
 
-class CreateView(generic.CreateView):
+class CreateView(View):
     template_name = 'diary/create.html'
 
 
@@ -91,6 +95,6 @@ class UserFormView(View):
             if user is not None:
                 if user.is_active:
                     login(request, user)
-                    return redirect('login')
+                    return redirect('')
 
         return render(request, self.template_name, {'form': form})
