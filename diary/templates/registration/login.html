@@ -97,7 +97,5 @@
     </div>
 </section>
 {% else %}
-{% block content %}
-{% include "diary/index.html" %}
-{% endblock %}
+<li><a href="{% url 'logout' %}">Logout</a></li>
 {% endif %}

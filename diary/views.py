@@ -44,24 +44,6 @@ class LogoutView(UpdateView):
 
         return render(request, 'registration/login.html')
 
-    # user = request.user
-    # try:
-    #     google_login = user.social_auth.get(provider='google')
-    # except UserSocialAuth.DoesNotExist:
-    #     google_login = None
-    # try:
-    #     github_login = user.social_auth.get(provider='github')
-    # except UserSocialAuth.DoesNotExist:
-    #     github_login = None
-
-    # can_disconnect = (user.social_auth.count() >
-    #                   1 or user.has_usable_password())
-    # return render(request, 'registration/logout.html', {
-    #     'github_login': github_login,
-    #     'google_login': google_login,
-    #     'can_disconnect': can_disconnect
-    # })
-
 class CreateView(View):
     template_name = 'diary/create.html'
 

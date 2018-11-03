@@ -31,5 +31,4 @@ urlpatterns = [
     path('accounts/', include('django.contrib.auth.urls')),
     # path('login/', views.LoginView.as_view() , name='login'),
     path('logout/', auth_views.LogoutView.as_view(),{'next_page' : settings.LOGOUT_REDIRECT_URL }, name='logout'),
-    # path('accounts/', include('django.contrib.auth.urls')),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
