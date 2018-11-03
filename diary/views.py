@@ -25,7 +25,7 @@ class IndexView(generic.ListView):
         return Page.objects.all()
 
 
-# class LoginView(UpdateView):
+class LoginView(UpdateView):
     template_name = 'registration/login.html'
 
     def dispatch(self, request):
@@ -38,7 +38,6 @@ class IndexView(generic.ListView):
 class LogoutView(UpdateView):
     template_name = 'registration/logout.html'
     
-
     def dispatch(self, request):
         if request.user.is_authenticated:
             return render(request, 'registration/logout.html')
