@@ -186,20 +186,6 @@ div.fixed {
     border: 3px solid #73AD21;
 }
 
-.button {
-    background-color: #4CAF50;
-    color: white;
-    padding: 14px 20px;
-    margin: 8px 0;
-    border: none;
-    cursor: pointer;
-    width: 100%;
-}
-
-button:hover {
-    opacity: 0.8;
-}
-
 span.psw {
     float: right;
     padding-top: 16px;
@@ -212,8 +198,8 @@ span.psw {
     font-size: 20px;
     text-align: center;
 
-    border: solid 3px #31a6ff;
-    border-radius: 40px;
+    border: solid 1.5px #31a6ff;
+    border-radius: 30px;
 
     padding: 4px 40px;
 
@@ -226,8 +212,6 @@ span.psw {
     background-color: #31a6ff;
     color: #fff;
 }
-
-
 
 
 @import url("//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css");
@@ -327,7 +311,6 @@ padding : 50px 0;
 .banner-text p{
     color:#fff;
 }
-
 
 
 

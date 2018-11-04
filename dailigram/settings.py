@@ -12,7 +12,7 @@ from decouple import config
 import django_heroku
 
 # SECRET_KEY = config('SECRET_KEY')
-SECRET_KEY = 'cg#p$g+j9tax!#a3cup@1$8obt2_+&k3q+pmu)5%asj6yjpkag'
+SECRET_KEY = config('SECRET_KEY')
 
 SOCIAL_AUTH_GITHUB_KEY = config('SOCIAL_AUTH_GITHUB_KEY')
 SOCIAL_AUTH_GITHUB_SECRET = config('SOCIAL_AUTH_GITHUB_SECRET')
@@ -93,7 +93,7 @@ WSGI_APPLICATION = 'dailigram.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'kimDB',
+        'NAME': 'kitDB',
         'USER': config('DB_USER'),
         'PASSWORD': config('DB_PASSWORD'),
         'HOST': config('DB_HOST'),
