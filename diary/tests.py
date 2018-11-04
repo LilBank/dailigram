@@ -9,7 +9,7 @@ class TestingModels(TestCase):
 
     def test_diary_pk(self):
         """
-        Test that the primary key should be one for each object's creation. 
+        Test that the primary key should be one for each object's creation.
         """
         diary = Diary.objects.create(first_name='tintin')
         self.assertEqual(diary.pk, 1)
@@ -39,11 +39,15 @@ class TestingModels(TestCase):
 
 class TestingViews(TestCase):
 
-    def test_connection(self):
+    def test_accessible_by_name(self):
         """
         Test diary's existance by the response status code.
         """
         response = self.client.get(reverse('diary:index'))
+        self.assertEqual(response.status_code, 200)
+
+    def test_accessible_by_location(self):
+        response = self.client.get('/diary/')
         self.assertEqual(response.status_code, 200)
 
     def test_no_diary_by_view(self):
@@ -53,12 +57,24 @@ class TestingViews(TestCase):
         response = self.client.get(reverse('diary:index'))
         self.assertQuerysetEqual(response.context['all_diarys'], [])
 
-
 class TestingForms(TestCase):
 
     def test_valid_forms(self):
         """
         Test if the form is valid or not.
         """
-        form = UserForm()
+        form  = UserForm()
         self.assertTrue(form.is_valid)
+        
+
+
+
+    
+
+    
+        
+
+
+
+
+
