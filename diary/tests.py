@@ -6,7 +6,7 @@ from diary.forms import UserForm
 from utility.imgur import ImgurUtil
 
 
-class TestingModels(TestCase):
+class ModelTest(TestCase):
 
     def test_diary_pk(self):
         """
@@ -38,7 +38,7 @@ class TestingModels(TestCase):
         self.assertEqual(num_diary, 0)
 
 
-class TestingViews(TestCase):
+class ViewTest(TestCase):
 
     def test_connection(self):
         """
@@ -55,7 +55,7 @@ class TestingViews(TestCase):
         self.assertQuerysetEqual(response.context['all_diarys'], [])
 
 
-class TestingForms(TestCase):
+class FormTest(TestCase):
 
     def test_valid_forms(self):
         """
@@ -67,40 +67,56 @@ class TestingForms(TestCase):
 
 class ImgurUtilTest(TestCase):
 
-    # def test_simple_upload(self):
-    #     """
-    #     Test if single upload success.
-    #     """
+    def test_single_upload(self):
+        """
+        Test if single upload success.
+        """
 
-    #     def test_multiple_upload(self):
-    #         """
-    #         Test if multiple upload success.
-    #         """
+        pass
+
+    def test_multiple_upload(self):
+        """
+        Test if multiple upload success.
+        """
+
+        pass
 
     def test_get_single_image(self):
         """
         Test getting an single image from test_album.
         """
 
+        pass
+
+    def test_get_multiple_image(self):
+        """
+        Test getting multiple image from test_album.
+        """
+
+        pass
+
     def test_get_images(self):
         """
         Test retrieving all images from imgur homepage.
         """
 
-        items = ImgurUtil.get_all_image('')
+        items = ImgurUtil.get_all_homepage_image('')
         count = 0
         for item in items:
             count+=1
             
         self.assertTrue(count>0)
+    
+    def test_delete_single_image(self):
+        """
+        Test deleting a picture.
+        """
 
+        pass
+ 
+    def test_delete_multiple_image(self):
+        """
+        Test deleting many pictures
+        """
 
-    #    def test_get_long_list(self)
-    #         """
-    #         Test retrieving lots of blobs.
-    #         """
-
-    #     def test_delete_blob(self)
-    #         """
-    #         Test deleting a blob
-    #         """
+        pass
