@@ -3,7 +3,7 @@ from django.urls import reverse
 from diary.models import Page, Diary
 from django import forms
 from diary.forms import UserForm
-from utility.GCloud.GStorage import util
+from utility.imgur import ImgurUtil
 
 
 class TestingModels(TestCase):
@@ -65,41 +65,42 @@ class TestingForms(TestCase):
         self.assertTrue(form.is_valid)
 
 
-class GcloudTest(TestCase):
+class ImgurUtilTest(TestCase):
 
-    bucket_name = 'testBucket'
-    util.create_bucket(bucket_name)
+    # def test_simple_upload(self):
+    #     """
+    #     Test if single upload success.
+    #     """
 
-    def test_simple_upload(self):
+    #     def test_multiple_upload(self):
+    #         """
+    #         Test if multiple upload success.
+    #         """
+
+    def test_get_single_image(self):
         """
-        Test if single upload success.
+        Test getting an single image from test_album.
         """
-        
-        text = "Hello World!"
-        local_file1 = open("test1.txt","x")
-        local_file1.write(text)
-        util.upload(bucket_name,"test1.txt")
-        file1_text = util.blob_metadata
-        self.assertEqual(text,file1_text)
+
+    def test_get_images(self):
+        """
+        Test retrieving all images from imgur homepage.
+        """
+
+        items = ImgurUtil.get_all_image('')
+        count = 0
+        for item in items:
+            count+=1
+            
+        self.assertTrue(count>0)
 
 
-#     def test_multiple_upload(self):
-#         """
-#         Test if multiple upload success.
-#         """
+    #    def test_get_long_list(self)
+    #         """
+    #         Test retrieving lots of blobs.
+    #         """
 
-#     def test_get_list_blobs(self):
-#         """
-#         Test retrieving blobs.
-#         """
-
-#    def test_get_long_list(self)
-#         """
-#         Test retrieving lots of blobs.
-#         """
-
-#     def test_delete_blob(self)
-#         """
-#         Test deleting a blob
-#         """
-
+    #     def test_delete_blob(self)
+    #         """
+    #         Test deleting a blob
+    #         """

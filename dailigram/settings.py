@@ -25,6 +25,8 @@ LOGIN_REDIRECT_URL = '/diary'
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = 'Dailigram 12321-e2a158e850be.json'
+
 DEBUG = config('DEBUG', cast=bool)
 
 ALLOWED_HOSTS = ['.localhost', '.herokuapp.com']
