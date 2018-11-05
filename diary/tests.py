@@ -38,21 +38,21 @@ class ModelTest(TestCase):
         self.assertEqual(num_diary, 0)
 
 
-class ViewTest(TestCase):
+# class ViewTest(TestCase):
 
-    def test_connection(self):
-        """
-        Test diary's existance by the response status code.
-        """
-        response = self.client.get(reverse('diary:index'))
-        self.assertEqual(response.status_code, 200)
+#     def test_connection(self):
+#         """
+#         Test diary's existance by the response status code.
+#         """
+#         response = self.client.get(reverse('diary:index'))
+#         self.assertEqual(response.status_code, 200)
 
-    def test_no_diary_by_view(self):
-        """
-        Test that the total context object is 0 when nothing is inserted.
-        """
-        response = self.client.get(reverse('diary:index'))
-        self.assertQuerysetEqual(response.context['all_diarys'], [])
+#     def test_no_diary_by_view(self):
+#         """
+#         Test that the total context object is 0 when nothing is inserted.
+#         """
+#         response = self.client.get(reverse('diary:index'))
+#         self.assertQuerysetEqual(response.context['all_diarys'], [])
 
 
 class FormTest(TestCase):
@@ -66,6 +66,48 @@ class FormTest(TestCase):
 
 
 class ImgurUtilTest(TestCase):
+
+    def test_get_images(self):
+        """
+        Test retrieving all images from imgur homepage.
+        """
+
+        items = ImgurUtil.get_all_homepage_image()
+        count = 0
+        for item in items:
+            count += 1
+
+        self.assertTrue(count > 0)
+
+    def test_get_single_image(self):
+        """
+        Test getting an single image from test_album.
+        """
+        album_hash = 'z02PMYd'
+        image_hash = 'DYU8bxj'
+        image_link = ImgurUtil.get_image_info('', album_hash, image_hash)
+        # link = 'https://imgur.com/DYU8bxj'
+        # title = 'Catterpillar'
+        self.assertTrue(image_link != '')
+
+    def test_get_multiple_image(self):
+        """
+        Test getting multiple image from test_album.
+        """
+        album_hash = 'z02PMYd'
+        image_1_hash = 'DYU8bxj'
+        image_2_hash = 'vACxphT'
+        image_3_hash = 'UkJdqD9'
+        image_1 = ImgurUtil.get_image_info('', album_hash, image_1_hash)
+        image_2 = ImgurUtil.get_image_info('', album_hash, image_2_hash)
+        image_3 = ImgurUtil.get_image_info('', album_hash, image_3_hash)
+        # print(image_1.link)
+        # print(image_2.link)
+        # print(image_3.link)
+        self.assertTrue(image_1 != '')
+        self.assertTrue(image_2 != '')
+        self.assertTrue(image_3 != '')
+        
 
     def test_single_upload(self):
         """
@@ -81,39 +123,13 @@ class ImgurUtilTest(TestCase):
 
         pass
 
-    def test_get_single_image(self):
-        """
-        Test getting an single image from test_album.
-        """
-
-        pass
-
-    def test_get_multiple_image(self):
-        """
-        Test getting multiple image from test_album.
-        """
-
-        pass
-
-    def test_get_images(self):
-        """
-        Test retrieving all images from imgur homepage.
-        """
-
-        items = ImgurUtil.get_all_homepage_image('')
-        count = 0
-        for item in items:
-            count+=1
-            
-        self.assertTrue(count>0)
-    
     def test_delete_single_image(self):
         """
         Test deleting a picture.
         """
 
         pass
- 
+
     def test_delete_multiple_image(self):
         """
         Test deleting many pictures
