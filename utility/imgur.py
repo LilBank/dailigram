@@ -20,11 +20,6 @@ class ImgurUtil:
         url = 'https://api.imgur.com/3/album/' + ImgurUtil.albumHash + '/image/'+ ImgurUtil.imageHash
         headers = {'Authorization': 'Bearer ' + ImgurUtil.token }
         response = requests.request("GET", url, headers=headers)
-        # print(headers)
-        # print(url)
-        # print(ImgurUtil.albumHash)
-        # print(ImgurUtil.imageHash)
-        # print(ImgurUtil.token)
         return response.json()
 
     def get_image_link(self):
