@@ -1,7 +1,7 @@
 from diary.models import Tag, Page, Diary
 from django.views import generic, View
-from django.views.generic.edit import UpdateView, DeleteView
-from .forms import UserForm, CreateForm
+from django.views.generic.edit import UpdateView, DeleteView, CreateView
+from .forms import UserForm
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from social_django.models import UserSocialAuth
@@ -37,16 +37,17 @@ class LoginView(UpdateView):
 
 class LogoutView(UpdateView):
     template_name = 'registration/logout.html'
-    
+
     def dispatch(self, request):
         if request.user.is_authenticated:
             return render(request, 'registration/logout.html')
 
         return render(request, 'registration/login.html')
 
-class CreateView(View):
-    form_class = CreateForm
-    template_name = 'diary/create.html'
+
+class CreateDiary(CreateView):
+    model = Page
+    fields = ['diary', 'tag', 'story', 'date', 'picture']
 
 
 class UserFormView(View):

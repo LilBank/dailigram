@@ -10,9 +10,3 @@ class UserForm(forms.ModelForm):
         model = User
         fields = ['username', 'email', 'password']
 
-
-class CreateForm(forms.ModelForm):
-    story = forms.CharField()
-    class Meta:
-        model = Page
-        fields = ['diary', 'story', 'tag', 'date', 'picture']
