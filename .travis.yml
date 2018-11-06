@@ -6,6 +6,13 @@ python:
 services:
     - postgresql
 
+before_script:
+  - cp config/database.yml.travis config/database.yml
+
+test:
+    adapter: postgresql
+    database: travis_ci_test
+
 install:
     - pip install -r requirements.txt
 
