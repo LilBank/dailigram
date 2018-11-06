@@ -16,7 +16,7 @@ class ImgurUtil:
         """
         Get all current images from Imgur homepage.
         """
-         
+
         items = ImgurUtil.client.gallery()
         return items
 
@@ -25,8 +25,9 @@ class ImgurUtil:
         Get image info as json.
         """
 
-        url = 'https://api.imgur.com/3/album/' + ImgurUtil.albumHash + '/image/'+ ImgurUtil.imageHash
-        headers = {'Authorization': 'Bearer ' + ImgurUtil.token }
+        url = 'https://api.imgur.com/3/album/' + \
+            ImgurUtil.albumHash + '/image/' + ImgurUtil.imageHash
+        headers = {'Authorization': 'Bearer ' + ImgurUtil.token}
         response = requests.request("GET", url, headers=headers)
         return response.json()
 
@@ -44,8 +45,15 @@ class ImgurUtil:
 
         return ImgurUtil.get_image_info('')['data']['description']
 
-    def create_album(self):
-
+    def create_album(self, albumName):
+        url = 'https://api.imgur.com/3/album'
+        payload = '------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"title\"\r\n\r\n'+ albumName +'\r\n'
+        headers = {
+            'content-type': 'multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW',
+            'Authorization': 'Bearer '+ImgurUtil.token
+        }
+        response = requests.request("POST", url, data=payload, headers=headers)
+        return response
 
     def set_albumHash(self, hash):
         """
@@ -57,6 +65,5 @@ class ImgurUtil:
         """
         Set image hash.
         """
-        
-        ImgurUtil.imageHash = hash
 
+        ImgurUtil.imageHash = hash
