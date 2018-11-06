@@ -117,13 +117,20 @@ class ImgurUtilTest(TestCase):
     #     self.assertEqual(image2_des, des2)
     #     self.assertEqual(image3_des, des3)
 
-    def test_create_album(self):
-        """
-        Create a temporary album for testing.
-        """
+    # def test_create_album(self):
+    #     """
+    #     Create a temporary album for testing.
+    #     """
 
-        response = ImgurUtil.create_album('','temp_album')
-        self.assertEqual(response.status_code, 200)
+    #     response = ImgurUtil.create_album('','temp_album')
+    #     self.assertEqual(response.status_code, 200)
+
+    def test_get_all_albums(self):
+        """
+        Test get all album hashes for further use in the test.
+        """
+        
+        print(ImgurUtil.get_all_albums)
 
     def test_single_upload(self):
         """
@@ -149,6 +156,13 @@ class ImgurUtilTest(TestCase):
     def test_delete_multiple_image(self):
         """
         Test deleting many pictures
+        """
+
+        pass
+
+    def test_delete_album(self):
+        """
+        Test delete temporary album
         """
 
         pass
