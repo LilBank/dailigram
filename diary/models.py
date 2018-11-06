@@ -19,6 +19,9 @@ class Page(models.Model):
     date = models.DateField('Date')
     picture = models.URLField(max_length=500, help_text='Enter a valid URL')
 
+    def get_absolute_url(self):
+        return reverse('diary:index')
+
     def __str__(self):
         return f'{str(self.date)}, {self.diary}, {self.tag}'
 
