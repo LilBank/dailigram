@@ -1,4 +1,5 @@
 from django.contrib.auth.models import User
+from .models import Page
 from django import forms
 
 
@@ -8,3 +9,10 @@ class UserForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ['username', 'email', 'password']
+
+
+class CreateForm(forms.ModelForm):
+    story = forms.CharField()
+    class Meta:
+        model = Page
+        fields = ['diary', 'story', 'tag', 'date', 'picture']

@@ -1,7 +1,7 @@
 from diary.models import Tag, Page, Diary
 from django.views import generic, View
 from django.views.generic.edit import UpdateView, DeleteView
-from .forms import UserForm
+from .forms import UserForm, CreateForm
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from social_django.models import UserSocialAuth
@@ -45,6 +45,7 @@ class LogoutView(UpdateView):
         return render(request, 'registration/login.html')
 
 class CreateView(View):
+    form_class = CreateForm
     template_name = 'diary/create.html'
 
 
