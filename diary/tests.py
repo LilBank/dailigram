@@ -43,11 +43,11 @@ class TestingViews(TestCase):
         """
         Test diary's existance by the response status code.
         """
-        response = self.client.get(reverse('diary:index'))
+        response = self.client.get(reverse('login'))
         self.assertEqual(response.status_code, 200)
 
     def test_accessible_by_location(self):
-        response = self.client.get('/diary/')
+        response = self.client.get('/accounts/login/', follow=True)
         self.assertEqual(response.status_code, 200)
 
     def test_no_diary_by_view(self):
@@ -56,6 +56,14 @@ class TestingViews(TestCase):
         """
         response = self.client.get(reverse('diary:index'))
         self.assertQuerysetEqual(response.context['all_diarys'], [])
+
+    def test_same_template(self):
+        """
+        Test that it redirects to the chosen page or not.
+        """
+        self.client.login(username='test', password='test')
+        response = self.client.get('/accounts/login/')
+        self.assertTemplateUsed(response, 'login.html')
 
 class TestingForms(TestCase):
 
