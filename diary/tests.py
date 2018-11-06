@@ -83,30 +83,40 @@ class ImgurUtilTest(TestCase):
         """
         Test getting an single image from test_album.
         """
-        album_hash = 'z02PMYd'
-        image_hash = 'DYU8bxj'
-        image_link = ImgurUtil.get_image_info('', album_hash, image_hash)
-        # link = 'https://imgur.com/DYU8bxj'
-        # title = 'Catterpillar'
-        self.assertTrue(image_link != '')
+        albumHash = 'z02PMYd'
+        imageHash = 'DYU8bxj'
+        ImgurUtil.set_albumHash('',albumHash)
+        ImgurUtil.set_imageHash('',imageHash)
+        image_des = ImgurUtil.get_image_description('')
+        description = "Catterpillar"
+        self.assertTrue(image_des == description)
 
     def test_get_multiple_image(self):
         """
         Test getting multiple image from test_album.
         """
-        album_hash = 'z02PMYd'
-        image_1_hash = 'DYU8bxj'
+        albumHash = 'z02PMYd'
+        image1_hash = 'DYU8bxj'
+        ImgurUtil.set_albumHash('',albumHash)
+        ImgurUtil.set_imageHash('',image1_hash)
+        image1_des = ImgurUtil.get_image_description
+        des1 = 'Catterpillar'
+
         image_2_hash = 'vACxphT'
-        image_3_hash = 'UkJdqD9'
-        image_1 = ImgurUtil.get_image_info('', album_hash, image_1_hash)
-        image_2 = ImgurUtil.get_image_info('', album_hash, image_2_hash)
-        image_3 = ImgurUtil.get_image_info('', album_hash, image_3_hash)
-        # print(image_1.link)
-        # print(image_2.link)
-        # print(image_3.link)
-        self.assertTrue(image_1 != '')
-        self.assertTrue(image_2 != '')
-        self.assertTrue(image_3 != '')
+        ImgurUtil.set_albumHash('',albumHash)
+        ImgurUtil.set_imageHash('',image1_hash)
+        image1_des = ImgurUtil.get_image_description
+        des1 = 'Catterpillar'
+        # image_3_hash = 'UkJdqD9'
+        # image_1 = ImgurUtil.get_image_info('', album_hash, image_1_hash)
+        # image_2 = ImgurUtil.get_image_info('', album_hash, image_2_hash)
+        # image_3 = ImgurUtil.get_image_info('', album_hash, image_3_hash)
+        # # print(image_1.link)
+        # # print(image_2.link)
+        # # print(image_3.link)
+        self.assertTrue(image1_des == des1)
+        # self.assertTrue(image_2 != '')
+        # self.assertTrue(image_3 != '')
         
 
     def test_single_upload(self):
