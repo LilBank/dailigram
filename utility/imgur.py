@@ -13,14 +13,6 @@ class ImgurUtil:
     albumHash = ''
     imageHash = ''
 
-    def get_all_homepage_image(*args):
-        """
-        Get all current images from Imgur homepage.
-        """
-
-        items = ImgurUtil.client.gallery()
-        return items
-
     def get_image_info(self):
         """
         Get image info as json.
@@ -47,13 +39,13 @@ class ImgurUtil:
         return ImgurUtil.get_image_info('')['data']['description']
 
     def get_all_albums(self):
-        url = 'https://api.imgur.com/3/account/'+ImgurUtil.imgur_username+'/albums/ids/'
-        headers = {'Authorization': 'Bearer '+ImgurUtil.token}
+        url = 'https://api.imgur.com/3/account/'+ImgurUtil.imgur_username+'/albums/'
+        headers = {'Authorization': 'Bearer '+ ImgurUtil.token}
         response = requests.request("GET", url, headers=headers)
         return response.json()
 
     def create_album(self, albumName):
-        url = 'https://api.imgur.com/3/album'
+        url = 'https://api.imgur.com/3/album/'
         payload = '------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"title\"\r\n\r\n' + albumName + '\r\n'
         headers = {
             'content-type': 'multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW',

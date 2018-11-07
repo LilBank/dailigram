@@ -67,70 +67,62 @@ class FormTest(TestCase):
 
 class ImgurUtilTest(TestCase):
 
-    # def test_get_images(self):
-    #     """
-    #     Test retrieving all images from imgur homepage.
-    #     """
+    def test_get_single_image(self):
+        """
+        Test getting an single image from test_album.
+        """
 
-    #     items = ImgurUtil.get_all_homepage_image()
-    #     count = 0
-    #     for item in items:
-    #         count += 1
+        albumHash = 'z02PMYd'
+        imageHash = 'DYU8bxj'
+        imgurUtil = ImgurUtil()
+        imgurUtil.set_albumHash(albumHash)
+        imgurUtil.set_imageHash(imageHash)
+        image_des = imgurUtil.get_image_description()
+        description = 'Catterpillar'
+        self.assertEqual(image_des, description)
 
-    #     self.assertTrue(count > 0)
+    def test_get_multiple_image(self):
+        """
+        Test getting multiple image from test_album.
+        """
+        imgurUtil = ImgurUtil()
+        albumHash = 'z02PMYd'
+        imgurUtil.set_albumHash(albumHash)
 
-    # def test_get_single_image(self):
-    #     """
-    #     Test getting an single image from test_album.
-    #     """
-    #     albumHash = 'z02PMYd'
-    #     imageHash = 'DYU8bxj'
-    #     ImgurUtil.set_albumHash('', albumHash)
-    #     ImgurUtil.set_imageHash('', imageHash)
-    #     image_des = ImgurUtil.get_image_description('')
-    #     description = 'Catterpillar'
-    #     self.assertEqual(image_des, description)
+        image1_hash = 'DYU8bxj'
+        imgurUtil.set_imageHash(image1_hash)
+        image1_des = imgurUtil.get_image_description()
+        des1 = 'Catterpillar'
 
-    # def test_get_multiple_image(self):
-    #     """
-    #     Test getting multiple image from test_album.
-    #     """
-    #     albumHash = 'z02PMYd'
-    #     ImgurUtil.set_albumHash('', albumHash)
+        image2_hash = 'vACxphT'
+        imgurUtil.set_imageHash(image2_hash)
+        image2_des = imgurUtil.get_image_description()
+        des2 = 'Sea and mountain'
 
-    #     image1_hash = 'DYU8bxj'
-    #     ImgurUtil.set_imageHash('', image1_hash)
-    #     image1_des = ImgurUtil.get_image_description('')
-    #     des1 = 'Catterpillar'
+        image3_hash = 'UkJdqD9'
+        imgurUtil.set_imageHash(image3_hash)
+        image3_des = imgurUtil.get_image_description()
+        des3 = 'Catty'
 
-    #     image2_hash = 'vACxphT'
-    #     ImgurUtil.set_imageHash('', image2_hash)
-    #     image2_des = ImgurUtil.get_image_description('')
-    #     des2 = 'Sea and mountain'
+        self.assertEqual(image1_des, des1)
+        self.assertEqual(image2_des, des2)
+        self.assertEqual(image3_des, des3)
 
-    #     image3_hash = 'UkJdqD9'
-    #     ImgurUtil.set_imageHash('', image3_hash)
-    #     image3_des = ImgurUtil.get_image_description('')
-    #     des3 = 'Catty'
-
-    #     self.assertEqual(image1_des, des1)
-    #     self.assertEqual(image2_des, des2)
-    #     self.assertEqual(image3_des, des3)
-
-    # def test_create_album(self):
-    #     """
-    #     Create a temporary album for testing.
-    #     """
-
-    #     response = ImgurUtil.create_album('','temp_album')
-    #     self.assertEqual(response.status_code, 200)
+    def test_create_album(self):
+        """
+        Create a temporary album for testing.
+        """
+        imgurUtil = ImgurUtil()
+        response = imgurUtil.create_album('temp_album')
+        self.assertEqual(response.status_code, 200)
 
     def test_get_all_albums(self):
         """
         Test get all album hashes for further use in the test.
         """
-        
-        print(ImgurUtil.get_all_albums)
+        imgurUtil = ImgurUtil()
+        response = imgurUtil.get_all_albums()
+        self.assertEqual(response['status'], 200)
 
     def test_single_upload(self):
         """
