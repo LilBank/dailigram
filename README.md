@@ -1,4 +1,5 @@
 ![Alt text](meta/logo.png)
+
 [![Build Status](https://travis-ci.com/bankkeez/dailigram.svg?branch=master)](https://travis-ci.com/bankkeez/dailigram)
 
 **Dailigram** is an online diary which provides users free space to instantly preserve their moments and memories, including pictures, and share them online to exchange user’s life stories. Plus, it's accessible anywhere and anytime through the internet, which is surely more convenient than carrying a diary book.
