@@ -30,6 +30,7 @@ pip install django
 ```
 
 ## Installation
+
 ```
 # Clone the project to your local directory.
 git clone https://github.com/bankkeez/dailigram.git
@@ -37,7 +38,24 @@ git clone https://github.com/bankkeez/dailigram.git
 # Go to the directory.
 cd dailigram/ 
 
-# Install all the requirements.
+# Install the dependencies.
 pip install -r requirements.txt
 ```
 
+### Run Application Locally
+
+**For Mac:**
+
+```
+heroku local web
+```
+
+**For Window:**
+
+You have to create file name `Procfile.windows` in your root directory and write 
+
+`web: python manage.py runserver localhost:8000`
+
+```
+heroku local web -f Procfile.windows
+```
