@@ -1,4 +1,4 @@
-# Dailigram
+![Alt text](meta/logo.png)
 [![Build Status](https://travis-ci.com/bankkeez/dailigram.svg?branch=master)](https://travis-ci.com/bankkeez/dailigram)
 
 **Dailigram** is an online diary which provides users free space to instantly preserve their moments and memories, including pictures, and share them online to exchange user’s life stories. Plus, it's accessible anywhere and anytime through the internet, which is surely more convenient than carrying a diary book.
@@ -6,7 +6,7 @@ Our target group is a typical internet users who prefer writing journal online.
 
 ## Team Members
 
-ID           |           Name           |               Team Roles
+ID           |           Name           |               Roles
 -------------|--------------------------|-------------------------------------
 6010545854   |   Piyawat Setthitikun    |  Scrum Master, Full Stack Developer
 6010545897   |   Vichaphol Thamsuthikul |  Full Stack Developer
@@ -52,9 +52,8 @@ heroku local web
 
 **For Window:**
 
-You have to create file name `Procfile.windows` in your root directory and write 
-
-`web: python manage.py runserver localhost:8000`
+You have to create file name `Procfile.windows` in your root directory and write this  
+`web: python manage.py runserver localhost:8000` then you are ready to run.
 
 ```
 heroku local web -f Procfile.windows
