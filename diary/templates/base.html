@@ -20,7 +20,7 @@
 <body>
   <div>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">Navbar</a>
+  <a class="navbar-brand" href="#"><i class="glyphicon glyphicon-book"></i><b> Dailigram</b></a>  		
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -30,7 +30,7 @@
       <li class="nav-item active">
         <a href="{% url 'diary:index' %}" class="nav-link">
           <i class="fa fa-home"></i>
-          <span> Home</span>
+          <span > Home</span>
         </a>
       </li>
       <li class="nav-item">
@@ -46,7 +46,7 @@
         </a>
       </li>
       <li class="nav-item">
-        <a href=" " class="nav-link">
+        <a href="{% url 'logout' %}" class="nav-link">
           <i class="glyphicon glyphicon-log-out"></i>
           <span> Logout</span>
         </a>
@@ -59,6 +59,7 @@
   </div>
 </nav>
   </div>
+  <br><br><br>
   {% block content %}{% endblock %}
 </body>
 

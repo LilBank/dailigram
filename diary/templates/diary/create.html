@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,21 +17,50 @@
 
 <body>
   {% block content %}
-  <button>
-    <div class="container">
-      <div class="Row">
-        <div class="Col-sm">
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Consectetur dolores aliquid quibusdam distinctio vel id asperiores dolor, quisquam, nihil, nulla animi temporibus vitae non inventore accusamus quam ad voluptates! Magnam?
-        </div>
-        <div class="Col-sm">
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Et veritatis excepturi ipsa minima iste aspernatur quibusdam, dicta molestiae facilis sequi ducimus praesentium, doloribus harum? Dolorem est rem excepturi quo asperiores?
-        </div>
-        <div class="Col-sm">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur incidunt quas quam quia, qui iste impedit quidem temporibus est ab neque asperiores. Neque error, quas aliquid vel maiores suscipit sed!
-        </div>
+  <div style="text-align: center">
+    <div class="row">
+      <div class="col">
+        <button style="height:400px;width:400px">
+          <div class="row">
+            <div class="col">
+              Input something!
+            </div>
+            <div class="col">
+              <img src="https://images-na.ssl-images-amazon.com/images/I/71e6GOdrTeL.jpg" width="150" height="180" alt="">
+            </div>
+          </div>
+        </button>
+      </div>
+
+      <div class="col">
+        <button style="height:400px;width:400px">
+          <div class="row">
+            <div class="col">
+              <img src="https://images-na.ssl-images-amazon.com/images/I/71e6GOdrTeL.jpg" width="150" height="180" alt="">
+            </div>
+            <div class="col">
+              Input something!
+            </div>
+          </div>
+        </button>
+      </div>
+
+      <div class="col">
+        <button style="height:400px;width:400px">
+          <div class="col">
+            <div class="row">
+              <img src="https://images-na.ssl-images-amazon.com/images/I/71e6GOdrTeL.jpg" width="150" height="180" alt="">
+            </div>
+            <div class="row">
+                <img src="https://images-na.ssl-images-amazon.com/images/I/71e6GOdrTeL.jpg" width="150" height="180" alt="">
+
+            </div>
+          </div>
+        </button>
       </div>
     </div>
-  </button>
+  </div>
+
   {% endblock %}
 </body>
 
