@@ -7,11 +7,18 @@ from diary.forms import UserForm
 
 class TestingModels(TestCase):
 
+    def setUp(self):
+        """
+        Set up the database's objects
+        """
+        diary = Diary.objects.create(first_name ='tony')
+        page = Page.objects.create()
+
     def test_diary_pk(self):
         """
         Test that the primary key should be one for each object's creation.
         """
-        diary = Diary.objects.create(first_name='tintin')
+        diary = Diary.objects.all()
         self.assertEqual(diary.pk, 1)
 
     def test_string_representation(self):
@@ -54,8 +61,15 @@ class TestingViews(TestCase):
         """
         Test that the total context object is 0 when nothing is inserted.
         """
-        response = self.client.get(reverse('diary:index'))
+        response = self.client.get(reverse('diary:login'))
         self.assertQuerysetEqual(response.context['all_diarys'], [])
+    
+    def test_login(self):
+        """
+        Test if the login is sucess or not
+        """
+        response = self.client.post('/accounts/login/', self.credentials, follow=True)
+        self.assertTrue(response.context['user'].is_authenticated)
 
     def test_same_template(self):
         """
