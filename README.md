@@ -20,15 +20,24 @@ ID           |           Name           |               Team Roles
 
 ## Prerequisite
 
-You have to install the followings to be able to run.
+You must install the followings to be able to run.
 
-- Python [download](https://www.python.org/downloads/)
-- Django can be install by the command line
-    
-    pip install django
+- `Python` [download](https://www.python.org/downloads/)
+- `Django` can be install by the command line
 
-## Installation Steps
+```
+pip install django
+```
 
-1. Clone the project to your local directory
+## Installation
+```
+# Clone the project to your local directory.
+git clone https://github.com/bankkeez/dailigram.git
 
+# Go to the directory.
+cd dailigram/ 
+
+# Install all the requirements.
+pip install -r requirements.txt
+```
 
