@@ -54,13 +54,10 @@ class ImgurUtil:
 
         albums = self.get_all_albums_info()
         temp_list = albums['data']
-
         for single_dict in temp_list:
             if single_dict['title'] == albumTitle:
                 tempHash = single_dict['id']
                 return tempHash
-            # print(single_dict['id'])
-            # print(single_dict['title'])
 
     def create_album(self, albumTitle):
         """
@@ -76,12 +73,12 @@ class ImgurUtil:
         response = requests.request("POST", url, data=payload, headers=headers)
         return response
 
-    def delete_album(self, hash):
+    def delete_album(self, albumTitle):
         """
         Delete the album with the album hash.
         """
-
-        url = 'https://api.imgur.com/3/album/'+hash
+        albumHash = self.get_album_hash(albumTitle)
+        url = 'https://api.imgur.com/3/album/' + albumHash
         headers = {'Authorization': 'Bearer ' + ImgurUtil.token}
         response = requests.request("DELETE", url, headers=headers)
-        return response
+        return response.json()

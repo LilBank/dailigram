@@ -67,40 +67,40 @@ from utility.imgur import ImgurUtil
 
 class ImgurUtilTest(TestCase):
 
-    def test_get_single_image(self):
-        """
-        Test getting an single image from test_album.
-        """
+    # def test_get_single_image(self):
+    #     """
+    #     Test getting an single image from test_album.
+    #     """
 
-        albumHash = 'z02PMYd'
-        imageHash = 'DYU8bxj'
-        imgurUtil = ImgurUtil()
-        image_des = imgurUtil.get_image_description(albumHash, imageHash)
-        description = 'Catterpillar'
-        self.assertEqual(image_des, description)
+    #     albumHash = 'z02PMYd'
+    #     imageHash = 'DYU8bxj'
+    #     imgurUtil = ImgurUtil()
+    #     image_des = imgurUtil.get_image_description(albumHash, imageHash)
+    #     description = 'Catterpillar'
+    #     self.assertEqual(image_des, description)
 
-    def test_get_multiple_image(self):
-        """
-        Test getting multiple image from test_album.
-        """
-        imgurUtil = ImgurUtil()
-        albumHash = 'z02PMYd'
+    # def test_get_multiple_image(self):
+    #     """
+    #     Test getting multiple image from test_album.
+    #     """
+    #     imgurUtil = ImgurUtil()
+    #     albumHash = 'z02PMYd'
 
-        image1_hash = 'DYU8bxj'
-        image1_des = imgurUtil.get_image_description(albumHash, image1_hash)
-        des1 = 'Catterpillar'
+    #     image1_hash = 'DYU8bxj'
+    #     image1_des = imgurUtil.get_image_description(albumHash, image1_hash)
+    #     des1 = 'Catterpillar'
 
-        image2_hash = 'vACxphT'
-        image2_des = imgurUtil.get_image_description(albumHash, image2_hash)
-        des2 = 'Sea and mountain'
+    #     image2_hash = 'vACxphT'
+    #     image2_des = imgurUtil.get_image_description(albumHash, image2_hash)
+    #     des2 = 'Sea and mountain'
 
-        image3_hash = 'UkJdqD9'
-        image3_des = imgurUtil.get_image_description(albumHash, image3_hash)
-        des3 = 'Catty'
+    #     image3_hash = 'UkJdqD9'
+    #     image3_des = imgurUtil.get_image_description(albumHash, image3_hash)
+    #     des3 = 'Catty'
 
-        self.assertEqual(image1_des, des1)
-        self.assertEqual(image2_des, des2)
-        self.assertEqual(image3_des, des3)
+    #     self.assertEqual(image1_des, des1)
+    #     self.assertEqual(image2_des, des2)
+    #     self.assertEqual(image3_des, des3)
 
     def test_create_album(self):
         """
@@ -137,11 +137,7 @@ class ImgurUtilTest(TestCase):
         Test deleting a picture.
         """
 
-        imgurUtil = ImgurUtil()
-        albumTitle = 'test_album'
-        albumHash = imgurUtil.get_album_hash(albumTitle)
-        test_album_hash = 'z02PMYd'
-        self.assertEqual(albumHash,test_album_hash)
+        pass
 
     def test_delete_multiple_image(self):
         """
@@ -155,4 +151,8 @@ class ImgurUtilTest(TestCase):
         Test delete temporary album
         """
 
-        pass
+        imgurUtil = ImgurUtil()
+        albumTitle = 'temp_album'
+        response = imgurUtil.delete_album(albumTitle)
+        self.assertEqual(response['status'],200)
+
