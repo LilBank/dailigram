@@ -56,6 +56,13 @@ class TestingViews(TestCase):
         """
         response = self.client.get(reverse('diary:login'))
         self.assertQuerysetEqual(response.context['all_diarys'], [])
+    
+    def test_login(self):
+        """
+        Test if the login is sucess or not
+        """
+        response = self.client.post('/accounts/login/', self.credentials, follow=True)
+        self.assertTrue(response.context['user'].is_authenticated)
 
 class TestingForms(TestCase):
 
