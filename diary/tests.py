@@ -75,9 +75,7 @@ class ImgurUtilTest(TestCase):
         albumHash = 'z02PMYd'
         imageHash = 'DYU8bxj'
         imgurUtil = ImgurUtil()
-        imgurUtil.set_albumHash(albumHash)
-        imgurUtil.set_imageHash(imageHash)
-        image_des = imgurUtil.get_image_description()
+        image_des = imgurUtil.get_image_description(albumHash, imageHash)
         description = 'Catterpillar'
         self.assertEqual(image_des, description)
 
@@ -87,21 +85,17 @@ class ImgurUtilTest(TestCase):
         """
         imgurUtil = ImgurUtil()
         albumHash = 'z02PMYd'
-        imgurUtil.set_albumHash(albumHash)
 
         image1_hash = 'DYU8bxj'
-        imgurUtil.set_imageHash(image1_hash)
-        image1_des = imgurUtil.get_image_description()
+        image1_des = imgurUtil.get_image_description(albumHash, image1_hash)
         des1 = 'Catterpillar'
 
         image2_hash = 'vACxphT'
-        imgurUtil.set_imageHash(image2_hash)
-        image2_des = imgurUtil.get_image_description()
+        image2_des = imgurUtil.get_image_description(albumHash, image2_hash)
         des2 = 'Sea and mountain'
 
         image3_hash = 'UkJdqD9'
-        imgurUtil.set_imageHash(image3_hash)
-        image3_des = imgurUtil.get_image_description()
+        image3_des = imgurUtil.get_image_description(albumHash, image3_hash)
         des3 = 'Catty'
 
         self.assertEqual(image1_des, des1)
@@ -121,7 +115,7 @@ class ImgurUtilTest(TestCase):
         Test get all album hashes for further use in the test.
         """
         imgurUtil = ImgurUtil()
-        response = imgurUtil.get_all_albums()
+        response = imgurUtil.get_all_albums_info()
         self.assertEqual(response['status'], 200)
 
     def test_single_upload(self):

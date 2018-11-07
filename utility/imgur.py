@@ -10,37 +10,37 @@ class ImgurUtil:
     imgur_username = config('IMGUR_USERNAME')
     client = ImgurClient(imgur_id, imgur_key)
     token = config('ACCESS_TOKEN')
-    albumHash = ''
-    imageHash = ''
 
-    def get_image_info(self):
+    def get_image_info(self, albumHash, imageHash):
         """
         Get image info as json.
         """
-
-        url = 'https://api.imgur.com/3/album/' + \
-            ImgurUtil.albumHash + '/image/' + ImgurUtil.imageHash
+        url = 'https://api.imgur.com/3/album/' + albumHash + '/image/' + imageHash
         headers = {'Authorization': 'Bearer ' + ImgurUtil.token}
         response = requests.request("GET", url, headers=headers)
         return response.json()
 
-    def get_image_link(self):
+    def get_image_link(self, albumHash, imageHash):
         """
         Get the link of the image.
         """
+        image_info = self.get_image_info(albumHash, imageHash)
+        return image_info['data']['link']
 
-        return ImgurUtil.get_image_info('')['data']['link']
-
-    def get_image_description(self):
+    def get_image_description(self, albumHash, imageHash):
         """
         Get the description of the image.
         """
+        image_info = self.get_image_info(albumHash, imageHash)
+        return image_info['data']['description']
 
-        return ImgurUtil.get_image_info('')['data']['description']
+    def get_all_albums_info(self):
+        """
+        Get information of every albums as json.
+        """
 
-    def get_all_albums(self):
         url = 'https://api.imgur.com/3/account/'+ImgurUtil.imgur_username+'/albums/'
-        headers = {'Authorization': 'Bearer '+ ImgurUtil.token}
+        headers = {'Authorization': 'Bearer ' + ImgurUtil.token}
         response = requests.request("GET", url, headers=headers)
         return response.json()
 
@@ -59,15 +59,3 @@ class ImgurUtil:
         headers = {'Authorization': 'Bearer ' + ImgurUtil.token}
         response = requests.request("DELETE", url, headers=headers)
         return response
-
-    def set_albumHash(self, hash):
-        """
-        Set album hash.
-        """
-        ImgurUtil.albumHash = hash
-
-    def set_imageHash(self, hash):
-        """
-        Set image hash.
-        """
-        ImgurUtil.imageHash = hash
