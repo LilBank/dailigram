@@ -12,5 +12,7 @@ urlpatterns = [
     path('register/', views.UserFormView.as_view(), name = 'register'),
     # ex: /diary/create/
     path('create/', views.CreateDiary.as_view(), name='create'),
+    # ex: /diary/format/    
+    path('format/', views.CreateFormat.as_view(), name='format')
 
 ]

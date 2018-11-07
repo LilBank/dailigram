@@ -49,9 +49,11 @@ class CreateDiary(CreateView):
     model = Page
     fields = ['diary', 'tag', 'story', 'date', 'picture']
 
+class CreateFormat(View):
+    template_name = 'diary/format.html'
+    
     def get(self, request):
         return render(request, self.template_name)
-
 
 class UserFormView(View):
     form_class = UserForm
