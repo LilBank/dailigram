@@ -11,7 +11,6 @@ import os
 from decouple import config
 import django_heroku
 
-# SECRET_KEY = config('SECRET_KEY')
 SECRET_KEY = config('SECRET_KEY')
 
 SOCIAL_AUTH_GITHUB_KEY = config('SOCIAL_AUTH_GITHUB_KEY')
@@ -19,21 +18,13 @@ SOCIAL_AUTH_GITHUB_SECRET = config('SOCIAL_AUTH_GITHUB_SECRET')
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = config('SOCIAL_AUTH_GOOGLE_OAUTH2_KEY')
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = config('SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET')
 
-# SOCIAL_AUTH_URL_NAMESPACE = 'social'
-# SOCIAL_AUTH_LOGIN_ERROR_URL = '/diary'
-# SOCIAL_AUTH_LOGIN_REDIRECT_URL = '/diary'
-# SOCIAL_AUTH_LOGOUT_REDIRECT_URL = '/diary'
-# SOCIAL_AUTH_RAISE_EXCEPTIONS = False
-
 LOGIN_URL = '/accounts/login'
 LOGOUT_URL = '/logout'
 LOGIN_REDIRECT_URL = '/diary'
 LOGOUT_REDIRECT_URL = '/accounts/login'
 
 EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
-# EMAIL_FILE_PATH = os.path.join(BASE_DIR, "sent_emails")
 
-# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 DEBUG = config('DEBUG', cast=bool)
@@ -147,9 +138,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = '/static/'
-
-DEFAULT_FILE_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
-# GS_BUCKET_NAME = 'userkit'
 
 # Activate Django-Heroku.
 django_heroku.settings(locals())
