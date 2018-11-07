@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% if error_message %}
+<p><strong>{{ error_message }}</strong></p>
+{% endif %}
+<form class="form-horizontal" action="" method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+  {% for field in form %}
+  {{field.label_tag}}
+  {{field}} <br><br>
+  {% endfor %}
+  <button type="submit" class="btn btn-success">Submit</button>
+</form>
+{% endblock %}
