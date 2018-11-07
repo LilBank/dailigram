@@ -11,6 +11,30 @@ class ImgurUtil:
     client = ImgurClient(imgur_id, imgur_key)
     token = config('ACCESS_TOKEN')
 
+    def create_album(self, albumTitle):
+        """
+        Create a album with the name from parameter.
+        """
+
+        url = 'https://api.imgur.com/3/album/'
+        payload = '------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"title\"\r\n\r\n' + albumTitle + '\r\n'
+        headers = {
+            'content-type': 'multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW',
+            'Authorization': 'Bearer '+ImgurUtil.token
+        }
+        response = requests.request("POST", url, data=payload, headers=headers)
+        return response
+
+    def delete_album(self, albumTitle):
+        """
+        Delete the album with the album hash.
+        """
+        albumHash = self.get_album_hash(albumTitle)
+        url = 'https://api.imgur.com/3/album/' + albumHash
+        headers = {'Authorization': 'Bearer ' + ImgurUtil.token}
+        response = requests.request("DELETE", url, headers=headers)
+        return response.json()
+
     def get_image_info(self, albumHash, imageHash):
         """
         Get image info as json.
@@ -59,26 +83,16 @@ class ImgurUtil:
                 tempHash = single_dict['id']
                 return tempHash
 
-    def create_album(self, albumTitle):
+    def upload_image(self, albumTitle, id):
         """
-        Create a album with the name from parameter.
+        Upload image to the selected album with an id.
         """
 
-        url = 'https://api.imgur.com/3/album/'
-        payload = '------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"title\"\r\n\r\n' + albumTitle + '\r\n'
-        headers = {
-            'content-type': 'multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW',
-            'Authorization': 'Bearer '+ImgurUtil.token
-        }
-        response = requests.request("POST", url, data=payload, headers=headers)
-        return response
-
-    def delete_album(self, albumTitle):
-        """
-        Delete the album with the album hash.
-        """
-        albumHash = self.get_album_hash(albumTitle)
-        url = 'https://api.imgur.com/3/album/' + albumHash
-        headers = {'Authorization': 'Bearer ' + ImgurUtil.token}
-        response = requests.request("DELETE", url, headers=headers)
-        return response.json()
+        # url = 'https://api.imgur.com/3/album/'+albumTitle+'/add'
+        # payload = '------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"ids[]\"\r\n\r\n{{imageHash}}\r\n'
+        # headers = {
+        #     'content-type': 'multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW',
+        #     'Authorization': 'Bearer {{accessToken}}'
+        # }
+        # response = requests.request("POST", url, data=payload, headers=headers)
+        # return response
