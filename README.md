@@ -1,4 +1,5 @@
 ![Alt text](meta/logo.png)
+
 [![Build Status](https://travis-ci.com/bankkeez/dailigram.svg?branch=master)](https://travis-ci.com/bankkeez/dailigram)
 
 **Dailigram** is an online diary which provides users free space to instantly preserve their moments and memories, including pictures, and share them online to exchange user’s life stories. Plus, it's accessible anywhere and anytime through the internet, which is surely more convenient than carrying a diary book.
@@ -8,9 +9,9 @@ Our target group is a typical internet users who prefer writing journal online.
 
 ID           |           Name           |               Roles
 -------------|--------------------------|-------------------------------------
-6010545854   |   Piyawat Setthitikun    |  Scrum Master, Full Stack Developer
-6010545897   |   Vichaphol Thamsuthikul |  Full Stack Developer
-6010546630   |   Kittin Vatabutr        |  Full Stack Developer
+6010545854   |   Piyawat Setthitikun    |       Scrum Master, Developer
+6010545897   |   Vichaphol Thamsuthikul |              Developer
+6010546630   |   Kittin Vatabutr        |              Developer
 
 ## Documents
 
@@ -22,8 +23,10 @@ ID           |           Name           |               Roles
 
 You must install the followings to be able to run.
 
-- `Python` [download](https://www.python.org/downloads/)
-- `Django` can be install by the command line
+- `Python`  [download](https://www.python.org/downloads/)
+- `Heroku`  [download](https://devcenter.heroku.com/articles/heroku-cli)
+- `Node.js` [download](https://nodejs.org/en/download/package-manager/)
+- `Django` can be install by the command line using [pip](https://www.makeuseof.com/tag/install-pip-for-python/)
 
 ```
 pip install django
