@@ -3,6 +3,8 @@ from django.urls import reverse
 from diary.models import Page, Diary
 from django import forms
 from diary.forms import UserForm
+from selenium import webdriver
+
 
 
 class TestingModels(TestCase):
@@ -77,3 +79,21 @@ class TestingForms(TestCase):
         """
         form = UserForm()
         self.assertTrue(form.is_valid)
+    
+
+# class TestingWeb():
+#     chromedriver = "/staticfiles"
+#     driver = webdriver.Chrome(chromedriver)
+#     driver.get
+
+
+
+    
+
+    
+        
+
+
+
+
+
