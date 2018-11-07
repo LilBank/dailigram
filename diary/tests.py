@@ -43,19 +43,26 @@ class TestingViews(TestCase):
         """
         Test diary's existance by the response status code.
         """
-        response = self.client.get(reverse('diary:index'))
+        response = self.client.get(reverse('login'))
         self.assertEqual(response.status_code, 200)
 
     def test_accessible_by_location(self):
-        response = self.client.get('/diary/')
+        response = self.client.get('/accounts/diary/')
         self.assertEqual(response.status_code, 200)
 
     def test_no_diary_by_view(self):
         """
         Test that the total context object is 0 when nothing is inserted.
         """
-        response = self.client.get(reverse('diary:index'))
+        response = self.client.get(reverse('diary:login'))
         self.assertQuerysetEqual(response.context['all_diarys'], [])
+    
+    def test_login(self):
+        """
+        Test if the login is sucess or not
+        """
+        response = self.client.post('/accounts/login/', self.credentials, follow=True)
+        self.assertTrue(response.context['user'].is_authenticated)
 
 class TestingForms(TestCase):
 
