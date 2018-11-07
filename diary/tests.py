@@ -6,36 +6,36 @@ from diary.forms import UserForm
 from utility.imgur import ImgurUtil
 
 
-class ModelTest(TestCase):
+# class ModelTest(TestCase):
 
-    def test_diary_pk(self):
-        """
-        Test that the primary key should be one for each object's creation.
-        """
-        diary = Diary.objects.create(first_name='tintin')
-        self.assertEqual(diary.pk, 1)
+#     def test_diary_pk(self):
+#         """
+#         Test that the primary key should be one for each object's creation.
+#         """
+#         diary = Diary.objects.create(first_name='tintin')
+#         self.assertEqual(diary.pk, 1)
 
-    def test_string_representation(self):
-        """
-        Test that the string is correctly represented.
-        """
-        diary = Diary.objects.create(first_name='tintin')
-        self.assertEqual(str(diary), diary.first_name)
+#     def test_string_representation(self):
+#         """
+#         Test that the string is correctly represented.
+#         """
+#         diary = Diary.objects.create(first_name='tintin')
+#         self.assertEqual(str(diary), diary.first_name)
 
-    def test_diary_max_length(self):
-        """
-        Test that the max length of the field is equal or not.
-        """
-        diary = Diary(first_name='tony')
-        max_length = diary._meta.get_field('first_name').max_length
-        self.assertEquals(max_length, 100)
+#     def test_diary_max_length(self):
+#         """
+#         Test that the max length of the field is equal or not.
+#         """
+#         diary = Diary(first_name='tony')
+#         max_length = diary._meta.get_field('first_name').max_length
+#         self.assertEquals(max_length, 100)
 
-    def test_no_diary_by_model(self):
-        """
-        Test that the total number of object is 0 when nothing is created.
-        """
-        num_diary = Diary.objects.all().count()
-        self.assertEqual(num_diary, 0)
+#     def test_no_diary_by_model(self):
+#         """
+#         Test that the total number of object is 0 when nothing is created.
+#         """
+#         num_diary = Diary.objects.all().count()
+#         self.assertEqual(num_diary, 0)
 
 
 # class ViewTest(TestCase):
@@ -55,14 +55,14 @@ class ModelTest(TestCase):
 #         self.assertQuerysetEqual(response.context['all_diarys'], [])
 
 
-class FormTest(TestCase):
+# class FormTest(TestCase):
 
-    def test_valid_forms(self):
-        """
-        Test if the form is valid or not.
-        """
-        form = UserForm()
-        self.assertTrue(form.is_valid)
+#     def test_valid_forms(self):
+#         """
+#         Test if the form is valid or not.
+#         """
+#         form = UserForm()
+#         self.assertTrue(form.is_valid)
 
 
 class ImgurUtilTest(TestCase):
@@ -137,7 +137,11 @@ class ImgurUtilTest(TestCase):
         Test deleting a picture.
         """
 
-        pass
+        imgurUtil = ImgurUtil()
+        albumTitle = 'test_album'
+        albumHash = imgurUtil.get_album_hash(albumTitle)
+        test_album_hash = 'z02PMYd'
+        self.assertEqual(albumHash,test_album_hash)
 
     def test_delete_multiple_image(self):
         """
