@@ -11,12 +11,20 @@ class TestingModels(TestCase):
 
     def setUp(self):
         """
-        Set up creating database's objects  
+        Set up creating database's objects
         """
         Diary.objects.create(first_name='tony')
         Diary.objects.create(first_name='tintin')
+        diary = Diary.objects.all()
+
         Tag.objects.create(name='happy')
         Tag.objects.create(name='sad')
+        tag = Tag.objects.all()
+
+        Page.objects.create(
+            diary=diary[0], tag=tag[0], story='This was awesome', date='2018-11-06', picture='pic1')
+        Page.objects.create(
+            diary=diary[1], tag=tag[1], story='This was awesome', date='2018-11-06', picture='pic1')
 
     def test_count_diary(self):
         """
@@ -37,7 +45,7 @@ class TestingModels(TestCase):
         Test counting the total pages.
         """
         num_page = Page.objects.all().count()
-        self.assertEqual(num_page, 0)
+        self.assertEqual(num_page, 2)
 
     def test_diary_first_name(self):
         """
@@ -80,12 +88,8 @@ class TestingModels(TestCase):
         self.assertEquals(max_length, 100)
 
     def test_get_absolute_url(self):
-        Page.objects.create(Diary='tony', Tag='happy',
-                            story='This was awesome', date='2018-11-06', picture='pic1')
-        Page.objects.create(Diary='tintin', Tag='sad',
-                            story='I met someone', date='2018-12-06', picture='pic2')
-        page = Page.objects.get(id=1)
-        self.assertEquals(page.get_absolute_url(), '/diary/')
+        page = Page.objects.all()
+        self.assertEquals(page[0].get_absolute_url(), '/diary/')
 
 
 # class TestingViews(TestCase):
