@@ -5,8 +5,6 @@ from django.test.client import Client
 from django import forms
 from diary.forms import UserForm
 from .forms import *
-from selenium import webdriver
-
 
 class TestingModels(TestCase):
 
@@ -154,7 +152,3 @@ class TestingForms(TestCase):
         self.assertFalse(form.is_valid())
 
 
-# class TestingWeb():
-#     chromedriver = "/staticfiles"
-#     driver = webdriver.Chrome(chromedriver)
-#     driver.get
