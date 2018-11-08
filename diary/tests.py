@@ -81,22 +81,34 @@ from selenium.webdriver.common.by import By
 
     
 class TestingWeb():
+
     
     options = webdriver.ChromeOptions()
+    options.add_argument("--start-maximized")
     options.add_argument('--ignore-certificate-errors')
     options.add_argument("--test-type")
+    
+
     options.binary_location = "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe"
-    driver = webdriver.Chrome(chrome_options=options)
+    driver = webdriver.Chrome("chromedriver.exe")
+    driver.set_window_size(1024, 600)
+    driver.maximize_window()
     driver.get('https://dailigram.herokuapp.com/')
-    driver = webdriver.Chrome()
 
     username = driver.find_element_by_xpath('//*[@id="id_username"]')
     password = driver.find_element_by_xpath('//*[@id="id_password"]')
     username.clear()
     username.send_keys('adminkit')
-    password.send_keys('Kitcool@36')
+    password.send_keys('kit12345')
 
-    driver.find_element_by_name("login".click)
+    driver.find_element_by_name("login").click()
+    driver.find_element_by_xpath("//nav/div/ul/li[4]/a").click()    
+
+    # driver.quit()
+
+
+    # driver.find_element_by_id("expand").click()
+
 
     
         

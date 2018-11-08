@@ -25,7 +25,7 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <a class="navbar-brand" href="#"><i class="glyphicon glyphicon-book"></i><b> Dailigram</b></a>  		
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
+    <span id="expand" class="navbar-toggler-icon"></span>
   </button>
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -49,7 +49,7 @@
         </a>
       </li>
       <li class="nav-item">
-        <a href="{% url 'logout' %}" class="nav-link">
+        <a id="logout" href="{% url 'logout' %}" class="nav-link">
           <i class="glyphicon glyphicon-log-out"></i>
           <span> Logout</span>
         </a>
