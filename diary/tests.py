@@ -1,6 +1,7 @@
 from django.test import TestCase
 from django.urls import reverse
 from diary.models import Page, Diary, Tag
+from django.test.client import Client
 from django import forms
 from diary.forms import UserForm
 from .forms import *
@@ -93,7 +94,12 @@ class TestingModels(TestCase):
 
 
 class TestingViews(TestCase):
+
     def setUp(self):
+        """
+        Set up the client and credentials.
+        """
+        self.client = Client()
         self.credentials = {
             'username': 'user',
             'password': 'user'}
@@ -103,7 +109,7 @@ class TestingViews(TestCase):
         """
         Test diary's accessible by name.
         """
-        response = self.client.get(reverse('diary:login'))
+        response = self.client.get(reverse('login'))
         self.assertEqual(response.status_code, 200)
 
     def test_accessible_by_location(self):
@@ -113,41 +119,35 @@ class TestingViews(TestCase):
         response = self.client.get('/accounts/login/')
         self.assertEqual(response.status_code, 200)
 
-    def test_no_diary_by_view(self):
+    def test_post_request(self):
         """
-        Test that the total context object is 0 when nothing is inserted.
+        Test the submission of post request.
         """
-        response = self.client.get(reverse('diary:login'))
-        self.assertQuerysetEqual(response.context['all_diarys'], [])
-
+        response = self.client.post('/accounts/login/', {'username': 'test', 'password': 'test'})
+        self.assertEqual(response.status_code, 200)
+               
     def test_user_authenticated(self):
         """
-        Test if the login is sucess or not
+        Test if the login is sucess or not.
         """
         response = self.client.post(
-            '/accounts/login/', **self.credentials, follow=True)
+            '/accounts/login/', self.credentials, follow=True)
         self.assertTrue(response.context['user'].is_authenticated)
 
 
 class TestingForms(TestCase):
 
-    def setUp(self):
-        """
-        Setup the creation of user.
-        """
-        self.user = User.objects.create(
-            username="user", password="user", email="user@gmail.com")
-
     def test_valid_user_forms(self):
         """
-        Test the valid form data 
+        Test the valid form data.
         """
-        form = UserForm()
+        form = UserForm(
+            data={'username': "user", 'password': "user", 'email': "user@gmail.com"})
         self.assertTrue(form.is_valid())
 
     def test_invalid_user_forms(self):
         """
-        Test the invalid form data 
+        Test the invalid form data. 
         """
         form = UserForm(
             data={'username': "", 'password': "", 'email': "", 'first_name': ""})
