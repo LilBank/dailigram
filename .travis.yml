@@ -6,6 +6,13 @@ python:
 services:
     - postgresql
 
+before_script:
+   - psql -c 'create database travis_ci_test;' -U postgres
+
+test:
+    adapter: postgresql
+    database: travis_ci_test
+
 install:
     - pip install -r requirements.txt
 

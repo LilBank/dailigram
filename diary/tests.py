@@ -1,27 +1,75 @@
 from django.test import TestCase
 from django.urls import reverse
-from diary.models import Page, Diary
+from diary.models import Page, Diary, Tag
 from django import forms
 from diary.forms import UserForm
+from .forms import *
 from selenium import webdriver
-
 
 
 class TestingModels(TestCase):
 
-    def test_diary_pk(self):
+    def setUp(self):
         """
-        Test that the primary key should be one for each object's creation.
+        Set up creating database's objects  
         """
-        diary = Diary.objects.create(first_name='tintin')
-        self.assertEqual(diary.pk, 1)
+        Diary.objects.create(first_name='tony')
+        Diary.objects.create(first_name='tintin')
+        Tag.objects.create(name='happy')
+        Tag.objects.create(name='sad')
 
-    def test_string_representation(self):
+    def test_count_diary(self):
         """
-        Test that the string is correctly represented.
+        Test counting the total diarys.
         """
-        diary = Diary.objects.create(first_name='tintin')
-        self.assertEqual(str(diary), diary.first_name)
+        num_diary = Diary.objects.all().count()
+        self.assertEqual(num_diary, 2)
+
+    def test_count_tag(self):
+        """
+        Test counting the total tags.
+        """
+        num_tag = Tag.objects.all().count()
+        self.assertEqual(num_tag, 2)
+
+    def test_count_page(self):
+        """
+        Test counting the total pages.
+        """
+        num_page = Page.objects.all().count()
+        self.assertEqual(num_page, 0)
+
+    def test_diary_first_name(self):
+        """
+        Test the diary object's first name.
+        """
+        diary = Diary.objects.all()
+        self.assertEqual(diary[0].first_name, 'tony')
+        self.assertEqual(diary[1].first_name, 'tintin')
+
+    def test_tag_name(self):
+        """
+        Test the tag object' name.
+        """
+        tag = Tag.objects.all()
+        self.assertEqual(tag[0].name, 'happy')
+        self.assertEqual(tag[1].name, 'sad')
+
+    def test_diary_string_representation(self):
+        """
+        Test that the string is correctly represented in diary.
+        """
+        diary = Diary.objects.all()
+        self.assertEqual(str(diary[0]), diary[0].first_name)
+        self.assertEqual(str(diary[1]), diary[1].first_name)
+
+    def test_tag_string_representation(self):
+        """
+        Test that the string is correctly represented in diary's tag.
+        """
+        tag = Tag.objects.all()
+        self.assertEqual(str(tag[0]), tag[0].name)
+        self.assertEqual(str(tag[1]), tag[1].name)
 
     def test_diary_max_length(self):
         """
@@ -31,12 +79,13 @@ class TestingModels(TestCase):
         max_length = diary._meta.get_field('first_name').max_length
         self.assertEquals(max_length, 100)
 
-    def test_no_diary_by_model(self):
-        """
-        Test that the total number of object is 0 when nothing is created.
-        """
-        num_diary = Diary.objects.all().count()
-        self.assertEqual(num_diary, 0)
+    def test_get_absolute_url(self):
+        Page.objects.create(Diary='tony', Tag='happy',
+                            story='This was awesome', date='2018-11-06', picture='pic1')
+        Page.objects.create(Diary='tintin', Tag='sad',
+                            story='I met someone', date='2018-12-06', picture='pic2')
+        page = Page.objects.get(id=1)
+        self.assertEquals(page.get_absolute_url(), '/diary/')
 
 
 # class TestingViews(TestCase):
@@ -73,27 +122,30 @@ class TestingModels(TestCase):
 
 class TestingForms(TestCase):
 
-    def test_valid_forms(self):
+    def setUp(self):
         """
-        Test if the form is valid or not.
+        Setup the creation of user.
+        """
+        self.user = User.objects.create(
+            username="user", password="user", email="user@gmail.com")
+
+    def test_valid_user_forms(self):
+        """
+        Test the valid form data 
         """
         form = UserForm()
-        self.assertTrue(form.is_valid)
-    
+        self.assertTrue(form.is_valid())
+
+    def test_invalid_user_forms(self):
+        """
+        Test the invalid form data 
+        """
+        form = UserForm(
+            data={'username': "", 'password': "", 'email': "", 'first_name': ""})
+        self.assertFalse(form.is_valid())
+
 
 # class TestingWeb():
 #     chromedriver = "/staticfiles"
 #     driver = webdriver.Chrome(chromedriver)
 #     driver.get
-
-
-
-    
-
-    
-        
-
-
-
-
-
