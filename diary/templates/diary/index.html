@@ -10,6 +10,7 @@
 {% if all_diarys %}
 {% for page in all_diarys %}
 <div style="text-align: center">
+  {{page.picture}}
   <h3>Diary: {{page.diary}}</h3>
   <h3>Tag: {{page.tag}}</h3>
   <h3>Story: {{page.story}}</h3>
