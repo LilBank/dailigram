@@ -1,3 +1,17 @@
+.boxes{
+    display: grid;
+    grid-gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(200px , 1fr));
+
+}
+
+.box{
+    background: var(--primary);
+    text-align: center;
+    padding: 1.5rem 2rem;
+    box-shadow: var(--shadow);
+}
+
 .form-inline {
     display: inline-block;
 }
@@ -174,10 +188,6 @@ body{
     font-family: 'Varela Round', sans-serif;
 }
 
-.navcolor{
-    background: hsl(260, 63%, 65%)
-}
-
 div.fixed {
     position: fixed;
     bottom: 0;
@@ -311,3 +321,4 @@ padding : 50px 0;
 .banner-text p{
     color:#fff;
 }
+
