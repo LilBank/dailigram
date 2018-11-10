@@ -1,10 +1,6 @@
 from imgurpython import ImgurClient
 from decouple import config
-from PIL import Image
 import requests
-import base64
-import json
-import pyimgur
 
 
 class ImgurUtil:
