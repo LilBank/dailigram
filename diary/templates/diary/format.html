@@ -1,78 +1,40 @@
 {% extends "base.html" %}
 
 <!DOCTYPE html>
-<html lang="en">
-
-<head>
-  {% block title %}
-  <title>Dailigram</title>{% endblock %}
+<!-- <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
-    crossorigin="anonymous">
-  <!-- Add additional CSS in static file -->
-  {% load static %}
-  <link rel="stylesheet" href="{% static 'css/styles.css' %}">
-</head>
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+  <link rel="stylesheet" href="style.css"> 
+  
+</head> -->
 <body>
   {% block content %}
-  <div style="text-align: center">
-    <div class="row">
-      <div class="col">
-        <a href="{% url 'diary:create' %}">
-          <button style="height:400px;width:400px">
-            <div class="row">
-              <div class="col">
-                Input something!
-              </div>
-              <div class="col">
-                <img src="https://images-na.ssl-images-amazon.com/images/I/71e6GOdrTeL.jpg" width="150" height="180" alt="">
-              </div>
-            </div>
-          </button>
-        </a>
-      </div>
 
-      <div class="col">
-        <a href="{% url 'diary:create' %}">
-          <button style="height:400px;width:400px">
-            <div class="row">
-              <div class="col">
-                <img src="https://images-na.ssl-images-amazon.com/images/I/71e6GOdrTeL.jpg" width="150" height="180" alt="">
-              </div>
-              <div class="col">
-                Input something!
-              </div>
-            </div>
-          </button>
-        </a>
-      </div>
+  <section class="boxes">
+    <img src="media/Black-White-77.jpg" width="50px" height="50px" alt="">
+    <div class="box">
+      <h3>want this one!</h3>
+      <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Magnam in fugit provident ut omnis nam earum qui dolorum,
+        voluptate, accusantium nesciunt dolor repudiandae eius quidem, commodi illo deleniti magni inventore.</p>
 
-      <div class="col">
-        <a href="{% url 'diary:create' %}">
-          <button style="height:400px;width:400px">
-            <div class="col">
-              <div class="row">
-                <div class="col"></div>
-                <div class="col">
-                <img src="https://images-na.ssl-images-amazon.com/images/I/71e6GOdrTeL.jpg" width="150" height="180" alt="">    
-                </div>
-                <div class="col"></div>
-              </div>
-              <div class="row">
-                <div class="col"></div>
-                <div class="col">
-                  Input something!
-                </div>
-                <div class="col"></div>
-              </div>
-            </div>
-          </button>
-        </a>
-      </div>
     </div>
-  </div>
+
+    <div class="box">
+      <img src="" height="150px" width=""  alt="">
+      <h3>want this one!</h3>
+      <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Magnam in fugit provident ut omnis nam earum qui dolorum,
+        voluptate, accusantium nesciunt dolor repudiandae eius quidem, commodi illo deleniti magni inventore.</p>
+    </div>
+
+    <div class="box">
+      <i class="fas fa-chart-pie fa-4x"></i>
+      <h3>want this one!</h3>
+      <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Magnam in fugit provident ut omnis nam earum qui dolorum,
+        voluptate, accusantium nesciunt dolor repudiandae eius quidem, commodi illo deleniti magni inventore.</p>
+    </div>
+  </section>
 
   {% endblock %}
 </body>
