@@ -3,6 +3,11 @@ from django.urls import reverse
 from django.contrib.auth.models import User
 import datetime
 
+class Diary(models.Model):
+    first_name = models.CharField(max_length=100, unique=True)
+
+    def __str__(self):
+        return self.first_name
 
 class Tag(models.Model):
     name = models.CharField(
@@ -13,8 +18,8 @@ class Tag(models.Model):
 
 
 class Page(models.Model):
-    diary = models.ForeignKey('Diary', on_delete=models.SET_NULL, null=True)
-    tag = models.ForeignKey('Tag', on_delete=models.SET_NULL, null=True)
+    diary = models.ForeignKey(Diary, on_delete=models.SET_NULL, null=True)
+    tag = models.ForeignKey(Tag, on_delete=models.SET_NULL, null=True)
     story = models.TextField(max_length=100000, help_text='Write your story.')
     date = models.DateField('Date')
     picture = models.FileField(help_text='Enter a valid URL')
@@ -25,9 +30,3 @@ class Page(models.Model):
     def __str__(self):
         return f'{str(self.date)}, {self.diary}, {self.tag}'
 
-
-class Diary(models.Model):
-    first_name = models.CharField(max_length=100, unique=True)
-
-    def __str__(self):
-        return self.first_name
