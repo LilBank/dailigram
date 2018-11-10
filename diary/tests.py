@@ -7,6 +7,7 @@ from diary.forms import UserForm
 from .forms import *
 from utility.imgur import ImgurUtil
 
+
 class TestingModels(TestCase):
 
     def setUp(self):
@@ -16,7 +17,6 @@ class TestingModels(TestCase):
         Diary.objects.create(first_name='tony')
         Diary.objects.create(first_name='tintin')
         diary = Diary.objects.all()
-
         Tag.objects.create(name='happy')
         Tag.objects.create(name='sad')
         tag = Tag.objects.all()
@@ -296,6 +296,7 @@ class ImgurUtilUploadTest(TestCase):
         response = imgurUtil.delete_album(album_title)
         self.assertEqual(response.status_code, 200)
 
+        
     def test_11_delete_multiple_albums(self):
         """
         Test delete many albums.

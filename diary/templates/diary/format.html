@@ -1,38 +1,31 @@
 {% extends "base.html" %}
 
-<!DOCTYPE html>
-<!-- <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
-  <link rel="stylesheet" href="style.css"> 
-  
-</head> -->
 <body>
   {% block content %}
 
   <section class="boxes">
-    <img src="media/Black-White-77.jpg" width="50px" height="50px" alt="">
     <div class="box">
-      <h3>want this one!</h3>
-      <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Magnam in fugit provident ut omnis nam earum qui dolorum,
-        voluptate, accusantium nesciunt dolor repudiandae eius quidem, commodi illo deleniti magni inventore.</p>
-
+      <img src="https://www.obrienschooldiaries.com/cms_pics/EXCEL-LAYOUTS-18-19-PURPLE.JPG" width="250px" height="230px" alt="">
+      <h4>want this one!</h4>
+      <a href="{% url 'diary:create' %}">
+        <button class="button">Submit</button>
+      </a>
     </div>
 
     <div class="box">
-      <img src="" height="150px" width=""  alt="">
-      <h3>want this one!</h3>
-      <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Magnam in fugit provident ut omnis nam earum qui dolorum,
-        voluptate, accusantium nesciunt dolor repudiandae eius quidem, commodi illo deleniti magni inventore.</p>
+      <img src="https://www.obrienschooldiaries.com/cms_pics/EXCEL-LAYOUTS-18-19-PURPLE.JPG" width="250px" height="230px" alt="">
+      <h4>want this one!</h4>
+      <a href="{% url 'diary:create' %}">
+        <button class="button">Submit</button>
+      </a>
     </div>
 
     <div class="box">
-      <i class="fas fa-chart-pie fa-4x"></i>
-      <h3>want this one!</h3>
-      <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Magnam in fugit provident ut omnis nam earum qui dolorum,
-        voluptate, accusantium nesciunt dolor repudiandae eius quidem, commodi illo deleniti magni inventore.</p>
+      <img src="https://www.obrienschooldiaries.com/cms_pics/EXCEL-LAYOUTS-18-19-PURPLE.JPG" width="250px" height="230px" alt="">
+      <h4>want this one!</h4>
+      <a href="{% url 'diary:create' %}">
+        <button class="button">Submit</button>
+      </a>
     </div>
   </section>
 
