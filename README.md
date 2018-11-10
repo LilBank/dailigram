@@ -1,4 +1,4 @@
-![Alt text](meta/logo.png)
+![Alt text](media/logo.png)
 
 [![Build Status](https://travis-ci.com/bankkeez/dailigram.svg?branch=master)](https://travis-ci.com/bankkeez/dailigram)
 

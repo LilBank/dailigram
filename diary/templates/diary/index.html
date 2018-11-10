@@ -1,23 +1,25 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
 
 {% block content %}
-{% if user.is_authenticated %}
-<div style="text-align: center">
-  <h1>Hello {{user.username}}</h1>
+<div class="container-fluid">
+  <h2 class="text-center" >{{ user.username }}'s diary</h2><br>
+  <div class="row text-center">
+    {% if all_diarys %}
+    {% for page in all_diarys %}
+    <div class="col-sm-4 col-lg-2">
+      <div class="thumbnail">
+          <a href="">
+              <img src="{{ page.picture.url }}" class="img-responsive">
+          </a>
+        <div class="caption">
+          <h2>{{ page.diary }}</h2>
+          <h3>{{ page.tag }}</h3>
+          <h4>{{ page.story }}</h4>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+    {% endif %}
+  </div>
 </div>
-{% if all_diarys %}
-{% for page in all_diarys %}
-<div style="text-align: center">
-  <img src="{{page.picture.url}}" class="img-responsive">
-  <h3>Diary: {{page.diary}}</h3>
-  <h3>Tag: {{page.tag}}</h3>
-  <h3>Story: {{page.story}}</h3>
-  <br>
-</div>
-{% endfor %}
-{% endif %}
-
-{% else %}
-<a href="{% url 'diary:login'%}">Login</a>
-{% endif %}
 {% endblock %}
