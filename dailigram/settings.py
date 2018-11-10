@@ -10,6 +10,8 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 import os
 from decouple import config
 import django_heroku
+import firebase_admin
+from firebase_admin import credentials
 
 SECRET_KEY = config('SECRET_KEY')
 
@@ -118,7 +120,6 @@ AUTHENTICATION_BACKENDS = (
     'social_core.backends.facebook.FacebookOAuth2',
     'django.contrib.auth.backends.ModelBackend',
 )
-
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.1/topics/i18n/
