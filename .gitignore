@@ -1,11 +1,10 @@
 Procfile.windows
 .env
-
 *.log
 *.pot
-
 *.pyc
 *.py[cod]
 */*/*/__pycache__/
 */*/__pycache__/
 */__pycache__/
+chromedriver.exe
