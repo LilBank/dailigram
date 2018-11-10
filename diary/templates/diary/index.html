@@ -5,15 +5,14 @@
 <div style="text-align: center">
   <h1>Hello {{user.username}}</h1>
 </div>
-<p style="text-align:center;"><img src="https://instagram.fbkk2-5.fna.fbcdn.net/vp/309fbbb40dd9466270fa2b4659040fa7/5C493868/t51.2885-19/s320x320/43778276_306344706622822_1848667680702201856_n.jpg"
-    class="round" height="250" width="250"></p>
 {% if all_diarys %}
 {% for page in all_diarys %}
 <div style="text-align: center">
-  {{page.picture}}
+  <img src="{{page.picture.url}}" class="img-responsive">
   <h3>Diary: {{page.diary}}</h3>
   <h3>Tag: {{page.tag}}</h3>
   <h3>Story: {{page.story}}</h3>
+  <br>
 </div>
 {% endfor %}
 {% endif %}
