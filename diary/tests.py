@@ -1,25 +1,83 @@
 from django.test import TestCase
 from django.urls import reverse
-from diary.models import Page, Diary
+from diary.models import Page, Diary, Tag
+from django.test.client import Client
 from django import forms
 from diary.forms import UserForm
+from .forms import *
 from utility.imgur import ImgurUtil
 
-class ModelTest(TestCase):
+class TestingModels(TestCase):
 
-    def test_diary_pk(self):
+    def setUp(self):
         """
-        Test that the primary key should be one for each object's creation.
+        Set up creating database's objects
         """
-        diary = Diary.objects.create(first_name='tintin')
-        self.assertEqual(diary.pk, 1)
+        Diary.objects.create(first_name='tony')
+        Diary.objects.create(first_name='tintin')
+        diary = Diary.objects.all()
 
-    def test_string_representation(self):
+        Tag.objects.create(name='happy')
+        Tag.objects.create(name='sad')
+        tag = Tag.objects.all()
+
+        Page.objects.create(
+            diary=diary[0], tag=tag[0], story='This was awesome', date='2018-11-06', picture='pic1')
+        Page.objects.create(
+            diary=diary[1], tag=tag[1], story='This was awesome', date='2018-11-06', picture='pic1')
+
+    def test_count_diary(self):
         """
-        Test that the string is correctly represented.
+        Test counting the total diarys.
         """
-        diary = Diary.objects.create(first_name='tintin')
-        self.assertEqual(str(diary), diary.first_name)
+        num_diary = Diary.objects.all().count()
+        self.assertEqual(num_diary, 2)
+
+    def test_count_tag(self):
+        """
+        Test counting the total tags.
+        """
+        num_tag = Tag.objects.all().count()
+        self.assertEqual(num_tag, 2)
+
+    def test_count_page(self):
+        """
+        Test counting the total pages.
+        """
+        num_page = Page.objects.all().count()
+        self.assertEqual(num_page, 2)
+
+    def test_diary_first_name(self):
+        """
+        Test the diary object's first name.
+        """
+        diary = Diary.objects.all()
+        self.assertEqual(diary[0].first_name, 'tony')
+        self.assertEqual(diary[1].first_name, 'tintin')
+
+    def test_tag_name(self):
+        """
+        Test the tag object' name.
+        """
+        tag = Tag.objects.all()
+        self.assertEqual(tag[0].name, 'happy')
+        self.assertEqual(tag[1].name, 'sad')
+
+    def test_diary_string_representation(self):
+        """
+        Test that the string is correctly represented in diary.
+        """
+        diary = Diary.objects.all()
+        self.assertEqual(str(diary[0]), diary[0].first_name)
+        self.assertEqual(str(diary[1]), diary[1].first_name)
+
+    def test_tag_string_representation(self):
+        """
+        Test that the string is correctly represented in diary's tag.
+        """
+        tag = Tag.objects.all()
+        self.assertEqual(str(tag[0]), tag[0].name)
+        self.assertEqual(str(tag[1]), tag[1].name)
 
     def test_diary_max_length(self):
         """
@@ -29,50 +87,70 @@ class ModelTest(TestCase):
         max_length = diary._meta.get_field('first_name').max_length
         self.assertEquals(max_length, 100)
 
-    def test_no_diary_by_model(self):
+    def test_get_absolute_url(self):
+        page = Page.objects.all()
+        self.assertEquals(page[0].get_absolute_url(), '/diary/')
+
+
+class TestingViews(TestCase):
+
+    def setUp(self):
         """
-        Test that the total number of object is 0 when nothing is created.
+        Set up the client and credentials.
         """
-        num_diary = Diary.objects.all().count()
-        self.assertEqual(num_diary, 0)
+        self.client = Client()
+        self.credentials = {
+            'username': 'user',
+            'password': 'user'}
+        User.objects.create_user(**self.credentials)
 
-
-# class ViewTest(TestCase):
-
-    # def test_accessible_by_name(self):
-    #     """
-    #     Test diary's existance by the response status code.
-    #     """
-    #     response = self.client.get(reverse('login'))
-    #     self.assertEqual(response.status_code, 200)
-
-    # def test_accessible_by_location(self):
-    #     response = self.client.get('/accounts/diary/')
-    #     self.assertEqual(response.status_code, 200)
-
-    # def test_no_diary_by_view(self):
-    #     """
-    #     Test that the total context object is 0 when nothing is inserted.
-    #     """
-    #     response = self.client.get(reverse('diary:login'))
-    #     self.assertQuerysetEqual(response.context['all_diarys'], [])
-    
-    # def test_login(self):
-    #     """
-    #     Test if the login is sucess or not
-    #     """
-    #     response = self.client.post('/accounts/login/', self.credentials, follow=True)
-    #     self.assertTrue(response.context['user'].is_authenticated)
-
-class FormTest(TestCase):
-
-    def test_valid_forms(self):
+    def test_accessible_by_name(self):
         """
-        Test if the form is valid or not.
+        Test diary's accessible by name.
         """
-        form  = UserForm()
-        self.assertTrue(form.is_valid)
+        response = self.client.get(reverse('login'))
+        self.assertEqual(response.status_code, 200)
 
+    def test_accessible_by_location(self):
+        """
+        Test diary's accessible by location.
+        """
+        response = self.client.get('/accounts/login/')
+        self.assertEqual(response.status_code, 200)
+
+    def test_post_request(self):
+        """
+        Test the submission of post request.
+        """
+        response = self.client.post('/accounts/login/', {'username': 'test', 'password': 'test'})
+        self.assertEqual(response.status_code, 200)
+               
+    def test_user_authenticated(self):
+        """
+        Test if the login is sucess or not.
+        """
+        response = self.client.post(
+            '/accounts/login/', self.credentials, follow=True)
+        self.assertTrue(response.context['user'].is_authenticated)
+
+
+class TestingForms(TestCase):
+
+    def test_valid_user_forms(self):
+        """
+        Test the valid form data.
+        """
+        form = UserForm(
+            data={'username': "user", 'password': "user", 'email': "user@gmail.com"})
+        self.assertTrue(form.is_valid())
+
+    def test_invalid_user_forms(self):
+        """
+        Test the invalid form data. 
+        """
+        form = UserForm(
+            data={'username': "", 'password': "", 'email': "", 'first_name': ""})
+        self.assertFalse(form.is_valid())
 
 class ImgurUtilUploadTest(TestCase):
 
@@ -213,7 +291,6 @@ class ImgurUtilUploadTest(TestCase):
         Test delete an album.
         """
 
-        print('test delete single album')
         imgurUtil = ImgurUtil()
         album_title = 'test_only'
         response = imgurUtil.delete_album(album_title)
