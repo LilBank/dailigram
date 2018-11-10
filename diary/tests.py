@@ -76,20 +76,20 @@ class FormTest(TestCase):
 
 class ImgurUtilUploadTest(TestCase):
 
-    def test_create_album(self):
+    def test_01_create_album(self):
         """
         Create a temporary album for testing.
         """
-        print('test create an album')
+
         imgurUtil = ImgurUtil()
         response = imgurUtil.create_album('test_only')
         self.assertEqual(response.status_code, 200)
 
-    def test_single_upload(self):
+    def test_02_single_upload(self):
         """
         Test if single upload success.
         """
-        print('test single uploads')
+
         imgurUtil = ImgurUtil()
         album_hash = imgurUtil.get_album_hash('test_only')
         imgurUtil.set_album_hash(album_hash)
@@ -97,11 +97,11 @@ class ImgurUtilUploadTest(TestCase):
         response = imgurUtil.upload_image('temp', image_link)
         self.assertEqual(response.status_code, 200)
 
-    def test_multiple_upload(self):
+    def test_03_multiple_upload(self):
         """
         Test if multiple upload success.
         """
-        print('test multiple uploads')
+
         imgurUtil = ImgurUtil()
         album_hash = imgurUtil.get_album_hash('test_only')
         imgurUtil.set_album_hash(album_hash)
@@ -115,11 +115,11 @@ class ImgurUtilUploadTest(TestCase):
         self.assertEqual(response2.status_code, 200)
         self.assertEqual(response3.status_code, 200)
 
-    def test_create_many_albums(self):
+    def test_04_create_many_albums(self):
         """
         Create many albums for testing.
         """
-        print('create an album')
+
         imgurUtil = ImgurUtil()
         response1 = imgurUtil.create_album('album1')
         response2 = imgurUtil.create_album('album2')
@@ -128,21 +128,20 @@ class ImgurUtilUploadTest(TestCase):
         self.assertEqual(response2.status_code, 200)
         self.assertEqual(response3.status_code, 200)
 
-    def test_get_all_albums(self):
+    def test_05_get_all_albums(self):
         """
         Test get all album hashes for further use in the test.
         """
-        print('test get all albums')
+
         imgurUtil = ImgurUtil()
         response = imgurUtil.get_all_albums_info()
         self.assertEqual(response['status'], 200)     
 
-    def test_get_single_image(self):
+    def test_06_get_single_image(self):
         """
         Test getting an single image from test_album.
         """
 
-        print('test get single image')
         imgurUtil = ImgurUtil()
         album_title = 'test_album'
         album_hash = imgurUtil.get_album_hash(album_title)
@@ -151,11 +150,11 @@ class ImgurUtilUploadTest(TestCase):
         description = 'Catterpillar'
         self.assertEqual(response, description)
 
-    def test_get_multiple_image(self):
+    def test_07_get_multiple_image(self):
         """
         Test getting multiple image from test_album.
         """
-        print('test get multiple image')
+
         imgurUtil = ImgurUtil()
         album_title = 'test_album'
         album_hash = imgurUtil.get_album_hash(album_title)
@@ -177,11 +176,11 @@ class ImgurUtilUploadTest(TestCase):
         self.assertEqual(image2_des, des2)
         self.assertEqual(image3_des, des3)
 
-    def test_delete_single_image(self):
+    def test_08_delete_single_image(self):
         """
         Test deleting a picture.
         """
-        print('delete single image')
+
         imgurUtil = ImgurUtil()
         album_hash = imgurUtil.get_album_hash('test_only')
         imgurUtil.set_album_hash(album_hash)
@@ -190,11 +189,11 @@ class ImgurUtilUploadTest(TestCase):
         self.assertEqual(response.status_code, 200)
 
 
-    def test_delete_multiple_image(self):
+    def test_09_delete_multiple_image(self):
         """
         Test deleting many pictures.
         """
-        print('test delete multiple image')
+
         imgurUtil = ImgurUtil()
         album_hash = imgurUtil.get_album_hash('test_only')
         imgurUtil.set_album_hash(album_hash)
@@ -209,21 +208,22 @@ class ImgurUtilUploadTest(TestCase):
         self.assertEqual(response3.status_code, 200)
         
 
-    def test_delete_album(self):
+    def test_10_delete_album(self):
         """
         Test delete an album.
         """
+
         print('test delete single album')
         imgurUtil = ImgurUtil()
         album_title = 'test_only'
         response = imgurUtil.delete_album(album_title)
         self.assertEqual(response.status_code, 200)
 
-    def test_delete_multiple_albums(self):
+    def test_11_delete_multiple_albums(self):
         """
         Test delete many albums.
         """
-        print('test delete many albums')
+        
         imgurUtil = ImgurUtil()
         albumTitle_1 = 'album1'
         albumTitle_2 = 'album2'
