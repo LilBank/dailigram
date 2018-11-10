@@ -10,9 +10,11 @@
 {% if all_diarys %}
 {% for page in all_diarys %}
 <div style="text-align: center">
+  <img src="{{page.picture.url}}" class="img-responsive">
   <h3>Diary: {{page.diary}}</h3>
   <h3>Tag: {{page.tag}}</h3>
   <h3>Story: {{page.story}}</h3>
+  <br>
 </div>
 {% endfor %}
 {% endif %}

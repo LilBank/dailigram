@@ -19,16 +19,6 @@ class IndexView(generic.ListView):
         return Page.objects.all()
 
 
-class LoginView(UpdateView):
-    template_name = 'registration/login.html'
-
-    def dispatch(self, request):
-        if request.user.is_authenticated:
-            return redirect('diary:index')
-
-        return render(request, 'registration/login.html')
-
-
 class LogoutView(UpdateView):
     template_name = 'registration/logout.html'
 
@@ -43,11 +33,13 @@ class CreateDiary(CreateView):
     model = Page
     fields = ['diary', 'tag', 'story', 'date', 'picture']
 
+
 class CreateFormat(View):
     template_name = 'diary/format.html'
-    
+
     def get(self, request):
         return render(request, self.template_name)
+
 
 class UserFormView(View):
     form_class = UserForm
