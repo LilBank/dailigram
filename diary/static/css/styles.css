@@ -3,7 +3,7 @@
 }
 .navbar-header.col {
     padding: 0 !important;
-}	
+} 
 .navbar {
     color: #fff;
     background: #926dde;
@@ -22,7 +22,7 @@
     color: #efe5ff;
     padding-left: 0;
     padding-right: 50px;
-    font-size: 24px;		
+    font-size: 24px;  
 }
 .navbar .navbar-brand:hover, .navbar .navbar-brand:focus {
     color: #fff;
@@ -33,7 +33,7 @@
 }
 .search-box {
     position: relative;
-}	
+} 
 .search-box input {
     padding-right: 35px;
     min-height: 38px;
@@ -41,7 +41,7 @@
     background: #faf7fd;
     border-radius: 3px !important;
 }
-.search-box input:focus {		
+.search-box input:focus {  
     background: #fff;
     box-shadow: none;
 }
@@ -69,7 +69,7 @@
 .navbar .nav > li a {
     color: #efe5ff;
     padding: 8px 15px;
-    font-size: 14px;		
+    font-size: 14px;  
 }
 .navbar .nav > li a:hover, .navbar .nav > li a:focus {
     color: #fff;
@@ -141,7 +141,7 @@
 }
 @media (max-width: 1199px){
     .navbar .nav > li > a > i {
-        display: inline-block;			
+        display: inline-block;   
         text-align: left;
         min-width: 30px;
         position: relative;
@@ -153,7 +153,7 @@
         padding: 0;
     }
     .navbar .navbar-form {
-        border: none;			
+        border: none;   
         display: block;
         margin: 10px 0;
         padding: 0;
@@ -170,7 +170,7 @@
 }
 
 body{
-    background: #eeeeee;
+    background: #ffffff;
     font-family: 'Varela Round', sans-serif;
 }
 
@@ -184,4 +184,130 @@ div.fixed {
     right: 0;
     width: 300px;
     border: 3px solid #73AD21;
+}
+
+span.psw {
+    float: right;
+    padding-top: 16px;
+}
+
+.newbutton{
+    color: #31a6ff;
+    font-family: "proxima nova";
+    font-weight: 100; 
+    font-size: 20px;
+    text-align: center;
+
+    border: solid 1.5px #31a6ff;
+    border-radius: 30px;
+
+    padding: 4px 40px;
+
+    -webkit-transition-duration: 200ms;
+    transition-duration: 200ms;
+}
+
+.newbutton:hover{
+
+    background-color: #31a6ff;
+    color: #fff;
+}
+
+
+@import url("//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css");
+
+.login-block{
+    background: rgb(255, 255, 255); 
+background: -webkit-linear-gradient(to bottom, rgb(185, 199, 194), rgb(255, 255, 255)); 
+background: linear-gradient(to bottom, rgb(185, 199, 194), rgb(255, 255, 255));
+float:left;
+width:100%;
+padding : 50px 0;
+}
+
+.banner-sec{
+    background:url(https://static.pexels.com/photos/33972/pexels-photo.jpg)  no-repeat left bottom; 
+    background-size:cover; 
+    min-height:500px; 
+    border-radius: 0 10px 10px 0; 
+    padding:0;
+}
+
+.container{
+    background:#fff; 
+    border-radius: 10px; 
+    box-shadow:15px 20px 0px rgba(0,0,0,0.1);
+}
+
+.carousel-inner{
+    border-radius:0 10px 10px 0;
+}
+
+.carousel-caption{
+    text-align:left; 
+    left:5%;
+}
+
+.login-sec{
+    padding: 50px 30px; 
+    position:relative;
+}
+
+.login-sec .copy-text{
+    position:absolute; 
+    width:80%; 
+    bottom:20px; 
+    font-size:13px; 
+    text-align:center;
+}
+
+.login-sec h2{
+    margin-bottom:10px; 
+    font-weight:800; 
+    font-size:30px; 
+    color: #777
+}
+
+.login-sec h2:after{
+    content:" "; 
+    width:200px; 
+    height:5px; 
+    background:rgb(185, 199, 194); 
+    display:block; 
+    margin-top:20px; 
+    border-radius:3px; 
+    margin-left:auto;
+    margin-right:auto
+}
+
+.btn-login{
+    background: #DE6262; 
+    color:#fff; 
+    font-weight:600;
+ } 
+  
+.banner-text{
+    width:70%; 
+    position:absolute; 
+    bottom:40px; 
+    padding-left:20px;
+}
+
+.banner-text h2{
+    color:#fff; 
+    font-weight:600;
+}
+
+.banner-text h2:after{
+    content:" "; 
+    width:100px; 
+    height:5px; 
+    background:#FFF; 
+    display:block; 
+    margin-top:20px; 
+    border-radius:3px;
+}
+
+.banner-text p{
+    color:#fff;
 }
