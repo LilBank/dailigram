@@ -23,17 +23,6 @@ class DetailView(generic.DetailView):
     model = Page
     template_name = 'diary/detail.html'
 
-
-class LogoutView(UpdateView):
-    template_name = 'registration/logout.html'
-
-    def dispatch(self, request):
-        if request.user.is_authenticated:
-            return render(request, 'registration/logout.html')
-
-        return render(request, 'registration/login.html')
-
-
 class CreateDiary(CreateView):
     model = Page
     fields = ['diary', 'tag', 'story', 'date', 'picture']
