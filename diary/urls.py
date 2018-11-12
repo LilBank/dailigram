@@ -7,7 +7,9 @@ app_name = 'diary'
 urlpatterns = [
 
     # ex: /diary/
-    path('',login_required(views.IndexView.as_view(), name='index'),
+    path('',login_required(views.IndexView.as_view()), name='index'),
+    # ex: /diary/detail/
+    path('<int:pk>/',login_required(views.DetailView.as_view()), name='detail'),
     # ex: /diary/register/
     path('register/', views.UserFormView.as_view(), name='register'),
     # ex: /diary/create/

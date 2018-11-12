@@ -19,6 +19,11 @@ class IndexView(generic.ListView):
         return Page.objects.all()
 
 
+class DetailView(generic.DetailView):
+    model = Page
+    template_name = 'diary/detail.html'
+
+
 class LogoutView(UpdateView):
     template_name = 'registration/logout.html'
 
