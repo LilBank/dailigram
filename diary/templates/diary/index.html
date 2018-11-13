@@ -11,7 +11,7 @@
       <div class="thumbnail">
         {% if page.picture %}
         <a href=" {% url 'diary:detail' page.id %}">
-          <img src="{{ page.picture.url}}" class="img-responsive">
+          <img src="{{ page.picture.url}}" class="img-responsive" style='height: 100%; width: 100%; object-fit: contain'>
         </a>
         {% endif %}
         <div class="caption">
