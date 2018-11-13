@@ -312,3 +312,26 @@ class ImgurUtilUploadTest(TestCase):
         self.assertEqual(response1.status_code, 200)
         self.assertEqual(response2.status_code, 200)
         self.assertEqual(response3.status_code, 200)
+
+    def test_12_simple_upload_process(self):
+        """
+        Test whole simple upload process
+        """
+
+        imgurUtil= ImgurUtil()
+        album_title = 'test_2'
+        create_album_response = imgurUtil.create_album(album_title)
+        album_hash = imgurUtil.get_album_hash(album_title)
+        imgurUtil.set_album_hash(album_hash)
+        image_link = 'https://instagram.fbkk1-2.fna.fbcdn.net/vp/d8d6aa231fb21edf949ff99fbe69fbaf/5C80A671/t51.2885-19/s320x320/38863764_256143965027447_3994031148161302528_n.jpg'
+        upload_response = imgurUtil.upload_image('test_2',image_link)
+        hashes = imgurUtil.get_image_hash('test_2')
+        delete_image_response = imgurUtil.delete_image(hashes)
+        delete_album_response = imgurUtil.delete_album(album_title)
+        self.assertEqual(create_album_response.status_code, 200)
+        self.assertEqual(upload_response.status_code, 200)
+        self.assertEqual(delete_image_response.status_code, 200)
+        self.assertEqual(delete_album_response.status_code, 200)
+
+
+
