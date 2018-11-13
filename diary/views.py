@@ -1,4 +1,5 @@
 from __future__ import unicode_literals
+from diary import models
 from diary.models import Tag, Page, Diary
 from django.views import generic, View
 from django.views.generic.edit import UpdateView, DeleteView, CreateView
@@ -47,15 +48,21 @@ class CreateDiary(View):
         form = self.form_class(request.POST)
 
         if form.is_valid() and request.FILES['myfile']:
+            page = form.save(commit=False)
             imgur = ImgurUtil()
-            myfile = request.FILES['myfile']
-            response = imgur.upload_image_locally('', myfile)
+            page.picture = request.FILES['myfile']
+            response = imgur.upload_image_locally('', page.picture)
             if(response.status_code == requests.codes.ok):
                 uploader_url = response.json()["data"]["link"]
-                return render(request, 'diary/page_form.html', {'uploaded_file_url': uploader_url})
-            else:
-                print('need to fix')
+                context = {
+                    'uploaded_file_url': uploader_url,
+                    'page': page,
+                }
+                page.save()
+                return render(request, 'diary/page_form.html', context)
+
         return render(request, self.template_name, {'form': form})
+
 
 class UserFormView(View):
     form_class = UserForm
