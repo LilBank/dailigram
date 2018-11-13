@@ -142,5 +142,7 @@ STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.ManifestStaticFilesSto
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
+CODECOV_TOKEN=config('CODECOV_TOKEN')
+
 # Activate Django-Heroku.
 django_heroku.settings(locals())
