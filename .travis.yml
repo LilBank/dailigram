@@ -9,6 +9,9 @@ services:
 before_script:
    - psql -c 'create database travis_ci_test;' -U postgres
 
+before_install:
+  - pip install --user codecov
+
 test:
     adapter: postgresql
     database: travis_ci_test
