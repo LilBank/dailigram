@@ -1,5 +1,6 @@
 Procfile.windows
 .env
+.coverage
 *.log
 *.pot
 *.pyc

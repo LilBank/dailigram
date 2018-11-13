@@ -15,9 +15,13 @@ test:
 
 install:
     - pip install -r requirements.txt
+    - pip install codecov
 
 script:
     - python manage.py test
 
 env:
     - TRAVIS_SECURE_ENV_VARS = true
+
+after_success:
+  - codecov
