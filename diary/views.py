@@ -2,7 +2,7 @@ from __future__ import unicode_literals
 from diary.models import Tag, Page, Diary
 from django.views import generic, View
 from django.views.generic.edit import UpdateView, DeleteView, CreateView
-from .forms import UserForm
+from .forms import UserForm, ImageUrlForm
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from django.views.generic import TemplateView
@@ -28,27 +28,34 @@ class DetailView(generic.DetailView):
     template_name = 'diary/detail.html'
 
 
-class CreateDiary(CreateView):
-    model = Page
-    fields = ['diary', 'tag', 'story']
-
-    def post(self, request):
-        if request.FILES['myfile']:
-            imgur = ImgurUtil()
-            myfile = request.FILES['myfile']
-            response = imgur.upload_image_locally('',myfile)
-            if(response.status_code == requests.codes.ok):
-                uploader_url = response.json()["data"]["link"]
-                
-                return redirect('diary:index')
-        return render(request, 'diary/page_form.html')
-
 class CreateFormat(View):
     template_name = 'diary/format.html'
 
     def get(self, request):
         return render(request, self.template_name)
 
+
+class CreateDiary(View):
+    form_class = ImageUrlForm
+    template_name = 'diary/page_form.html'
+
+    def get(self, request):
+        form = self.form_class(None)
+        return render(request, self.template_name, {'form': form})
+
+    def post(self, request):
+        form = self.form_class(request.POST)
+
+        if form.is_valid() and request.FILES['myfile']:
+            imgur = ImgurUtil()
+            myfile = request.FILES['myfile']
+            response = imgur.upload_image_locally('', myfile)
+            if(response.status_code == requests.codes.ok):
+                uploader_url = response.json()["data"]["link"]
+                return render(request, 'diary/page_form.html', {'uploaded_file_url': uploader_url})
+            else:
+                print('need to fix')
+        return render(request, self.template_name, {'form': form})
 
 class UserFormView(View):
     form_class = UserForm
