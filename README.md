@@ -2,8 +2,7 @@
 
 [![Build Status](https://travis-ci.com/bankkeez/dailigram.svg?branch=master)](https://travis-ci.com/bankkeez/dailigram)
 
-.. image:: https://codecov.io/gh/codecov/dailigram/branch/master/graph/badge.svg
-  :target: https://codecov.io/gh/codecov/dailigram
+[![codecov](https://codecov.io/gh/bankkeez/dailigram/branch/master/graph/badge.svg)](https://codecov.io/gh/bankkeez/dailigram)
 
 **Dailigram** is an online diary which provides users free space to instantly preserve their moments and memories, including pictures, and share them online to exchange user’s life stories. Plus, it's accessible anywhere and anytime through the internet, which is surely more convenient than carrying a diary book.
 Our target group is a typical internet users who prefer writing journal online. 
