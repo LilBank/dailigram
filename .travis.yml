@@ -9,18 +9,19 @@ services:
 before_script:
    - psql -c 'create database travis_ci_test;' -U postgres
 
-before_install:
-  - pip install --user codecov
-
 test:
     adapter: postgresql
     database: travis_ci_test
 
 install:
     - pip install -r requirements.txt
+    - pip install codecov
 
 script:
     - python manage.py test
 
 env:
     - TRAVIS_SECURE_ENV_VARS = true
+
+after_success:
+  - codecov
