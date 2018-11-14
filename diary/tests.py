@@ -282,7 +282,6 @@ class ImgurUtilUploadTest(TestCase):
         response = imgurUtil.delete_image(hashes)
         self.assertEqual(response.status_code, 200)
 
-
     def test_09_delete_multiple_image(self):
         """
         Test deleting many pictures.
@@ -301,7 +300,6 @@ class ImgurUtilUploadTest(TestCase):
         self.assertEqual(response2.status_code, 200)
         self.assertEqual(response3.status_code, 200)
         
-
     def test_10_delete_album(self):
         """
         Test delete an album.
@@ -311,8 +309,7 @@ class ImgurUtilUploadTest(TestCase):
         album_title = 'test_only'
         response = imgurUtil.delete_album(album_title)
         self.assertEqual(response.status_code, 200)
-
-        
+  
     def test_11_delete_multiple_albums(self):
         """
         Test delete many albums.
@@ -388,4 +385,3 @@ class ImgurUtilUploadTest(TestCase):
         self.assertEqual(delete_image_response3.status_code, 200)
 
         self.assertEqual(delete_album_response.status_code, 200)
-
