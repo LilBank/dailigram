@@ -55,7 +55,7 @@ class CreateDiary(View):
             if(response.status_code == requests.codes.ok):
                 uploader_url = response.json()["data"]["link"]
                 context = {
-                    'uploaded_file_url': uploader_url,
+                    'uploaded_file_url': "[img]"+uploader_url,
                     'page': page,
                 }
                 page.save()
