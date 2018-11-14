@@ -4,6 +4,7 @@ from diary.models import Page, Diary, Tag
 from django.test.client import Client
 from django import forms
 from diary.forms import UserForm
+from .forms import *
 from utility.imgur import ImgurUtil
 from django import forms
 from diary.forms import UserForm
