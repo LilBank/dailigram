@@ -36,7 +36,7 @@ class LogoutView(UpdateView):
 
 class CreateDiary(CreateView):
     model = Page
-    fields = ['diary', 'tag', 'story', 'date', 'picture']
+    fields = ['diary', 'tag', 'story', 'picture']
 
 
 class CreateFormat(View):
