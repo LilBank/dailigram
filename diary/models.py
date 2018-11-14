@@ -22,7 +22,7 @@ class Page(models.Model):
     tag = models.ForeignKey(Tag, on_delete=models.SET_NULL, null=True)
     story = models.TextField(max_length=100000, help_text='Write your story.')
     date = models.DateField('Date')
-    picture = models.FileField(help_text='Enter a valid URL')
+    picture = models.FileField()
 
     def get_absolute_url(self):
         return reverse('diary:index')
