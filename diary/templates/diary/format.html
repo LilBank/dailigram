@@ -1,11 +1,11 @@
 {% extends "base.html" %}
+{% load static %}
 
 <body>
   {% block content %}
-
   <section class="boxes">
     <div class="box">
-      <img src="https://www.obrienschooldiaries.com/cms_pics/EXCEL-LAYOUTS-18-19-PURPLE.JPG" width="250px" height="230px" alt="">
+      <img src="{% static 'pictures/templates1.jpg' %}" width="250px" height="230px" alt="">
       <h4>want this one!</h4>
       <a href="{% url 'diary:create' %}">
         <button class="button">Submit</button>
@@ -13,7 +13,7 @@
     </div>
 
     <div class="box">
-      <img src="https://www.obrienschooldiaries.com/cms_pics/EXCEL-LAYOUTS-18-19-PURPLE.JPG" width="250px" height="230px" alt="">
+      <img src="{% static 'pictures/templates2.jpg' %}" width="250px" height="230px" alt="">
       <h4>want this one!</h4>
       <a href="{% url 'diary:create' %}">
         <button class="button">Submit</button>
@@ -21,7 +21,7 @@
     </div>
 
     <div class="box">
-      <img src="https://www.obrienschooldiaries.com/cms_pics/EXCEL-LAYOUTS-18-19-PURPLE.JPG" width="250px" height="230px" alt="">
+      <img src="{% static 'pictures/templates3.jpg' %}" width="250px" height="230px" alt="">
       <h4>want this one!</h4>
       <a href="{% url 'diary:create' %}">
         <button class="button">Submit</button>

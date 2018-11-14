@@ -7,7 +7,8 @@
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 
 <link href='https://fonts.googleapis.com/css?family=Pompiere' rel='stylesheet' type='text/css'> {% load static %}
-<link rel="stylesheet" href="{% static 'styles.css' %}"> {% if not user.is_authenticated %}
+<link rel="stylesheet" href="{% static 'styles.css' %}">
+{% if not user.is_authenticated %}
 <section class="login-block">
   <div class="container">
     <div class="row">
@@ -18,7 +19,7 @@
         <form method="post" action=" {% url 'login' %}">
           {% csrf_token %}
           <p>Username: {{ form.username }}</p>
-          <p>Password: {{ form.password }}</p>
+          <p>Password : {{ form.password }}</p>
           <input name="login" class="newbutton" type="submit" value="Login">
           <input type="hidden" name="next" value="{{ next }}">
           <a href="{% url 'diary:register' %}" class="newbutton">Register</a>
@@ -88,4 +89,7 @@
       </div>
     </div>
 </section>
-{% else %} {% include "diary/index.html" %} {% endif %}
+{% else %} 
+<h1>You have already logged in</h1>
+<a href="{% url 'diary:index'%}">GO NOW!!</a>
+{% endif %}
