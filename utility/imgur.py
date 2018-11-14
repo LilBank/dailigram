@@ -41,8 +41,8 @@ class ImgurUtil:
         }
         response = requests.request('DELETE', url, headers=headers)
         return response
-    
-    # Public 
+
+    # Public
     def delete_album(self, album_title):
         """
         Delete the album with the album hash.
@@ -102,8 +102,8 @@ class ImgurUtil:
         image_info = self.get_image_info(description)
         return image_info['description']
 
-
     # Public
+
     def get_image_hash(self, description):
         """
         Get the hash of the image.
@@ -140,14 +140,14 @@ class ImgurUtil:
                 return temp_hash
 
     # Public
-    def upload_image(self, description, image_source):
+    def upload_image(self, description, image_url):
         """
-        Upload image to the album with a description which image source is a link or file. 
+        Upload image to the album with a description which image source is a link. 
         Album destination is the album set from function set_album_hash.
         """
 
         url = "https://api.imgur.com/3/image"
-        payload = '------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"image\"\r\n\r\n'+image_source + \
+        payload = '------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"image\"\r\n\r\n'+image_url + \
             '\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"album\"\r\n\r\n'+self.album_hash + \
             '\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"description\"\r\n\r\n'+description + \
             '\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--'
@@ -160,6 +160,24 @@ class ImgurUtil:
         return response
 
     # Public
+    def upload_image_locally(self, description, image_source):
+        """
+        """
+        url = "https://api.imgur.com/3/image"
+        files = {"image": image_source}
+        body = {
+            'album': self.album_hash,
+            'description': description
+        }
+        headers = {
+            'Authorization': 'Bearer ' + self.token,
+            'cache-control': 'no-cache',
+        }
+        response = requests.post(url, files=files, headers=headers, data=body)
+        return response
+
+    # Public
+
     def set_album_hash(self, album_hash):
         """
         Set a default album hash.

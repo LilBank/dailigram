@@ -21,7 +21,6 @@ class TestingModels(TestCase):
         Tag.objects.create(name='happy')
         Tag.objects.create(name='sad')
         tag = Tag.objects.all()
-
         Page.objects.create(
             diary=diary[0], tag=tag[0], story='This was awesome', date='2018-11-06', picture='pic1')
         Page.objects.create(

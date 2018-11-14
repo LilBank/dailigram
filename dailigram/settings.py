@@ -139,8 +139,8 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.ManifestStaticFilesStorage'
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 CODECOV_TOKEN=config('CODECOV_TOKEN')
 

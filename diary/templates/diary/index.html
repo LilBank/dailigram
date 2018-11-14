@@ -9,15 +9,18 @@
     {% for page in all_diarys %}
     <div class="col-sm-4 col-lg-2">
       <div class="thumbnail">
-        <!-- {% if page.picture %}
+        {% if page.picture %}
         <a href=" {% url 'diary:detail' page.id %}">
-          <img src="{{ page.picture.url}}" class="img-responsive" style='height: 100%; width: 100%; object-fit: contain'>
+          <img src="{{ uploaded_file_url }}" class="img-responsive" style='height: 100%; width: 100%; object-fit: contain'>
         </a>
-        {% endif %} -->
+        {% endif %}
         <div class="caption">
           <h2>{{ page.diary }}</h2>
           <h3>{{ page.tag }}</h3>
           <h4>{{ page.story }}</h4>
+          <h4>{{ page.date }}</h4>
+          <h4>{{ uploaded_file_url }}</h4>
+
         </div>
       </div>
     </div>
@@ -26,6 +29,6 @@
   </div>
 </div>
 {% else %}
-<a href="{% url 'diary:login'%}">Login</a>
+<a href="{% url 'login'%}">Login</a>
 {% endif %}
 {% endblock %}
