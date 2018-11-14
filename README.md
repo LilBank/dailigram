@@ -30,12 +30,11 @@ You must install the followings to be able to run.
 - `Node.js` [download](https://nodejs.org/en/download/package-manager/)
 - `Django` can be install by the command line using [pip](https://www.makeuseof.com/tag/install-pip-for-python/)
 
-
 ```
 pip install django
 ```
 
-- **`.env` please ask project owner privately for the environment variables.**
+- `.env` **Please ask project owner privately for the environment variables.**
 
 ## Installation
 
