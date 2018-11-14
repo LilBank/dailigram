@@ -29,11 +29,13 @@ You must install the followings to be able to run.
 - `Heroku`  [download](https://devcenter.heroku.com/articles/heroku-cli)
 - `Node.js` [download](https://nodejs.org/en/download/package-manager/)
 - `Django` can be install by the command line using [pip](https://www.makeuseof.com/tag/install-pip-for-python/)
-- `.env` ask project owner privately for the environment variables.
+
 
 ```
 pip install django
 ```
+
+- **`.env` please ask project owner privately for the environment variables.**
 
 ## Installation
 
