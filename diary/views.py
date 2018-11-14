@@ -5,6 +5,7 @@ from django.views import generic, View
 from django.views.generic.edit import UpdateView, DeleteView, CreateView
 from .forms import UserForm, ImageUrlForm
 from django.shortcuts import render, redirect
+from django.http import HttpResponseRedirect
 from django.contrib.auth import authenticate, login
 from django.views.generic import TemplateView
 from django.urls import reverse
@@ -56,7 +57,7 @@ class CreateDiary(View):
                 uploader_url = response.json()["data"]["link"]
                 page.picture = uploader_url
                 page.save()
-        return render(request, 'diary/index.html')
+            return HttpResponseRedirect("/diary/index/")
 
 
 class UserFormView(View):

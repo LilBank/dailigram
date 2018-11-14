@@ -90,6 +90,10 @@
     </div>
 </section>
 {% else %} 
-<h1>You have already logged in</h1>
-<a href="{% url 'diary:index'%}">GO NOW!!</a>
+<script src="jquery.js"></script> 
+    <script> 
+    $(function(){
+      $("#includedContent").load("/diary/index.html"); 
+    });
+    </script> 
 {% endif %}
