@@ -4,17 +4,11 @@ from diary.models import Page, Diary, Tag
 from django.test.client import Client
 from django import forms
 from diary.forms import UserForm
-from .forms import *
 from utility.imgur import ImgurUtil
 from django import forms
 from diary.forms import UserForm
 from selenium import webdriver
-from selenium.common.exceptions import TimeoutException
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.options import Options
-import os
 
     
     
