@@ -28,7 +28,7 @@ urlpatterns = [
     path('', RedirectView.as_view(url='/accounts/login/')),
     path('auth/', include('social_django.urls', namespace='social')),
     path('accounts/', include('django.contrib.auth.urls')),
-    path('logout/', auth_views.LogoutView.as_view(),{'next_page' : settings.LOGOUT_REDIRECT_URL }, name='logout'),
+    # path('logout/', auth_views.LogoutView.as_view(),{'next_page' : settings.LOGOUT_REDIRECT_URL }, name='logout'),
 ]
 
 if settings.DEBUG: 

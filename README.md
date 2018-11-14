@@ -45,6 +45,10 @@ git clone https://github.com/bankkeez/dailigram.git
 # Go to the directory.
 cd dailigram/ 
 
+# Activate virtual environment
+Mac: source .venv/bin/activate
+Window: .venv/bin/activate
+
 # Install the dependencies.
 pip install -r requirements.txt
 ```
