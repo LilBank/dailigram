@@ -90,10 +90,5 @@
     </div>
 </section>
 {% else %} 
-<script src="jquery.js"></script> 
-    <script> 
-    $(function(){
-      $("#includedContent").load("/diary/index.html"); 
-    });
-    </script> 
+{% include 'diary/index.html' %}
 {% endif %}
