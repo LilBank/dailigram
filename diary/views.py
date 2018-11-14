@@ -50,18 +50,13 @@ class CreateDiary(View):
         if form.is_valid() and request.FILES['myfile']:
             page = form.save(commit=False)
             imgur = ImgurUtil()
-            page.picture = request.FILES['myfile']
-            response = imgur.upload_image_locally('', page.picture)
+            my_file = request.FILES['myfile']
+            response = imgur.upload_image_locally('', my_file)
             if(response.status_code == requests.codes.ok):
                 uploader_url = response.json()["data"]["link"]
-                context = {
-                    'uploaded_file_url': "[img]"+uploader_url,
-                    'page': page,
-                }
+                page.picture = uploader_url
                 page.save()
-                return render(request, 'diary/page_form.html', context)
-
-        return render(request, self.template_name, {'form': form})
+        return render(request, 'diary/index.html')
 
 
 class UserFormView(View):
