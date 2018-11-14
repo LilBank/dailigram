@@ -6,6 +6,44 @@ from django import forms
 from diary.forms import UserForm
 from .forms import *
 from utility.imgur import ImgurUtil
+from django import forms
+from diary.forms import UserForm
+from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
+
+    
+    
+class TestingWeb():
+    def setUp(self):
+        options = webdriver.ChromeOptions()
+        options.add_argument("--start-maximized")
+        options.add_argument('--ignore-certificate-errors')
+        options.add_argument("--test-type")
+    
+        # options.binary_location = "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe"
+        # self.driver = webdriver.Chrome("chromedriver.exe")
+        self.driver = webdriver.Chrome()
+        # driver.set_window_size(1024, 600)
+        # driver.maximize_window()
+        driver.get('https://dailigram.herokuapp.com/')
+
+
+
+
+    def test_search(self):
+        username = driver.find_element_by_xpath('//*[@id="id_username"]')
+        password = driver.find_element_by_xpath('//*[@id="id_password"]')
+        username.clear()
+        username.send_keys('admin')
+        password.send_keys('admin1234')
+
+        driver.find_element_by_name("login").click()
+        driver.find_element_by_xpath("//nav/div/ul/li[4]/a").click()
+
+    
+    
+    # driver.close()
+
 
 
 class TestingModels(TestCase):
@@ -21,7 +59,6 @@ class TestingModels(TestCase):
         Tag.objects.create(name='happy')
         Tag.objects.create(name='sad')
         tag = Tag.objects.all()
-
         Page.objects.create(
             diary=diary[0], tag=tag[0], story='This was awesome', date='2018-11-06', picture='pic1')
         Page.objects.create(
@@ -167,6 +204,7 @@ class TestingForms(TestCase):
         form = UserForm(
             data={'username': "", 'password': "", 'email': "", 'first_name': ""})
         self.assertFalse(form.is_valid())
+
 
 class ImgurUtilUploadTest(TestCase):
 
