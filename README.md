@@ -32,17 +32,17 @@ You must download the following to be able to run.
 
 ## Installation Steps
 
-**Step 1: Clone the project to your local directory.**
+### Step 1: Clone the project to your local directory.
 
 Open the Terminal and type the following command:
 
     git clone https://github.com/bankkeez/dailigram.git
 
-**Step 2: Go to the directory.**
+### Step 2: Go to the directory.
 
     cd dailigram/ 
 
-**Step 3: Activate a virtualenv.**
+### Step 3: Activate a virtualenv.
 
 Using virtualenv allows you to avoid installing Python packages globally which could break system tools or other projects.
 Activate it before you start installing packages.
@@ -55,13 +55,13 @@ Activate it before you start installing packages.
 
     .venv\Scripts\activate
 
-**Step 4: Install the dependencies.**
+### Step 4: Install the dependencies.
 
 Be sure that everything is installed in the virtualenv.
 
     (venv) pip install -r requirements.txt
 
-**Step 5: Run Application Locally.**
+### Step 5: Run Application Locally.
 
 ***On MacOS and Linux:***
 
@@ -74,7 +74,7 @@ You have to create file name `Procfile.windows` in your root directory and write
 
     (venv) heroku local web -f Procfile.windows
 
-**Step 6: Exit the virtualenv.**
+### Step 6: Exit the virtualenv.
 
 When done, you have to exit your virtualenv, simply type:
 
