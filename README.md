@@ -32,7 +32,9 @@ You must download the following to be able to run.
 
 ## Installation Steps
 
-**Step 1: Open Terminal and clone the project to your local directory.**
+**Step 1: Clone the project to your local directory.**
+
+Open the Terminal and type the following command:
 
     git clone https://github.com/bankkeez/dailigram.git
 
@@ -42,7 +44,8 @@ You must download the following to be able to run.
 
 **Step 3: Activate a virtualenv.**
 
-Before you start installing or using packages in your virtualenv, Activate it using following command.
+Using virtualenv allows you to avoid installing Python packages globally which could break system tools or other projects.
+Activate it before you start installing packages.
 
 ***On MacOS and Linux:***
 
@@ -54,11 +57,11 @@ Before you start installing or using packages in your virtualenv, Activate it us
 
 **Step 4: Install the dependencies.**
 
+Be sure that everything is installed in the virtualenv.
+
     (venv) pip install -r requirements.txt
 
 **Step 5: Run Application Locally.**
-
-Run the project server by typing the following command.
 
 ***On MacOS and Linux:***
 
