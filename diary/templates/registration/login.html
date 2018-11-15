@@ -19,7 +19,7 @@
         <form method="post" action=" {% url 'login' %}">
           {% csrf_token %}
           <p>Username: {{ form.username }}</p>
-          <p>Password: {{ form.password }}</p>
+          <p>Password : {{ form.password }}</p>
           <input name="login" class="newbutton" type="submit" value="Login">
           <input type="hidden" name="next" value="{{ next }}">
           <a href="{% url 'diary:register' %}" class="newbutton">Register</a>

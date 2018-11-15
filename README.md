@@ -1,4 +1,4 @@
-![Alt text](media/pictures/logo.png)
+![Alt text](diary/static/pictures/logo.png)
 
 [![Build Status](https://travis-ci.com/bankkeez/dailigram.svg?branch=master)](https://travis-ci.com/bankkeez/dailigram)
 
@@ -34,6 +34,8 @@ You must install the followings to be able to run.
 pip install django
 ```
 
+- `.env` **Please ask project owner privately for the environment variables.**
+
 ## Installation
 
 ```
@@ -42,6 +44,10 @@ git clone https://github.com/bankkeez/dailigram.git
 
 # Go to the directory.
 cd dailigram/ 
+
+# Activate virtual environment
+Mac: source .venv/bin/activate
+Window: .venv/bin/activate
 
 # Install the dependencies.
 pip install -r requirements.txt
