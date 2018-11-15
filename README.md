@@ -9,11 +9,11 @@ Our target group is a typical internet users who prefer writing journal online.
 
 ## Team Members
 
-ID           |           Name           |               Roles
+GitHub       |           Name           |               Roles
 -------------|--------------------------|-------------------------------------
-6010545854   |   Piyawat Setthitikun    |       Scrum Master, Developer
-6010545897   |   Vichaphol Thamsuthikul |              Developer
-6010546630   |   Kittin Vatabutr        |              Developer
+bankeez      |   Piyawat Setthitikun    |       Scrum Master, Developer
+kimvcp       |   Vichaphol Thamsuthikul |              Developer
+Kittinske15  |   Kittin Vatabutr        |              Developer
 
 ## Documents
 
@@ -32,61 +32,51 @@ You must download the following to be able to run.
 
 ## Installation Steps
 
-**Step 1: Open the terminal and clone the project to your local directory.**
+### Step 1: Clone the project to your local directory.
 
-    ```
+Open the Terminal and type the following command:
+
     git clone https://github.com/bankkeez/dailigram.git
-    ```
 
-**Step 2: Go to the directory.**
+### Step 2: Go to the directory.
 
-    ```
     cd dailigram/ 
-    ```
 
-**Step 3: Activate a virtualenv.**
+### Step 3: Activate a virtualenv.
 
-    For Mac and Linux:
+Using virtualenv allows you to avoid installing Python packages globally which could break system tools or other projects.
+Activate it before you start installing packages.
 
-    ```
+***On MacOS and Linux:***
+
     source .venv/bin/activate
-    ```
 
-    For Windows:
+***On Windows:***
 
-    ```
-    .venv/bin/activate
-    ```
+    .venv\Scripts\activate
 
-**Step 4: Install the dependencies.**
+### Step 4: Install the dependencies.
+
+Be sure that everything is installed in the virtualenv.
+
+    (venv) pip install -r requirements.txt
+
+### Step 5: Run Application Locally.
+
+***On MacOS and Linux:***
+
+    (venv) heroku local web
+
+***On Windows:***
 
     ```
     (venv) pip install -r requirements.txt
     ```
 
-**Step 5: Run Application Locally.**
-
-    Run the project server by typing the following command.
-
-    ***For Mac:***
-
-    ```
-    (venv) heroku local web
-    ```
-
-    ***For Windows:***
-
-    You have to create file name `Procfile.windows` in your root directory and write this  
-    `web: python manage.py runserver localhost:8000` then you are ready to run.
-
-    ```
     (venv) heroku local web -f Procfile.windows
-    ```
 
-**Step 6: Leave the virtualenv.**
+### Step 6: Exit the virtualenv.
 
-    When done, you have to leave your virtualenv, you can simply run:
+When done, you have to exit your virtualenv, simply type:
 
-    ```
     (venv) deactivate
-    ```
