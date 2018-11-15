@@ -69,10 +69,9 @@ Be sure that everything is installed in the virtualenv.
 
 ***On Windows:***
 
-    ```
-    (venv) pip install -r requirements.txt
-    ```
-
+You have to create file name `Procfile.windows` in your root directory and write this  
+`web: python manage.py runserver localhost:8000` then you are ready to run.
+    
     (venv) heroku local web -f Procfile.windows
 
 ### Step 6: Exit the virtualenv.
