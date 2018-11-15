@@ -1,5 +1,6 @@
 Procfile.windows
 .env
+.coverage
 *.log
 *.pot
 *.pyc
@@ -7,3 +8,9 @@ Procfile.windows
 */*/*/__pycache__/
 */*/__pycache__/
 */__pycache__/
+chromedriver.exe
+/media
+
+# dont ignore these files
+!.gitignore
+!/media/pictures

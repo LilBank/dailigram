@@ -1,15 +1,25 @@
 {% extends "base.html" %}
 
 {% block content %}
+
 {% if error_message %}
 <p><strong>{{ error_message }}</strong></p>
 {% endif %}
-<form class="form-horizontal" action="" method="post" enctype="multipart/form-data">
-  {% csrf_token %}
-  {% for field in form %}
-  {{field.label_tag}}
-  {{field}} <br><br>
-  {% endfor %}
-  <button type="submit" class="btn btn-success">Submit</button>
-</form>
-{% endblock %}
+
+<div class="container">
+  <form class="form-horizontal" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {% for field in form %}
+    {{field.label_tag}}
+    {{field}} <br><br>
+    {% endfor %}
+    <h6>Picture: </h6> 
+    <input type="file" name="myfile">
+    <button type="submit">Upload</button>
+  </form>
+
+  {% if uploaded_file_url %}
+  <p>File uploaded at: <a target="_blank" href="{{ uploaded_file_url }}">{{ uploaded_file_url }}</a></p>
+  {% endif %}
+  {% endblock %}
+</div>

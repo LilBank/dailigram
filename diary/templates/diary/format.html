@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% load static %}
+
+<body>
+  {% block content %}
+  <section class="boxes">
+    <div class="box">
+      <img src="{% static 'pictures/templates1.jpg' %}" width="250px" height="230px" alt="">
+      <h4>want this one!</h4>
+      <a href="{% url 'diary:create' %}">
+        <button class="button">Submit</button>
+      </a>
+    </div>
+
+    <div class="box">
+      <img src="{% static 'pictures/templates2.jpg' %}" width="250px" height="230px" alt="">
+      <h4>want this one!</h4>
+      <a href="{% url 'diary:create' %}">
+        <button class="button">Submit</button>
+      </a>
+    </div>
+
+    <div class="box">
+      <img src="{% static 'pictures/templates3.jpg' %}" width="250px" height="230px" alt="">
+      <h4>want this one!</h4>
+      <a href="{% url 'diary:create' %}">
+        <button class="button">Submit</button>
+      </a>
+    </div>
+  </section>
+
+  {% endblock %}
+</body>
+
+</html>

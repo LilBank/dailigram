@@ -1,23 +1,34 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
 
 {% block content %}
 {% if user.is_authenticated %}
-<div style="text-align: center">
-  <h1>Hello {{user.username}}</h1>
-</div>
-<p style="text-align:center;"><img src="https://instagram.fbkk2-5.fna.fbcdn.net/vp/309fbbb40dd9466270fa2b4659040fa7/5C493868/t51.2885-19/s320x320/43778276_306344706622822_1848667680702201856_n.jpg"
-    class="round" height="250" width="250"></p>
-{% if all_diarys %}
-{% for page in all_diarys %}
-<div style="text-align: center">
-  <h3>Diary: {{page.diary}}</h3>
-  <h3>Tag: {{page.tag}}</h3>
-  <h3>Story: {{page.story}}</h3>
-</div>
-{% endfor %}
-{% endif %}
+<div class="container-fluid">
+  <h2 class="text-center">{{ user.username }}'s diary</h2><br>
+  <div class="row text-center">
+    {% if all_diarys %}
+    {% for page in all_diarys %}
+    <div class="col-sm-4 col-lg-2">
+      <div class="thumbnail">
+        {% if page.picture %}
+        <a href=" {% url 'diary:detail' page.id %}">
+          <img src="{{ uploaded_file_url }}" class="img-responsive" style='height: 100%; width: 100%; object-fit: contain'>
+        </a>
+        {% endif %}
+        <div class="caption">
+          <h2>{{ page.diary }}</h2>
+          <h3>{{ page.tag }}</h3>
+          <h4>{{ page.story }}</h4>
+          <h4>{{ page.date }}</h4>
+          <h4>{{ uploaded_file_url }}</h4>
 
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+    {% endif %}
+  </div>
+</div>
 {% else %}
-<a href="{% url 'diary:login'%}">Login</a>
+<!-- <a href="{% url 'login'%}">Login</a> -->
 {% endif %}
 {% endblock %}
