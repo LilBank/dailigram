@@ -37,7 +37,7 @@ class CreateFormat(View):
         return render(request, self.template_name)
 
 
-class CreateDiary(View):
+class CreatePage(View):
     form_class = ImageUrlForm
     template_name = 'diary/page_form.html'
 
@@ -57,7 +57,7 @@ class CreateDiary(View):
                 uploader_url = response.json()["data"]["link"]
                 page.picture = uploader_url
                 page.save()
-            return HttpResponseRedirect("/diary/index/")
+            return HttpResponseRedirect("/diary/")
 
 
 class UserFormView(View):

@@ -20,7 +20,7 @@ class Page(models.Model):
     diary = models.ForeignKey(Diary, on_delete=models.SET_NULL, null=True)
     tag = models.ForeignKey(Tag, on_delete=models.SET_NULL, null=True)
     story = models.TextField(max_length=100000, help_text='Write your story.')
-    date = models.DateField('Date')
+    date = models.DateTimeField(auto_now_add=True)
     picture = models.FileField()
 
     def get_absolute_url(self):
