@@ -9,6 +9,7 @@ from django.http import HttpResponseRedirect
 from django.contrib.auth import authenticate, login
 from django.views.generic import TemplateView
 from django.urls import reverse
+from django.urls import reverse_lazy
 from utility.imgur import ImgurUtil
 
 import requests
@@ -63,6 +64,9 @@ class CreatePage(View):
                 page.save()
             return HttpResponseRedirect("/diary/")
 
+class DeleteDiary(DeleteView):
+    model = Diary
+    success_url = reverse_lazy('diary:index')
 
 class UserFormView(View):
     form_class = UserForm

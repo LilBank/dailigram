@@ -5,6 +5,7 @@ import datetime
 
 class Diary(models.Model):
     first_name = models.CharField(max_length=100, unique=True)
+    is_favorite = models.BooleanField(default = False)
 
     def __str__(self):
         return self.first_name
@@ -31,5 +32,5 @@ class Page(models.Model):
     def __str__(self):
         return f'{str(self.date)}, {self.diary}, {self.tag}'
 
-     def get_absolute_url(self):
+    def get_absolute_url(self):
         return reverse('diary:index')
