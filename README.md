@@ -9,11 +9,11 @@ Our target group is a typical internet users who prefer writing journal online.
 
 ## Team Members
 
-ID           |           Name           |               Roles
+GitHub       |           Name           |               Roles
 -------------|--------------------------|-------------------------------------
-6010545854   |   Piyawat Setthitikun    |       Scrum Master, Developer
-6010545897   |   Vichaphol Thamsuthikul |              Developer
-6010546630   |   Kittin Vatabutr        |              Developer
+bankeez      |   Piyawat Setthitikun    |       Scrum Master, Developer
+kimvcp       |   Vichaphol Thamsuthikul |              Developer
+Kittinske15  |   Kittin Vatabutr        |              Developer
 
 ## Documents
 
@@ -23,49 +23,59 @@ ID           |           Name           |               Roles
 
 ## Prerequisite
 
-You must install the followings to be able to run.
+You must download the following to be able to run.
 
 - `Python`  [download](https://www.python.org/downloads/)
 - `Heroku`  [download](https://devcenter.heroku.com/articles/heroku-cli)
 - `Node.js` [download](https://nodejs.org/en/download/package-manager/)
-- `Django` can be install by the command line using [pip](https://www.makeuseof.com/tag/install-pip-for-python/)
+- `.env`  **Please ask project owner privately for the environment variables.**
 
-```
-pip install django
-```
+## Installation Steps
 
-- `.env` **Please ask project owner privately for the environment variables.**
+### Step 1: Clone the project to your local directory.
 
-## Installation
+Open the Terminal and type the following command:
 
-```
-# Clone the project to your local directory.
-git clone https://github.com/bankkeez/dailigram.git
+    git clone https://github.com/bankkeez/dailigram.git
 
-# Go to the directory.
-cd dailigram/ 
+### Step 2: Go to the directory.
 
-# Activate virtual environment
-Mac: source .venv/bin/activate
-Window: .venv/bin/activate
+    cd dailigram/ 
 
-# Install the dependencies.
-pip install -r requirements.txt
-```
+### Step 3: Activate a virtualenv.
 
-### Run Application Locally
+Using virtualenv allows you to avoid installing Python packages globally which could break system tools or other projects.
+Activate it before you start installing packages.
 
-**For Mac:**
+***On MacOS and Linux:***
 
-```
-heroku local web
-```
+    source .venv/bin/activate
 
-**For Window:**
+***On Windows:***
+
+    .venv\Scripts\activate
+
+### Step 4: Install the dependencies.
+
+Be sure that everything is installed in the virtualenv.
+
+    (venv) pip install -r requirements.txt
+
+### Step 5: Run Application Locally.
+
+***On MacOS and Linux:***
+
+    (venv) heroku local web
+
+***On Windows:***
 
 You have to create file name `Procfile.windows` in your root directory and write this  
 `web: python manage.py runserver localhost:8000` then you are ready to run.
+    
+    (venv) heroku local web -f Procfile.windows
 
-```
-heroku local web -f Procfile.windows
-```
+### Step 6: Exit the virtualenv.
+
+When done, you have to exit your virtualenv, simply type:
+
+    (venv) deactivate
