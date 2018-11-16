@@ -10,13 +10,6 @@ class UserForm(forms.ModelForm):
         model = User
         fields = ['username', 'email', 'password']
 
-class DiaryForm(forms.ModelForm):
-    
-    class Meta:
-        model = Diary
-        fields = ['first_name']
-        
-
 class ImageUrlForm(forms.ModelForm):
 
     class Meta:
