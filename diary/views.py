@@ -23,17 +23,19 @@ class IndexView(generic.ListView):
         """
         Return all of the objects in the list
         """
-        return Page.objects.all()
+        return Diary.objects.all()
 
 
 class DetailView(generic.DetailView):
     model = Page
+    context_object_name = 'all_pages'
     template_name = 'diary/detail.html'
 
 
 class CreateDiary(CreateView):
     model = Diary
     fields = ['first_name']
+
 
 class CreateFormat(View):
     template_name = 'diary/format.html'
@@ -64,9 +66,11 @@ class CreatePage(View):
                 page.save()
             return HttpResponseRedirect("/diary/")
 
+
 class DeleteDiary(DeleteView):
-    model = Diary
+    model = Page
     success_url = reverse_lazy('diary:index')
+
 
 class UserFormView(View):
     form_class = UserForm

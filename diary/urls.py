@@ -10,13 +10,15 @@ urlpatterns = [
     path('register/', views.UserFormView.as_view(), name='register'),
     # ex: /diary/
     path('', login_required(views.IndexView.as_view()), name='index'),
-    # ex: /diary/detail/
-    path('<int:pk>/', login_required(views.DetailView.as_view()), name='detail'),
     # ex: /diary/create_diary/
     path('create_diary/', login_required(views.CreateDiary.as_view()),name='create_diary'),
     # ex: /diary/create_page/
     path('create_page/', login_required(views.CreatePage.as_view()), name='create_page'),
     # ex: /diary/format/
-    path('format/', login_required(views.CreateFormat.as_view()), name='format')
+    path('format/', login_required(views.CreateFormat.as_view()), name='format'),
+     # ex: /diary/detail(1)/
+    path('<int:pk>/', login_required(views.DetailView.as_view()), name='detail'),
+    # ex: /diary/detail(2)/delete/
+    path('<int:pk>/delete/', login_required(views.DeleteDiary.as_view()), name='delete_diary')
 
 ]
