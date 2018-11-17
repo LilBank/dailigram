@@ -17,23 +17,18 @@ import requests
 
 class IndexView(generic.ListView):
     template_name = 'diary/index.html'
-    context_object_name = 'all_diarys'
+    context_object_name = 'all_pages'
 
     def get_queryset(self):
         """
         Return all of the objects in the list
         """
-        return Diary.objects.all()
+        return Page.objects.all()
 
 
 class DetailView(generic.DetailView):
     model = Page
     template_name = 'diary/detail.html'
-
-
-class CreateDiary(CreateView):
-    model = Diary
-    fields = ['first_name']
 
 
 class CreateFormat(View):
@@ -67,7 +62,7 @@ class CreatePage(View):
 
 
 class DeleteDiary(DeleteView):
-    model = Diary
+    model = Page
     success_url = reverse_lazy('diary:index')
 
 
