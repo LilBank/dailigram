@@ -5,9 +5,11 @@ from django.views import generic, View
 from django.views.generic.edit import UpdateView, DeleteView, CreateView
 from .forms import UserForm, ImageUrlForm
 from django.shortcuts import render, redirect
+from django.http import HttpResponseRedirect
 from django.contrib.auth import authenticate, login
 from django.views.generic import TemplateView
 from django.urls import reverse
+from django.urls import reverse_lazy
 from utility.imgur import ImgurUtil
 
 import requests
@@ -21,12 +23,17 @@ class IndexView(generic.ListView):
         """
         Return all of the objects in the list
         """
-        return Page.objects.all()
+        return Diary.objects.all()
 
 
 class DetailView(generic.DetailView):
     model = Page
     template_name = 'diary/detail.html'
+
+
+class CreateDiary(CreateView):
+    model = Diary
+    fields = ['first_name']
 
 
 class CreateFormat(View):
@@ -36,7 +43,7 @@ class CreateFormat(View):
         return render(request, self.template_name)
 
 
-class CreateDiary(View):
+class CreatePage(View):
     form_class = ImageUrlForm
     template_name = 'diary/page_form.html'
 
@@ -50,43 +57,37 @@ class CreateDiary(View):
         if form.is_valid() and request.FILES['myfile']:
             page = form.save(commit=False)
             imgur = ImgurUtil()
-            page.picture = request.FILES['myfile']
-            response = imgur.upload_image_locally('', page.picture)
+            my_file = request.FILES['myfile']
+            response = imgur.upload_image_locally('', my_file)
             if(response.status_code == requests.codes.ok):
                 uploader_url = response.json()["data"]["link"]
-                context = {
-                    'uploaded_file_url': "[img]"+uploader_url,
-                    'page': page,
-                }
+                page.picture = uploader_url
                 page.save()
-                return render(request, 'diary/page_form.html', context)
+            return HttpResponseRedirect("/diary/")
 
-        return render(request, self.template_name, {'form': form})
+
+class DeleteDiary(DeleteView):
+    model = Diary
+    success_url = reverse_lazy('diary:index')
 
 
 class UserFormView(View):
     form_class = UserForm
     template_name = 'registration/registration_form.html'
 
-    # display black form
     def get(self, request):
         form = self.form_class(None)
         return render(request, self.template_name, {'form': form})
 
-    # process form data
     def post(self, request):
         form = self.form_class(request.POST)
 
         if form.is_valid():
             user = form.save(commit=False)
-
-            # cleaned data
             username = form.cleaned_data['username']
             password = form.cleaned_data['password']
             user.set_password(password)
             user.save()
-
-            # return User objects if credential are correct
             user = authenticate(username=username, password=password)
 
             if user is not None:

@@ -1,5 +1,5 @@
 from django.contrib.auth.models import User
-from .models import Page
+from .models import Page, Diary
 from django import forms
 
 
@@ -15,4 +15,6 @@ class ImageUrlForm(forms.ModelForm):
     class Meta:
         model = Page
         fields = ['diary', 'tag', 'story']
+
+
 

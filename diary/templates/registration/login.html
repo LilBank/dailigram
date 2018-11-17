@@ -90,6 +90,5 @@
     </div>
 </section>
 {% else %} 
-<h1>You have already logged in</h1>
-<a href="{% url 'diary:index'%}">GO NOW!!</a>
+<meta http-equiv="refresh" content="0; URL='http://127.0.0.1:8000/diary/'"/>
 {% endif %}
