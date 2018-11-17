@@ -29,27 +29,47 @@ span.psw {
     padding-top: 16px;
 }
 
-.newbutton{
-    color: #31a6ff;
+.newbutton1{
+    color: #070707;
     font-family: "proxima nova";
     font-weight: 100; 
     font-size: 20px;
     text-align: center;
 
-    border: solid 1.5px #31a6ff;
-    border-radius: 30px;
-
-    padding: 4px 40px;
+    border: solid 1.5px #050505;
+    padding: 0.5px 130px;
 
     -webkit-transition-duration: 200ms;
     transition-duration: 200ms;
 }
 
-.newbutton:hover{
+.newbutton2{
+    color: #020202;
+    font-family: "proxima nova";
+    font-weight: 100; 
+    font-size: 20px;
+    text-align: center;
+
+    border: solid 1.5px #01070c;
+
+    padding: 1px 40px;
+
+    -webkit-transition-duration: 200ms;
+    transition-duration: 200ms;
+}
+.newbutton1:hover{
 
     background-color: #31a6ff;
     color: #fff;
 }
+
+.newbottun2:hover{
+
+    background-color: #777;
+    color: #fff;    
+}
+
+
 
 
 @import url("//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css");
