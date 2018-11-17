@@ -7,12 +7,14 @@ from .forms import UserForm, ImageUrlForm
 from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect
 from django.contrib.auth import authenticate, login
+from django.contrib.auth.models import User
 from django.views.generic import TemplateView
 from django.urls import reverse
 from django.urls import reverse_lazy
 from utility.imgur import ImgurUtil
 
 import requests
+import datetime
 
 
 class IndexView(generic.ListView):
@@ -52,18 +54,26 @@ class CreatePage(View):
         if form.is_valid() and request.FILES['myfile']:
             page = form.save(commit=False)
             imgur = ImgurUtil()
+            title = page.title
             my_file = request.FILES['myfile']
-            response = imgur.upload_image_locally('', my_file)
+            response = imgur.upload_image_locally(
+                title + ':' + str(datetime.date.today()), my_file)
             if(response.status_code == requests.codes.ok):
                 uploader_url = response.json()["data"]["link"]
                 page.picture = uploader_url
                 page.save()
             return HttpResponseRedirect("/diary/")
 
-
 class DeleteDiary(DeleteView):
     model = Page
     success_url = reverse_lazy('diary:index')
+
+    def get(self, request):
+        imgur = ImgurUtil()
+        description = 'w:2018-11-17'
+        image_hash = imgur.get_image_hash(description)
+        imgur.delete_image(image_hash)
+
 
 
 class UserFormView(View):

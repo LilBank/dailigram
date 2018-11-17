@@ -24,9 +24,10 @@ class Tag(models.Model):
 
 class Page(models.Model):
     diary = models.ForeignKey(Diary, on_delete=models.SET_NULL, null=True)
+    title = models.CharField(max_length=100,unique=True)
     tag = models.ForeignKey(Tag, on_delete=models.SET_NULL, null=True)
-    story = models.TextField(max_length=100000, help_text='Write your story.')
-    date = models.DateTimeField(auto_now_add=True)
+    story = models.TextField(max_length=10000, help_text='Write your story.')
+    date = models.DateField(auto_now_add=True)
     picture = models.FileField()
 
     def __str__(self):
