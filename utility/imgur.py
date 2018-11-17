@@ -163,18 +163,18 @@ class ImgurUtil:
     def upload_image_locally(self, description, image_source):
         """
         """
-        url = "https://api.imgur.com/3/image"
-        files = {"image": image_source}
-        body = {
-            'album': self.album_hash,
-            'description': description
-        }
-        headers = {
-            'Authorization': 'Bearer ' + self.token,
-            'cache-control': 'no-cache',
-        }
-        response = requests.post(url, files=files, headers=headers, data=body)
-        return response
+        # url = "https://api.imgur.com/3/image"
+        # files = {"image": image_source}
+        # body = {
+        #     'album': self.album_hash,
+        #     'description': description
+        # }
+        # headers = {
+        #     'Authorization': 'Bearer ' + self.token,
+        #     'cache-control': 'no-cache',
+        # }
+        # response = requests.post(url, files=files, headers=headers, data=body)
+        # return response
 
     # Public
 
