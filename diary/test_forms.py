@@ -21,3 +21,6 @@ class TestingForms(TestCase):
         form = UserForm(
             data={'username': "", 'password': "", 'email': "", 'first_name': ""})
         self.assertFalse(form.is_valid())
+
+
+    

@@ -1,34 +1,38 @@
 {% extends 'base.html' %}
-{% load static %}
 
 {% block content %}
 {% if user.is_authenticated %}
 <div class="container-fluid">
-  <h2 class="text-center">{{ user.username }}'s diary</h2><br>
-  <div class="row text-center">
-    {% if all_diarys %}
-    {% for diary in all_diarys %}
-    <div class="col-sm-4 col-lg-2">
-      <div class="thumbnail">
+    <h2 class="text-center">{{ user.username }}'s diary</h2><br>
+    <div class="row text-center">
+        {% if all_pages %}
+        {% for page in all_pages %}
+        <div class="col-sm-4 col-lg-2">
+            <div class="thumbnail">
+                {% if page.picture %}
+                <a href=" {% url 'diary:detail' page.id %}">
+                    <img src="{{ page.picture }}" class="img-responsive" style='height: 100%; width: 100%; object-fit: contain'>
+                </a>
+                {% endif %}
+                <div class="caption">
+                    <h2>{{ page.diary }}</h2>
+                    <h3>{{ page.tag }}</h3>
+                    <h4>{{ page.story }}</h4>
+                    <h4>{{ page.date }}</h4>
+                </div>
 
-        {% if diary.first_name %}
-        <a href=" {% url 'diary:detail' diary.id %}">{{diary.first_name}}
-          <img src="{% static 'pictures/templates2.jpg' %}" class="img-responsive" style='height: 100%; width: 100%; object-fit: contain'>
-        </a>
+                <!-- delete button -->
+                <form action="{% url 'diary:delete_diary' page.id%} " method="post">
+                    {% csrf_token %}
+                    <input type="hidden" name="page_id" value="{{ page.id }}" />
+                    <button type="submit">Delete</button>
+                </form>
+
+            </div>
+        </div>
+        {% endfor %}
         {% endif %}
-
-        <!-- delete button -->
-        <form action="{% url 'diary:delete_diary' diary.id%} " method="post">
-          {% csrf_token %}
-          <input type="hidden" name="diary_id" value="{{ diary.id }}" />
-          <button type="submit">Delete</button>
-        </form>
-
-      </div>
     </div>
-    {% endfor %}
-    {% endif %}
-  </div>
 </div>
 {% else %}
 <a href="{% url 'login'%}">Login</a>

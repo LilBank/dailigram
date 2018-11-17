@@ -10,8 +10,6 @@ urlpatterns = [
     path('register/', views.UserFormView.as_view(), name='register'),
     # ex: /diary/
     path('', login_required(views.IndexView.as_view()), name='index'),
-    # ex: /diary/create_diary/
-    path('create_diary/', login_required(views.CreateDiary.as_view()),name='create_diary'),
     # ex: /diary/create_page/
     path('create_page/', login_required(views.CreatePage.as_view()), name='create_page'),
     # ex: /diary/format/
