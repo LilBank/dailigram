@@ -28,7 +28,6 @@ class IndexView(generic.ListView):
 
 class DetailView(generic.DetailView):
     model = Page
-    context_object_name = 'all_pages'
     template_name = 'diary/detail.html'
 
 
@@ -68,7 +67,7 @@ class CreatePage(View):
 
 
 class DeleteDiary(DeleteView):
-    model = Page
+    model = Diary
     success_url = reverse_lazy('diary:index')
 
 
