@@ -44,7 +44,7 @@ Open the Terminal and type the following command:
 
 ### Step 3: Create virtualenv.
 
-    virtualenv env
+    virtualenv venv
 
 ### Step 4: Activate a virtualenv.
 
