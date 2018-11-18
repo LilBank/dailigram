@@ -6,6 +6,7 @@ omit =
         *manage.py*
         *test_interface.py*
         *views.py*
+        *staticfiles/*
 
 [report]
 # Regexes for lines to exclude from consideration
