@@ -26,12 +26,10 @@ from diary import views
 urlpatterns = [
     path('admin/', admin.site.urls, name='admin'),
     path('diary/', include('diary.urls')),
-    path('', RedirectView.as_view(url='/accounts/login/')),
+    path('', RedirectView.as_view(url='/login/')),
     path('auth/', include('social_django.urls', namespace='social')),
     # path('accounts/', include('django.contrib.auth.urls')),
-    # ex: /diary/login/
     path('login/', views.user_login, name='login'),
-    # ex: /diary/logout/
     path('logout/', views.user_logout, name='logout')
 ]
 

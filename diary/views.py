@@ -28,20 +28,18 @@ class IndexView(generic.ListView):
         return Page.objects.all()
 
 
-def user_login(request):
-    if not request.user.is_authenticated():
-        return render(request, 'registration/login.html')
+def login_user(request):
+    if not request.user.is_authenticated:
+        form = UserForm(request.POST or None)
+        return render(request, 'registration/login.html', {"form": form})
     else:
         return HttpResponseRedirect('/diary/')
 
 
-def user_logout(request):
+def logout_user(request):
     logout(request)
-    form = UserForm(request.POST or None)
-    context = {
-        "form": form,
-    }
-    return render(request, 'registration/login.html', context)
+    form = UserForm(request.POST or None)  
+    return render(request, 'registration/login.html', {"form": form})
 
 
 class DetailView(generic.DetailView):

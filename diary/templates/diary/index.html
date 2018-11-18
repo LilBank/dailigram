@@ -1,7 +1,6 @@
 {% extends 'base.html' %}
 
 {% block content %}
-{% if user.is_authenticated %}
 <div class="container-fluid">
     <h2 class="text-center">{{ user.username }}'s diary</h2><br>
     <div class="row text-center">
@@ -34,7 +33,4 @@
         {% endif %}
     </div>
 </div>
-{% else %}
-<a href="{% url 'login'%}">Login</a>
-{% endif %}
 {% endblock %}
