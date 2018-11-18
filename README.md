@@ -42,11 +42,11 @@ Open the Terminal and type the following command:
 
     cd dailigram/
 
-### Step 3: Create virtualenv.
+### Step 3: Create a virtualenv.
 
     virtualenv venv
 
-### Step 4: Activate a virtualenv.
+### Step 4: Activate the virtualenv.
 
 Using virtualenv allows you to avoid installing Python packages globally which could break system tools or other projects.
 Activate it before you start installing packages.
