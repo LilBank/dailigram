@@ -19,7 +19,7 @@
 <body>
   <div>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <a class="navbar-brand" href="#">
+      <a class="navbar-brand" href="{% url 'diary:index' %}">
         <i class="glyphicon glyphicon-book"></i>
         <b> Dailigram</b>
       </a>
@@ -33,7 +33,7 @@
           <li class="nav-item active">
             <a href="{% url 'diary:index' %}" class="nav-link">
               <i class="fa fa-home"></i>
-              <span> Home</span>
+              <span> {{ user.username }}'s diary</span>
             </a>
           </li>
           <li class="nav-item">
@@ -43,7 +43,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href=" " class="nav-link">
+            <a href="{% url 'diary:settings' %}" class="nav-link">
               <i class="fa fa-gear"></i>
               <span> Settings</span>
             </a>

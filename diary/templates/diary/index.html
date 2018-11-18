@@ -4,6 +4,9 @@
 {% if user.is_authenticated %}
 <div class="container-fluid">
     <h2 class="text-center">{{ user.username }}'s diary</h2><br>
+    <div style="text-align: center">
+        <img src="http://cgright.com/icon/1044_thum.jpg" height="180px" width="180px">
+    </div>
     <div class="row text-center">
         {% if all_pages %}
         {% for page in all_pages %}

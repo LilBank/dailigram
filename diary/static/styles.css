@@ -29,7 +29,7 @@ span.psw {
     padding-top: 16px;
 }
 
-.newbutton{
+.newbutton1{
     color: #31a6ff;
     font-family: "proxima nova";
     font-weight: 100; 
@@ -45,7 +45,8 @@ span.psw {
     transition-duration: 200ms;
 }
 
-.newbutton:hover{
+
+.newbutton1:hover{
 
     background-color: #31a6ff;
     color: #fff;

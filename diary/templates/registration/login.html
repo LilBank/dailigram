@@ -20,9 +20,9 @@
           {% csrf_token %}
           <p>Username: {{ form.username }}</p>
           <p>Password : {{ form.password }}</p>
-          <input name="login" class="newbutton" type="submit" value="Login">
+          <input name="login" class="newbutton1" type="submit" value="Login">
           <input type="hidden" name="next" value="{{ next }}">
-          <a href="{% url 'diary:register' %}" class="newbutton">Register</a>
+          <a href="{% url 'diary:register' %}" class="newbutton1">Register</a>
           <br>
         </form>
         <form class="login-form">
@@ -92,3 +92,4 @@
 {% else %} 
 <meta http-equiv="refresh" content="0; URL='http://127.0.0.1:8000/diary/'"/>
 {% endif %}
+
