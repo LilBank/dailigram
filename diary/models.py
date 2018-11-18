@@ -27,7 +27,7 @@ class Page(models.Model):
     title = models.CharField(max_length=100,unique=True)
     tag = models.ForeignKey(Tag, on_delete=models.SET_NULL, null=True)
     story = models.TextField(max_length=10000, help_text='Write your story.')
-    date = models.DateField(auto_now_add=True)
+    date = models.CharField(max_length=50 ,blank=True)
     picture = models.FileField()
 
     def __str__(self):

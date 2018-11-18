@@ -11,8 +11,9 @@ class UserForm(forms.ModelForm):
         fields = ['username', 'email', 'password']
 
 
-class ImageUrlForm(forms.ModelForm):
+class PageForm(forms.ModelForm):
 
     class Meta:
         model = Page
-        fields = ['diary', 'title', 'tag', 'story']
+        fields = ['diary', 'title', 'date', 'tag', 'story', ]
+

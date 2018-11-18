@@ -131,15 +131,15 @@ class ImgurUtilUploadTest(TestCase):
         self.assertEqual(response2.status_code, 200)
         self.assertEqual(response3.status_code, 200)
 
-#     def test_10_delete_album(self):
-#         """
-#         Test delete an album.
-#         """
+    def test_10_delete_album(self):
+        """
+        Test delete an album.
+        """
 
-#         imgurUtil = ImgurUtil()
-#         album_title = 'test_only'
-#         response = imgurUtil.delete_album(album_title)
-#         self.assertEqual(response.status_code, 200)
+        imgurUtil = ImgurUtil()
+        album_title = 'test_only'
+        response = imgurUtil.delete_album(album_title)
+        self.assertEqual(response.status_code, 200)
 
     def test_11_delete_multiple_albums(self):
         """

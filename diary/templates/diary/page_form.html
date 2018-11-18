@@ -10,10 +10,14 @@
   <form class="form-horizontal" method="post" enctype="multipart/form-data">
     {% csrf_token %}
     {% for field in form %}
-    {{field.label_tag}}
-    {{field}} <br><br>
+    {% if field == 'date' %}
+      <h1>2</h1>
+    {%else%}
+      {{field.label_tag}}
+      {{field}} <br><br>
+    {% endif %}
     {% endfor %}
-    <h6>Picture: </h6> 
+    <h6>Picture: </h6>
     <input type="file" name="myfile">
     <button type="submit">Upload</button>
   </form>

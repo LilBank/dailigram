@@ -3,10 +3,10 @@ from diary import models
 from diary.models import Tag, Page, Diary
 from django.views import generic, View
 from django.views.generic.edit import UpdateView, DeleteView, CreateView
-from .forms import UserForm, ImageUrlForm
+from .forms import UserForm, PageForm
 from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.views.generic import TemplateView
 from django.urls import reverse
@@ -28,6 +28,22 @@ class IndexView(generic.ListView):
         return Page.objects.all()
 
 
+def user_login(request):
+    if not request.user.is_authenticated():
+        return render(request, 'registration/login.html')
+    else:
+        return HttpResponseRedirect('/diary/')
+
+
+def user_logout(request):
+    logout(request)
+    form = UserForm(request.POST or None)
+    context = {
+        "form": form,
+    }
+    return render(request, 'registration/login.html', context)
+
+
 class DetailView(generic.DetailView):
     model = Page
     template_name = 'diary/detail.html'
@@ -41,7 +57,7 @@ class CreateFormat(View):
 
 
 class CreatePage(View):
-    form_class = ImageUrlForm
+    form_class = PageForm
     template_name = 'diary/page_form.html'
 
     def get(self, request):
@@ -53,27 +69,34 @@ class CreatePage(View):
 
         if form.is_valid() and request.FILES['myfile']:
             page = form.save(commit=False)
-            imgur = ImgurUtil()
-            title = page.title
+            page.date = str(datetime.date.today())
+            imgurUtil = ImgurUtil()
+            imgurUtil.set_album_hash('lFOSBAb')
             my_file = request.FILES['myfile']
-            response = imgur.upload_image_locally(
-                title + ':' + str(datetime.date.today()), my_file)
+            description = page.title + ':' + page.date
+            response = imgurUtil.upload_image_locally(description, my_file)
             if(response.status_code == requests.codes.ok):
                 uploader_url = response.json()["data"]["link"]
                 page.picture = uploader_url
                 page.save()
             return HttpResponseRedirect("/diary/")
 
+
 class DeleteDiary(DeleteView):
+    form_class = PageForm
     model = Page
     success_url = reverse_lazy('diary:index')
 
-    def get(self, request):
-        imgur = ImgurUtil()
-        description = 'w:2018-11-17'
-        image_hash = imgur.get_image_hash(description)
-        imgur.delete_image(image_hash)
+    def get(self, request, *args, **kwargs):
+        form = self.form_class(request.POST)
 
+        if form.is_valid():
+            page = form.save(commit=False)
+            imgurUtil = ImgurUtil()
+            description = page.title + ':' + page.date
+            image_hash = imgurUtil.get_image_hash(description)
+            imgurUtil.delete_image(image_hash)
+        return HttpResponseRedirect("/diary/")
 
 
 class UserFormView(View):
