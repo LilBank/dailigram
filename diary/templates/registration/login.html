@@ -14,7 +14,7 @@
       <div class="col-md-4 login-sec">
         <h2 class="text-center">Dailigram</h2>
         <br>
-
+        
         <form method="post" action=" {% url 'login' %}">
           {% csrf_token %}
           <p>Username: {{ form.username }}</p>

@@ -47,8 +47,9 @@ class IndexView(generic.ListView):
         """
         Return all of the objects in the list
         """
-        return Page.objects.all()
-
+        # return Page.objects.all()
+        tmp = self.request.user.username
+        return Page.objects.filter(diary__first_name=tmp)
 
 class DetailView(generic.DetailView):
     model = Page
@@ -60,7 +61,6 @@ class CreateFormat(View):
 
     def get(self, request):
         return render(request, self.template_name)
-
 
 class CreatePage(View):
     form_class = PageForm
