@@ -48,8 +48,8 @@ class IndexView(generic.ListView):
         Return all of the objects in the list
         """
         # return Page.objects.all()
-        tmp = self.request.user.username
-        return Page.objects.filter(diary__first_name=tmp)
+        username = self.request.user.username
+        return Page.objects.filter(diary__first_name=username)
 
 class DetailView(generic.DetailView):
     model = Page
@@ -127,6 +127,6 @@ class UserFormView(View):
             if user is not None:
                 if user.is_active:
                     login(request, user)
-                    return redirect('')
+                    return redirect('/login')
 
         return render(request, self.template_name, {'form': form})
