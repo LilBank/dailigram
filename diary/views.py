@@ -17,6 +17,28 @@ import requests
 import datetime
 
 
+def login_user(request):
+    if not request.user.is_authenticated:
+        form = UserForm(request.POST or None)
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        user = authenticate(username=username, password=password)
+        if user is not None:
+            if user.is_active:
+                login(request, user)
+                HttpResponseRedirect(reverse('diary:index'))
+            else:
+                return render(request, 'registration/login.html', {'form':form})
+        else:
+            return render(request, 'registration/login.html', {'form':form})
+    return HttpResponseRedirect(reverse('diary:index'))
+
+
+def logout_user(request):
+    logout(request)
+    return HttpResponseRedirect('/login')
+
+
 class IndexView(generic.ListView):
     template_name = 'diary/index.html'
     context_object_name = 'all_pages'
@@ -26,20 +48,6 @@ class IndexView(generic.ListView):
         Return all of the objects in the list
         """
         return Page.objects.all()
-
-
-def login_user(request):
-    if not request.user.is_authenticated:
-        form = UserForm(request.POST or None)
-        return render(request, 'registration/login.html', {"form": form})
-    else:
-        return HttpResponseRedirect('/diary/')
-
-
-def logout_user(request):
-    logout(request)
-    form = UserForm(request.POST or None)  
-    return render(request, 'registration/login.html', {"form": form})
 
 
 class DetailView(generic.DetailView):
