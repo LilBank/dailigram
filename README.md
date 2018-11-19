@@ -40,9 +40,13 @@ Open the Terminal and type the following command:
 
 ### Step 2: Go to the directory.
 
-    cd dailigram/ 
+    cd dailigram/
 
-### Step 3: Activate a virtualenv.
+### Step 3: Create a virtualenv.
+
+    virtualenv .venv
+
+### Step 4: Activate the virtualenv.
 
 Using virtualenv allows you to avoid installing Python packages globally which could break system tools or other projects.
 Activate it before you start installing packages.
@@ -55,7 +59,7 @@ Activate it before you start installing packages.
 
     .venv\Scripts\activate
 
-### Step 4: Install the dependencies.
+### Step 5: Install the dependencies.
 
 Be sure that everything is installed in the virtualenv.
 
@@ -74,7 +78,7 @@ You have to create file name `Procfile.windows` in your root directory and write
     
     (venv) heroku local web -f Procfile.windows
 
-### Step 6: Exit the virtualenv.
+### Step 7: Exit the virtualenv.
 
 When done, you have to exit your virtualenv, simply type:
 

@@ -1,4 +1,4 @@
-from __future__ import unicode_literals
+# from __future__ import unicode_literals
 from diary import models
 from diary.models import Tag, Page, Diary
 from django.views import generic, View
