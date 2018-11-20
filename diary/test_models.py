@@ -16,9 +16,9 @@ class TestingModels(TestCase):
         Tag.objects.create(name='sad')
         tag = Tag.objects.all()
         Page.objects.create(
-            diary=diary[0], tag=tag[0], story='This was awesome', date='2018-11-06', picture='pic1')
+            diary=diary[0], title='title' ,tag=tag[0], story='This was awesome', date='today', picture='pic1.jpg')
         Page.objects.create(
-            diary=diary[1], tag=tag[1], story='This was awesome', date='2018-11-06', picture='pic1')
+            diary=diary[1], title='title', tag=tag[1], story='This was awesome', date='today', picture='pic1.jpg')
 
     def test_count_diary(self):
         """

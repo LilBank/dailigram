@@ -69,6 +69,7 @@ class CreatePage(View):
     template_name = 'diary/page_form.html'
 
     def get(self, request):
+        self.exclude = ("diary","date")
         form = self.form_class(None)
         return render(request, self.template_name, {'form': form})
 

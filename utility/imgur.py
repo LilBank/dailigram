@@ -40,7 +40,6 @@ class ImgurUtil:
             'cache-control': 'no-cache',
         }
         response = requests.request('DELETE', url, headers=headers)
-        print('method delete image response: ' + response )
         return response
 
     # Public
@@ -177,7 +176,6 @@ class ImgurUtil:
             'cache-control': 'no-cache',
         }
         response = requests.post(url, files=files, headers=headers, data=body)
-        print(response)
         return response
 
     # Public
