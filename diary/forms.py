@@ -15,5 +15,4 @@ class PageForm(forms.ModelForm):
 
     class Meta:
         model = Page
-        fields = ['title', 'tag', 'story', 'diary', 'date']
-        exclude = ('Diary',)
+        fields = ['title', 'story', 'tag', 'diary', 'date']      

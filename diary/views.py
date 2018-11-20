@@ -1,5 +1,3 @@
-# from __future__ import unicode_literals
-from diary import models
 from diary.models import Tag, Page, Diary
 from django.views import generic, View
 from django.views.generic.edit import UpdateView, DeleteView, CreateView
@@ -8,7 +6,6 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
-from django.views.generic import TemplateView
 from django.urls import reverse
 from django.urls import reverse_lazy
 from utility.imgur import ImgurUtil
@@ -49,9 +46,9 @@ class IndexView(generic.ListView):
         """
         Return all of the objects in the list
         """
-        # return Page.objects.all()
+
         username = self.request.user.username
-        return Page.objects.filter(diary__first_name=username)
+        return Page.objects.filter(diary__username=username)
 
 
 class DetailView(generic.DetailView):
