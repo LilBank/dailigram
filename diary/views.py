@@ -13,6 +13,8 @@ from django.urls import reverse
 from django.urls import reverse_lazy
 from utility.imgur import ImgurUtil
 
+from django import forms
+
 import requests
 import datetime
 
@@ -69,8 +71,11 @@ class CreatePage(View):
     template_name = 'diary/page_form.html'
 
     def get(self, request):
-        self.exclude = ("diary","date")
         form = self.form_class(None)
+        form.fields['diary'].widget = forms.HiddenInput()
+        form.fields['date'].widget = forms.HiddenInput()
+        form.fields['diary'].label = ''
+        form.fields['date'].label = ''
         return render(request, self.template_name, {'form': form})
 
     def post(self, request):
