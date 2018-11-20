@@ -49,7 +49,7 @@ class IndexView(generic.ListView):
         """
         Return all of the objects in the list
         """
-        # return Page.objects.all()
+
         username = self.request.user.username
         return Page.objects.filter(diary__first_name=username)
 
@@ -93,7 +93,7 @@ class CreatePage(View):
                 uploader_url = response.json()["data"]["link"]
                 page.picture = uploader_url
                 page.save()
-            return HttpResponseRedirect("/diary/")
+        return HttpResponseRedirect("/diary/")
 
 
 class DeleteDiary(DeleteView):
