@@ -1,7 +1,7 @@
 from django.test import TestCase
 from django.urls import reverse
 from django.test.client import Client
-from .forms import *
+from diary.forms import *
 
 
 class TestingViews(TestCase):

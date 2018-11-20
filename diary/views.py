@@ -1,5 +1,3 @@
-# from __future__ import unicode_literals
-from diary import models
 from diary.models import Tag, Page, Diary
 from django.views import generic, View
 from django.views.generic.edit import UpdateView, DeleteView, CreateView
@@ -8,7 +6,6 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
-from django.views.generic import TemplateView
 from django.urls import reverse
 from django.urls import reverse_lazy
 from utility.imgur import ImgurUtil
@@ -49,9 +46,19 @@ class IndexView(generic.ListView):
         """
         Return all of the objects in the list
         """
-
         username = self.request.user.username
-        return Page.objects.filter(diary__first_name=username)
+        diaries = Diary.objects.filter(username=username)
+        imgurUtil = ImgurUtil()
+
+        if len(diaries) == 0:
+            Diary.objects.create(username=username)
+
+        if(imgurUtil.get_album_hash(username) is None):
+            imgurUtil.create_album(username)
+
+        album_hash = imgurUtil.get_album_hash(username)
+        imgurUtil.set_album_hash(album_hash)
+        return Page.objects.filter(diary__username=username)
 
 
 class DetailView(generic.DetailView):
@@ -80,19 +87,29 @@ class CreatePage(View):
 
     def post(self, request):
         form = self.form_class(request.POST)
-
+        print('CreatePage post method')
         if form.is_valid() and request.FILES['myfile']:
+            print('check if form is valid')
             page = form.save(commit=False)
             page.date = str(datetime.date.today())
+            page.diary = self.request.user.username
             imgurUtil = ImgurUtil()
-            imgurUtil.set_album_hash('lFOSBAb')
             my_file = request.FILES['myfile']
             description = page.title + ':' + page.date
             response = imgurUtil.upload_image_locally(description, my_file)
             if(response.status_code == requests.codes.ok):
+                print('pic uploaded')
                 uploader_url = response.json()["data"]["link"]
                 page.picture = uploader_url
                 page.save()
+            print('album hash must be SfAJ2yE : '+imgurUtil.get_album_hash('bank'))
+            print('page.date :'+page.date)
+            print('page.diary: '+page.diary)
+            print('page.title: '+page.title)
+            print('page.picture: '+ response.status_code)
+            print('page.tag: '+ page.tag)
+
+        print('exitting the method')
         return HttpResponseRedirect("/diary/")
 
 

@@ -4,11 +4,11 @@ import datetime
 
 
 class Diary(models.Model):
-    first_name = models.CharField(max_length=100, unique=True)
+    username = models.CharField(max_length=100, unique=True)
     # is_favorite = models.BooleanField(default = False)
 
     def __str__(self):
-        return self.first_name
+        return self.username
 
     def get_absolute_url(self):
         return reverse('diary:index')

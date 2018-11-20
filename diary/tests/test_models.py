@@ -9,8 +9,8 @@ class TestingModels(TestCase):
         Set up creating database's objects
         """
 
-        Diary.objects.create(first_name='tony')
-        Diary.objects.create(first_name='tintin')
+        Diary.objects.create(username='tony')
+        Diary.objects.create(username='tintin')
         diary = Diary.objects.all()
         Tag.objects.create(name='happy')
         Tag.objects.create(name='sad')
@@ -44,14 +44,14 @@ class TestingModels(TestCase):
         num_page = Page.objects.all().count()
         self.assertEqual(num_page, 2)
 
-    def test_diary_first_name(self):
+    def test_diary_username(self):
         """
-        Test the diary object's first name.
+        Test the diary object's username.
         """
 
         diary = Diary.objects.all()
-        self.assertEqual(diary[0].first_name, 'tony')
-        self.assertEqual(diary[1].first_name, 'tintin')
+        self.assertEqual(diary[0].username, 'tony')
+        self.assertEqual(diary[1].username, 'tintin')
 
     def test_tag_name(self):
         """
@@ -68,8 +68,8 @@ class TestingModels(TestCase):
         """
 
         diary = Diary.objects.all()
-        self.assertEqual(str(diary[0]), diary[0].first_name)
-        self.assertEqual(str(diary[1]), diary[1].first_name)
+        self.assertEqual(str(diary[0]), diary[0].username)
+        self.assertEqual(str(diary[1]), diary[1].username)
 
     def test_tag_string_representation(self):
         """
@@ -85,8 +85,8 @@ class TestingModels(TestCase):
         Test that the max length of the field is equal or not.
         """
 
-        diary = Diary(first_name='tony')
-        max_length = diary._meta.get_field('first_name').max_length
+        diary = Diary(username='tony')
+        max_length = diary._meta.get_field('username').max_length
         self.assertEquals(max_length, 100)
 
     def test_get_absolute_url(self):
