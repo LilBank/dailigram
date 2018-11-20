@@ -160,21 +160,23 @@ class ImgurUtil:
         return response
 
     # Public
-    # def upload_image_locally(self, description, image_source):
-    #     """
-    #     """
-    #     url = "https://api.imgur.com/3/image"
-    #     files = {"image": image_source}
-    #     body = {
-    #         'album': self.album_hash,
-    #         'description': description
-    #     }
-    #     headers = {
-    #         'Authorization': 'Bearer ' + self.token,
-    #         'cache-control': 'no-cache',
-    #     }
-    #     response = requests.post(url, files=files, headers=headers, data=body)
-    #     return response
+    def upload_image_locally(self, description, image_source):
+        """
+        Upload image to the album with a description which image source is a picture's file. 
+        Album destination is the album set from function set_album_hash.
+        """
+        url = "https://api.imgur.com/3/image"
+        files = {"image": image_source}
+        body = {
+            'album': self.album_hash,
+            'description': description
+        }
+        headers = {
+            'Authorization': 'Bearer ' + self.token,
+            'cache-control': 'no-cache',
+        }
+        response = requests.post(url, files=files, headers=headers, data=body)
+        return response
 
     # Public
 

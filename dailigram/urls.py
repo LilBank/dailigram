@@ -19,16 +19,18 @@ from django.conf.urls import include
 from django.views.generic import RedirectView
 # from django.conf import settings
 from django.conf.urls.static import static
-from django.contrib.auth import views as auth_views
+# from django.contrib.auth import views as auth_views
+from diary import views
 
 
 urlpatterns = [
     path('admin/', admin.site.urls, name='admin'),
     path('diary/', include('diary.urls')),
-    path('', RedirectView.as_view(url='/accounts/login/')),
+    path('', RedirectView.as_view(url='/login/')),
     path('auth/', include('social_django.urls', namespace='social')),
-    path('accounts/', include('django.contrib.auth.urls')),
-    # path('logout/', auth_views.LogoutView.as_view(),{'next_page' : settings.LOGOUT_REDIRECT_URL }, name='logout'),
+    # path('accounts/', include('django.contrib.auth.urls')),
+    path('login/', views.login_user, name='login'),
+    path('logout/', views.logout_user, name='logout')
 ]
 
 # if settings.DEBUG: 
