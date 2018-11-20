@@ -28,9 +28,9 @@ def login_user(request):
                 login(request, user)
                 HttpResponseRedirect(reverse('diary:index'))
             else:
-                return render(request, 'registration/login.html', {'form':form})
+                return render(request, 'registration/login.html', {'form': form})
         else:
-            return render(request, 'registration/login.html', {'form':form})
+            return render(request, 'registration/login.html', {'form': form})
     return HttpResponseRedirect(reverse('diary:index'))
 
 
@@ -51,6 +51,7 @@ class IndexView(generic.ListView):
         username = self.request.user.username
         return Page.objects.filter(diary__first_name=username)
 
+
 class DetailView(generic.DetailView):
     model = Page
     template_name = 'diary/detail.html'
@@ -61,6 +62,7 @@ class CreateFormat(View):
 
     def get(self, request):
         return render(request, self.template_name)
+
 
 class CreatePage(View):
     form_class = PageForm

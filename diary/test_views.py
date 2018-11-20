@@ -30,7 +30,7 @@ class TestingViews(TestCase):
         Test diary's accessible by location.
         """
 
-        response = self.client.get('/accounts/login/')
+        response = self.client.get('/login/')
         self.assertEqual(response.status_code, 200)
 
     def test_post_request(self):
@@ -39,7 +39,7 @@ class TestingViews(TestCase):
         """
 
         response = self.client.post(
-            '/accounts/login/', {'username': 'test', 'password': 'test'})
+            '/login/', {'username': 'test', 'password': 'test'})
         self.assertEqual(response.status_code, 200)
 
     def test_user_authenticated(self):
@@ -48,5 +48,5 @@ class TestingViews(TestCase):
         """
 
         response = self.client.post(
-            '/accounts/login/', self.credentials, follow=True)
+            '/login/', self.credentials, follow=True)
         self.assertTrue(response.context['user'].is_authenticated)
