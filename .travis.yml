@@ -18,7 +18,7 @@ install:
     - pip install codecov
 
 script:
-    - coverage run manage.py diary/tests
+    - coverage run manage.py test diary/tests
 
 env:
     - TRAVIS_SECURE_ENV_VARS = true
