@@ -118,8 +118,9 @@ class DeleteDiary(DeleteView):
     model = Page
     success_url = reverse_lazy('diary:index')
 
-    def post(self, request, *args, **kwargs):
+    def delete_image(self, request, *args, **kwargs):
         form = self.form_class(request.POST)
+        print(request.status_code)
 
         if form.is_valid():
             page = form.save(commit=False)
