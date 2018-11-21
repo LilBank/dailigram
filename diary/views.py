@@ -85,9 +85,7 @@ class CreatePage(View):
 
     def post(self, request):
         form = self.form_class(request.POST)
-        # print('CreatePage post method')
         if form.is_valid() and request.FILES['myfile']:
-            # print('check if form is valid')
             page = form.save(commit=False)
             page.date = str(datetime.date.today())
             imgurUtil = ImgurUtil()
@@ -98,18 +96,9 @@ class CreatePage(View):
             imgurUtil.set_album_hash(hashes)
             response = imgurUtil.upload_image_locally(description, my_file)
             if(response.status_code == requests.codes.ok):
-                # print('pic uploaded')
                 uploader_url = response.json()["data"]["link"]
                 page.picture = uploader_url
                 page.save()
-            # print('album hash must be SfAJ2yE : '+imgurUtil.get_album_hash('bank'))
-            # print('page.date :'+page.date)
-            # print('page.diary: '+page.diary)
-            # print('page.title: '+page.title)
-            # print('page.picture: '+ response.status_code)
-            # print('page.tag: '+ page.tag)
-
-        # print('exitting the method')
         return HttpResponseRedirect("/diary/")
 
 
@@ -117,24 +106,18 @@ class DeleteDiary(DeleteView):
     form_class = PageForm
     model = Page
     success_url = reverse_lazy('diary:index')
-
-    def delete_image(self, request, *args, **kwargs):
-        form = self.form_class(request.POST)
-        print(request.status_code)
-
-        print('enter form valid')
-        if form.is_valid():
-            print('inside method form is valid')
-            page = form.save(commit=False)
-            imgurUtil = ImgurUtil()
-            description = page.title + ':' + page.date
-            username = self.request.user.username
-            hashes = imgurUtil.get_album_hash(username)
-            imgurUtil.set_album_hash(hashes)
-            image_hash = imgurUtil.get_image_hash(description)
-            imgurUtil.delete_image(image_hash)
-            print('exitting form is valid method')
-        return HttpResponseRedirect("/diary/")
+ 
+    def delete(self, request, *args, **kwargs): 
+        imgurUtil = ImgurUtil()
+        page = self.get_object()
+        description = page.title + ':' + page.date
+        username = self.request.user.username
+        hashes = imgurUtil.get_album_hash(username)
+        imgurUtil.set_album_hash(hashes)
+        image_hash = imgurUtil.get_image_hash(description)
+        imgurUtil.delete_image(image_hash)
+        page.delete()
+        return HttpResponseRedirect('/diary/')
 
 
 class UserFormView(View):
