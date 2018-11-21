@@ -24,7 +24,7 @@
                 <form action="{% url 'diary:delete_diary' page.id%} " method="post">
                     {% csrf_token %}
                     <input type="hidden" name="page_id" value="{{ page.id }}" />
-                    <button type="submit">Delete</button>
+                    <button action='{{}}' type="submit">Delete</button>
                 </form>
 
             </div>
