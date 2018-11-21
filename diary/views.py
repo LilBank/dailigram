@@ -122,12 +122,18 @@ class DeleteDiary(DeleteView):
         form = self.form_class(request.POST)
         print(request.status_code)
 
+        print('enter form valid')
         if form.is_valid():
+            print('inside method form is valid')
             page = form.save(commit=False)
             imgurUtil = ImgurUtil()
             description = page.title + ':' + page.date
+            username = self.request.user.username
+            hashes = imgurUtil.get_album_hash(username)
+            imgurUtil.set_album_hash(hashes)
             image_hash = imgurUtil.get_image_hash(description)
             imgurUtil.delete_image(image_hash)
+            print('exitting form is valid method')
         return HttpResponseRedirect("/diary/")
 
 
