@@ -56,8 +56,6 @@ class IndexView(generic.ListView):
         if(imgurUtil.get_album_hash(username) is None):
             imgurUtil.create_album(username)
 
-        album_hash = imgurUtil.get_album_hash(username)
-        imgurUtil.set_album_hash(album_hash)
         return Page.objects.filter(diary__username=username)
 
 
@@ -79,37 +77,39 @@ class CreatePage(View):
 
     def get(self, request):
         form = self.form_class(None)
-        form.fields['diary'].widget = forms.HiddenInput()
-        form.fields['date'].widget = forms.HiddenInput()
-        form.fields['diary'].label = ''
-        form.fields['date'].label = ''
+        # form.fields['diary'].widget = forms.HiddenInput()
+        # form.fields['date'].widget = forms.HiddenInput()
+        # form.fields['diary'].label = ''
+        # form.fields['date'].label = ''
         return render(request, self.template_name, {'form': form})
 
     def post(self, request):
         form = self.form_class(request.POST)
-        print('CreatePage post method')
+        # print('CreatePage post method')
         if form.is_valid() and request.FILES['myfile']:
-            print('check if form is valid')
+            # print('check if form is valid')
             page = form.save(commit=False)
             page.date = str(datetime.date.today())
-            page.diary = self.request.user.username
             imgurUtil = ImgurUtil()
             my_file = request.FILES['myfile']
             description = page.title + ':' + page.date
+            username = self.request.user.username
+            hashes = imgurUtil.get_album_hash(username)
+            imgurUtil.set_album_hash(hashes)
             response = imgurUtil.upload_image_locally(description, my_file)
             if(response.status_code == requests.codes.ok):
-                print('pic uploaded')
+                # print('pic uploaded')
                 uploader_url = response.json()["data"]["link"]
                 page.picture = uploader_url
                 page.save()
-            print('album hash must be SfAJ2yE : '+imgurUtil.get_album_hash('bank'))
-            print('page.date :'+page.date)
-            print('page.diary: '+page.diary)
-            print('page.title: '+page.title)
-            print('page.picture: '+ response.status_code)
-            print('page.tag: '+ page.tag)
+            # print('album hash must be SfAJ2yE : '+imgurUtil.get_album_hash('bank'))
+            # print('page.date :'+page.date)
+            # print('page.diary: '+page.diary)
+            # print('page.title: '+page.title)
+            # print('page.picture: '+ response.status_code)
+            # print('page.tag: '+ page.tag)
 
-        print('exitting the method')
+        # print('exitting the method')
         return HttpResponseRedirect("/diary/")
 
 
