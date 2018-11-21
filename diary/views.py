@@ -17,6 +17,9 @@ import datetime
 
 
 def login_user(request):
+    """
+    If the user is not authenticated, get user's request and execute login. 
+    """
     if not request.user.is_authenticated:
         form = UserForm(request.POST or None)
         username = request.POST.get('username')
@@ -34,6 +37,9 @@ def login_user(request):
 
 
 def logout_user(request):
+    """
+    Function to logout user and redirect to login page. 
+    """
     logout(request)
     return HttpResponseRedirect('/login')
 
@@ -44,7 +50,7 @@ class IndexView(generic.ListView):
 
     def get_queryset(self):
         """
-        Return all of the objects in the list
+        Return all of the objects in the list of diary.
         """
         username = self.request.user.username
         diaries = Diary.objects.filter(username=username)
@@ -107,7 +113,10 @@ class DeleteDiary(DeleteView):
     model = Page
     success_url = reverse_lazy('diary:index')
  
-    def delete(self, request, *args, **kwargs): 
+    def delete(self, request, *args, **kwargs):
+        """
+        Function to delete picture from database and imgur.
+        """
         imgurUtil = ImgurUtil()
         page = self.get_object()
         description = page.title + ':' + page.date
