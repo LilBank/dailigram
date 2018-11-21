@@ -5,9 +5,9 @@ from selenium.webdriver.chrome.options import Options
 
 
 
-class TestingWeb():
+class TestingWeb(TestCase):
 
-    def setUp(self):
+    def test_setUp(self):
         options = webdriver.ChromeOptions()
         options.add_argument("--start-maximized")
         options.add_argument('--ignore-certificate-errors')
@@ -18,7 +18,8 @@ class TestingWeb():
         self.driver = webdriver.Chrome()
         # driver.set_window_size(1024, 600)
         # driver.maximize_window()
-        driver.get('https://dailigram.herokuapp.com/')
+        self.driver.get('https://dailigram.herokuapp.com/')
+        self.driver.close()
 
     def test_search(self):
         username = driver.find_element_by_xpath('//*[@id="id_username"]')

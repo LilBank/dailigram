@@ -26,31 +26,49 @@ div.fixed {
 
 span.psw {
     float: right;
-    padding-top: 16px;
+    padding-top: 6px
 }
 
 .newbutton1{
-    color: #31a6ff;
+    color: #070707;
     font-family: "proxima nova";
     font-weight: 100; 
     font-size: 20px;
     text-align: center;
 
-    border: solid 1.5px #31a6ff;
-    border-radius: 30px;
-
-    padding: 4px 40px;
+    border: solid 1.5px #050505;
+    padding: 0.5px 132px;
 
     -webkit-transition-duration: 200ms;
     transition-duration: 200ms;
 }
 
+.newbutton2{
+    font-family: "proxima nova";
+    font-weight: 100; 
+    font-size: 16px;
+    text-align: center;
 
+    border: solid 1.5px #04070a;
+
+    padding: 1px 15px;
+
+    -webkit-transition-duration: 200ms;
+    transition-duration: 200ms;
+}
 .newbutton1:hover{
 
-    background-color: #31a6ff;
+    background-color: rgb(143, 140, 140);
     color: #fff;
 }
+
+.newbottun2:hover{
+
+    background-color: #777;
+    color: #fff;    
+}
+
+
 
 
 @import url("//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css");
@@ -104,14 +122,14 @@ padding : 50px 0;
     margin-bottom:10px; 
     font-weight:800; 
     font-size:30px; 
-    color: #777
+    color: rgb(221, 48, 48)
 }
 
 .login-sec h2:after{
     content:" "; 
     width:200px; 
     height:5px; 
-    background:rgb(185, 199, 194); 
+    background:#777; 
     display:block; 
     margin-top:20px; 
     border-radius:3px; 
