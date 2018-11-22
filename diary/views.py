@@ -17,6 +17,9 @@ import datetime
 
 
 def login_user(request):
+    """
+    If the user is not authenticated, get user's request and execute login. 
+    """
     if not request.user.is_authenticated:
         form = UserForm(request.POST or None)
         username = request.POST.get('username')
@@ -34,6 +37,9 @@ def login_user(request):
 
 
 def logout_user(request):
+    """
+    Function to logout user and redirect to login page. 
+    """
     logout(request)
     return HttpResponseRedirect('/login')
 
@@ -44,7 +50,7 @@ class IndexView(generic.ListView):
 
     def get_queryset(self):
         """
-        Return all of the objects in the list
+        Return all of the objects in the list of diary.
         """
         username = self.request.user.username
         diaries = Diary.objects.filter(username=username)
@@ -85,9 +91,7 @@ class CreatePage(View):
 
     def post(self, request):
         form = self.form_class(request.POST)
-        # print('CreatePage post method')
         if form.is_valid() and request.FILES['myfile']:
-            # print('check if form is valid')
             page = form.save(commit=False)
             page.date = str(datetime.date.today())
             imgurUtil = ImgurUtil()
@@ -98,18 +102,9 @@ class CreatePage(View):
             imgurUtil.set_album_hash(hashes)
             response = imgurUtil.upload_image_locally(description, my_file)
             if(response.status_code == requests.codes.ok):
-                # print('pic uploaded')
                 uploader_url = response.json()["data"]["link"]
                 page.picture = uploader_url
                 page.save()
-            # print('album hash must be SfAJ2yE : '+imgurUtil.get_album_hash('bank'))
-            # print('page.date :'+page.date)
-            # print('page.diary: '+page.diary)
-            # print('page.title: '+page.title)
-            # print('page.picture: '+ response.status_code)
-            # print('page.tag: '+ page.tag)
-
-        # print('exitting the method')
         return HttpResponseRedirect("/diary/")
 
 
@@ -117,23 +112,21 @@ class DeleteDiary(DeleteView):
     form_class = PageForm
     model = Page
     success_url = reverse_lazy('diary:index')
-
-    def post(self, request, *args, **kwargs):
-        form = self.form_class(request.POST)
-
-        print('enter form valid')
-        if form.is_valid():
-            print('inside method form is valid')
-            page = form.save(commit=False)
-            imgurUtil = ImgurUtil()
-            description = page.title + ':' + page.date
-            username = self.request.user.username
-            hashes = imgurUtil.get_album_hash(username)
-            imgurUtil.set_album_hash(hashes)
-            image_hash = imgurUtil.get_image_hash(description)
-            imgurUtil.delete_image(image_hash)
-            print('exitting form is valid method')
-        return HttpResponseRedirect("/diary/")
+ 
+    def delete(self, request, *args, **kwargs):
+        """
+        Function to delete picture from database and imgur.
+        """
+        imgurUtil = ImgurUtil()
+        page = self.get_object()
+        description = page.title + ':' + page.date
+        username = self.request.user.username
+        hashes = imgurUtil.get_album_hash(username)
+        imgurUtil.set_album_hash(hashes)
+        image_hash = imgurUtil.get_image_hash(description)
+        imgurUtil.delete_image(image_hash)
+        page.delete()
+        return HttpResponseRedirect('/diary/')
 
 
 class UserFormView(View):
