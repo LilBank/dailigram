@@ -83,21 +83,19 @@ class CreatePage(View):
 
     def get(self, request):
         form = self.form_class(None)
-        # form.fields['diary'].widget = forms.HiddenInput()
-        # form.fields['date'].widget = forms.HiddenInput()
-        # form.fields['diary'].label = ''
-        # form.fields['date'].label = ''
         return render(request, self.template_name, {'form': form})
 
     def post(self, request):
         form = self.form_class(request.POST)
         if form.is_valid() and request.FILES['myfile']:
+            username = self.request.user.username
             page = form.save(commit=False)
             page.date = str(datetime.date.today())
+            diary = Diary.objects.filter(username=username)
+            page.diary = diary[0]
             imgurUtil = ImgurUtil()
             my_file = request.FILES['myfile']
             description = page.title + ':' + page.date
-            username = self.request.user.username
             hashes = imgurUtil.get_album_hash(username)
             imgurUtil.set_album_hash(hashes)
             response = imgurUtil.upload_image_locally(description, my_file)

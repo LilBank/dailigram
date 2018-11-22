@@ -1,5 +1,5 @@
 from django.contrib.auth.models import User
-from .models import Page, Diary
+from .models import Page, Diary, Tag
 from django import forms
 
 
@@ -15,4 +15,4 @@ class PageForm(forms.ModelForm):
 
     class Meta:
         model = Page
-        fields = ['title', 'story', 'tag', 'diary', 'date']      
+        fields = ['title', 'story', 'tag']  
