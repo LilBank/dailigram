@@ -87,3 +87,11 @@ class TestingModels(TestCase):
         diary = Diary.objects.all()
         self.assertEquals(page[0].get_absolute_url(), '/diary/')
         self.assertEquals(diary[0].get_absolute_url(), '/diary/')
+
+    def test_mo(self):
+        """
+        Test that 
+        """
+        username = self.request.user.username
+        self.assertTrue(Diary.objects.filter(username=username))
+        self.assertTrue(Page.object.filter(diary=username))
