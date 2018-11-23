@@ -1,7 +1,7 @@
 from diary.models import Tag, Page, Diary
 from django.views import generic, View
 from django.views.generic.edit import UpdateView, DeleteView, CreateView
-from .forms import UserForm, PageForm, CreateForm
+from .forms import UserForm, PageForm
 from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect
 from django.contrib.auth import authenticate, login, logout

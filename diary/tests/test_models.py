@@ -87,11 +87,17 @@ class TestingModels(TestCase):
         diary = Diary.objects.all()
         self.assertEquals(page[0].get_absolute_url(), '/diary/')
         self.assertEquals(diary[0].get_absolute_url(), '/diary/')
+    
+    def test_diary_type_error(self):
+        """
+        Test that the diary can't call field username
+        """
+        diary = Diary.objects.create(username='user')
+        self.assertRaises(TypeError, diary)
 
-    def test_mo(self):
+    def test_query_choosen_data(self):
         """
-        Test that 
+        Test that object can query the choosen object. 
         """
-        username = self.request.user.username
-        self.assertTrue(Diary.objects.filter(username=username))
-        self.assertTrue(Page.object.filter(diary=username))
+        self.assertTrue(Diary.objects.filter(username='tony'))
+        self.assertTrue(Page.objects.filter(title='title'))

@@ -22,7 +22,6 @@ class TestingForms(TestCase):
             data={'username': "", 'password': "", 'email': "", 'first_name': ""})
         self.assertFalse(form.is_valid())
 
-    def test_valid_page_forms(self):
 
     
 

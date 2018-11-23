@@ -32,6 +32,13 @@ class TestingViews(TestCase):
 
         response = self.client.get('/login/')
         self.assertEqual(response.status_code, 200)
+    
+    def test_using_correct_template(self):
+        """
+        Test that the login is using the correct template path.
+        """
+        response = self.client.get(reverse('login'))
+        self.assertTemplateUsed(response, 'registration/login.html')
 
     def test_post_request(self):
         """
@@ -50,5 +57,6 @@ class TestingViews(TestCase):
         response = self.client.post(
             '/login/', self.credentials, follow=True)
         self.assertTrue(response.context['user'].is_authenticated)
+    
     
     
