@@ -165,7 +165,6 @@ class ImgurUtil:
         Upload image to the album with a description which image source is a picture's file. 
         Album destination is the album set from function set_album_hash.
         """
-
         url = "https://api.imgur.com/3/image"
         files = {"image": image_source}
         body = {
