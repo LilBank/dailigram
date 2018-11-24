@@ -62,11 +62,17 @@ Activate it before you start installing packages.
 
 ### Step 5: Install the dependencies.
 
-Be sure that everything is installed in the virtualenv.
+Be sure that everything is installed and run in the virtualenv.
 
     (venv) pip install -r requirements.txt
 
-### Step 5: Run Application Locally.
+### Step 6: Exit the virtualenv.
+
+When done, you have to exit your virtualenv, simply type:
+
+    (venv) deactivate
+
+## Run Application Locally.
 
 ***On MacOS and Linux:***
 
@@ -75,12 +81,7 @@ Be sure that everything is installed in the virtualenv.
 ***On Windows:***
 
 You have to create file name `Procfile.windows` in your root directory and write this  
-`web: python manage.py runserver localhost:8000` then you are ready to run.
+`web: python manage.py runserver localhost:5000` then you are ready to run.
     
     (venv) heroku local web -f Procfile.windows
 
-### Step 7: Exit the virtualenv.
-
-When done, you have to exit your virtualenv, simply type:
-
-    (venv) deactivate
