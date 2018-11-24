@@ -81,32 +81,10 @@ class CreateFormat(View):
     def get(self, request):
         return render(request, self.template_name)
 
-class CreatePage1(View):
-    form_class = ImageUrlForm
-    template_name = 'diary/layout1.html'
 
-    def get(self, request):
-        form = self.form_class(None)
-        return render(request, self.template_name, {'form': form})
-
-    def post(self, request):
-        form = self.form_class(request.POST)
-
-        if form.is_valid() and request.FILES['myfile']:
-            page = form.save(commit=False)
-            imgur = ImgurUtil()
-            my_file = request.FILES['myfile']
-            response = imgur.upload_image_locally('', my_file)
-            if(response.status_code == requests.codes.ok):
-                uploader_url = response.json()["data"]["link"]
-                page.picture = uploader_url
-                page.save()
-            return HttpResponseRedirect("/diary/")
-
-
-class CreatePage2(View):
-    form_class = ImageUrlForm
-    template_name = 'diary/layout2.html'
+class CreatePage(View):
+    form_class = PageForm
+    template_name = 'diary/page_form.html'
 
     def get(self, request):
         form = self.form_class(None)
@@ -115,12 +93,14 @@ class CreatePage2(View):
     def post(self, request):
         form = self.form_class(request.POST)
         if form.is_valid() and request.FILES['myfile']:
+            username = self.request.user.username
             page = form.save(commit=False)
             page.date = str(datetime.date.today())
+            diary = Diary.objects.filter(username=username)
+            page.diary = diary[0]
             imgurUtil = ImgurUtil()
             my_file = request.FILES['myfile']
             description = page.title + ':' + page.date
-            username = self.request.user.username
             hashes = imgurUtil.get_album_hash(username)
             imgurUtil.set_album_hash(hashes)
             response = imgurUtil.upload_image_locally(description, my_file)
@@ -129,30 +109,6 @@ class CreatePage2(View):
                 page.picture = uploader_url
                 page.save()
         return HttpResponseRedirect("/diary/")
-
-
-class CreatePage3(View):
-    form_class = ImageUrlForm
-    template_name = 'diary/layout3.html'
-
-    def get(self, request):
-        form = self.form_class(None)
-        return render(request, self.template_name, {'form': form})
-
-    def post(self, request):
-        form = self.form_class(request.POST)
-
-        if form.is_valid() and request.FILES['myfile']:
-            page = form.save(commit=False)
-            imgur = ImgurUtil()
-            my_file = request.FILES['myfile']
-            response = imgur.upload_image_locally('', my_file)
-            if(response.status_code == requests.codes.ok):
-                uploader_url = response.json()["data"]["link"]
-                page.picture = uploader_url
-                page.save()
-            return HttpResponseRedirect("/diary/")
-
 
 
 class DeleteDiary(DeleteView):

@@ -30,7 +30,21 @@ span.psw {
 }
 
 .newbutton1{
-    color: #31a6ff;
+    color: #06090c;
+    font-family: "proxima nova";
+    font-weight: 100; 
+    font-size: 20px;
+    text-align: center;
+
+    border: solid 1.5px #050505;
+    padding: 0.5px 132px;
+
+    -webkit-transition-duration: 200ms;
+    transition-duration: 200ms;
+}
+
+.newbutton2{
+    color: #06090c;
     font-family: "proxima nova";
     font-weight: 100; 
     font-size: 20px;
@@ -49,16 +63,12 @@ span.psw {
     -webkit-transition-duration: 200ms;
     transition-duration: 200ms;
 }
-.newbutton1:hover{
 
-    background-color: rgb(143, 140, 140);
-    color: #fff;
-}
 
 .newbottun2:hover{
 
-    background-color: #777;
-    color: #fff;    
+    -webkit-transition-duration: 200ms;
+    transition-duration: 200ms;
 }
 
 
