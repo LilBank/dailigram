@@ -10,11 +10,9 @@ class UserForm(forms.ModelForm):
         model = User
         fields = ['username', 'email', 'password']
 
-class ImageUrlForm(forms.ModelForm):
+
+class PageForm(forms.ModelForm):
 
     class Meta:
         model = Page
-        fields = ['diary', 'tag', 'story']
-
-
-
+        fields = ['title', 'story', 'tag', 'diary', 'date']      

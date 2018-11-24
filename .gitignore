@@ -10,7 +10,8 @@ Procfile.windows
 */__pycache__/
 chromedriver.exe
 /media
-
+/.venv
+htmlcov/
 # dont ignore these files
 !.gitignore
 !/media/pictures
