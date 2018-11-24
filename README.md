@@ -74,6 +74,8 @@ When done, you have to exit your virtualenv, simply type:
 
 ## Run Application Locally.
 
+Activate the virtualenv before running.
+
 ***On MacOS and Linux:***
 
     (venv) heroku local web
