@@ -15,4 +15,4 @@ class PageForm(forms.ModelForm):
 
     class Meta:
         model = Page
-        fields = ['title', 'story', 'tag', 'diary', 'date']      
+        fields = ['title', 'story', 'tag', 'diary', 'date']  

@@ -90,11 +90,28 @@ class TestingModels(TestCase):
     
     def test_diary_type_error(self):
         """
-        Test that the diary can't call field username
+        Test that diary can't call field username.
         """
         diary = Diary.objects.create(username='user')
         self.assertRaises(TypeError, diary)
-
+    
+    def test_tag_type_error(self):
+        """
+        Test that tag can't call field name.
+        """
+        tag = Tag.objects.create(name='')
+        self.assertRaises(TypeError, tag)
+    
+    def test_page_type_error(self):
+        """
+        Test that page objects should not be callable.
+        """
+        diary = Diary.objects.all()
+        tag = Tag.objects.all()
+        page = Page.objects.create(
+            diary=diary[0], title='title' ,tag=tag[0], story='This was awesome', date='today', picture='pic1.jpg')
+        self.assertRaises(TypeError, page)
+        
     def test_query_choosen_data(self):
         """
         Test that object can query the choosen object. 

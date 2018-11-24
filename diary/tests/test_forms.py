@@ -1,8 +1,13 @@
 from django.test import TestCase
 from django import forms
-from diary.forms import UserForm
+from diary.forms import UserForm, PageForm
+from diary.models import Page, Diary, Tag
+from django.contrib.auth import get_user_model
 
 class TestingForms(TestCase):
+
+    def setUp(self):
+         self.diary = Diary.objects.create(username='user')
 
     def test_valid_user_forms(self):
         """
@@ -21,8 +26,7 @@ class TestingForms(TestCase):
         form = UserForm(
             data={'username': "", 'password': "", 'email': "", 'first_name': ""})
         self.assertFalse(form.is_valid())
-
-
+    
     
 
 
