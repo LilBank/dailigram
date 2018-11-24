@@ -5,8 +5,10 @@
 {% if error_message %}
 <p><strong>{{ error_message }}</strong></p>
 {% endif %}
-
 <div class="container">
+  <div style="background-color: rgb(0, 153, 255) ">
+    <h1>Create Your Diary</h1>
+  </div>
   <form class="form-horizontal" method="post" enctype="multipart/form-data">
     {% csrf_token %}
     {% for field in form %}
@@ -20,7 +22,7 @@
 
   {% if uploaded_file_url %}
   <p>File uploaded at: <a target="_blank" href="{{ uploaded_file_url }}">{{ uploaded_file_url }}</a></p>
-  <img src="{{ uploaded_file_url }}" alt="">
+  <img src="{{ uploaded_file_url }}" >
   {% endif %}
   {% endblock %}
 </div>
