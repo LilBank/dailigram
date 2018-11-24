@@ -5,9 +5,7 @@ Procfile.windows
 *.pot
 *.pyc
 *.py[cod]
-*/*/*/__pycache__/
-*/*/__pycache__/
-*/__pycache__/
+__pycache__/
 chromedriver.exe
 /media
 /.venv

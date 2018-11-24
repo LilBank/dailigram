@@ -118,7 +118,7 @@ class DeleteDiary(DeleteView):
     model = Page
     success_url = reverse_lazy('diary:index')
 
-    def post(self, request, *args, **kwargs):
+    def delete(self, request, *args, **kwargs):
         form = self.form_class(request.POST)
 
         print('enter form valid')
