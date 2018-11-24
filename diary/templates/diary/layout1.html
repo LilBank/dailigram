@@ -1,26 +1,33 @@
-<!-- {% extends "base.html" %}
+{% extends 'base.html' %} {% load static %} {% block content %} {% if user.is_authenticated %}
+ <div class="row text-center">
+        {% if all_pages %} 
+        {% for page in all_pages %}
+        <div class="col-sm-3 col-lg-3">
+            <div class="thumbnail" class="caption" style=' border:1.5px rgb(15, 9, 9) solid;'>
+                {% if page.picture %}
+                <a href=" {% url 'diary:layout_1' %}">
+                    <img src="{{ page.picture }}" class="img-responsive" style='height: 100%; width: 100%; object-fit: contain'>
+                </a>
+                {% endif %}
+                <div>
+                    {% comment %} <h2>{{ page.diary }}</h2> {% endcomment %}
+                    <h2>{{ page.title }}</h2>
+                    {% comment %} <h3>{{ page.tag }}</h3> {% endcomment %}
+                    {% comment %} <h4>{{ page.story }}</h4> {% endcomment %}
+                    <h4>{{ page.date }}</h4>
+                </div>
 
-{% block content %}
+                <!-- delete button -->
+                <form action="{% url 'diary:delete_diary' page.id%} " method="post">
+                    {% csrf_token %}
+                    <input type="hidden" name="page_id" value="{{ page.id }}" />
+                    <button type="submit">Delete</button>
+                </form>
 
-{% if error_message %}
-<p><strong>{{ error_message }}</strong></p>
-{% endif %}
-
-<div class="container">
-  <form class="form-horizontal" method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-    {% for field in form %}
-    {{field.label_tag}}
-    {{field}} <br><br>
-    {% endfor %}
-    <h6>Picture: </h6> 
-    <input type="file" name="myfile">
-    <button type="submit">Upload</button>
-  </form>
-
-  {% if uploaded_file_url %}
-  <p>File uploaded at: <a target="_blank" href="{{ uploaded_file_url }}">{{ uploaded_file_url }}</a></p>
-  <img src="{{ uploaded_file_url }}" alt="">
-  {% endif %}
-  {% endblock %}
-</div> -->
+            </div>
+        </div>
+        {% endfor %} {% endif %}
+    </div>
+    {% else %}
+<a href="{% url 'login'%}">Login</a>
+{% endif %} {% endblock %}

@@ -68,6 +68,7 @@ class IndexView(generic.ListView):
 class DetailView(generic.DetailView):
     model = Page
     template_name = 'diary/detail.html'
+    queryset = Page.objects.all()
 
 class CreateSettings(View):
     template_name = 'diary/settings.html'
@@ -80,6 +81,24 @@ class CreateFormat(View):
 
     def get(self, request):
         return render(request, self.template_name)
+
+class Layout_1(View):
+    template_name = 'diary/layout1.html'
+
+    def get(self, request):
+        return render(request, self.template_name)
+
+# class Layout_2(View):
+#     template_name = 'diary/layout2.html'
+
+#     def get(self, request):
+#         return render(request, self.template_name)
+
+# class Layout_3(View):
+#     template_name = 'diary/layout3.html'
+
+#     def get(self, request):
+#         return render(request, self.template_name)
 
 
 class CreatePage(View):
