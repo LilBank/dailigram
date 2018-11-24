@@ -1,5 +1,6 @@
 from django.contrib.auth.models import User
 from .models import Page, Diary, Tag
+from django.forms import ModelForm, Textarea
 from django import forms
 
 
@@ -15,4 +16,7 @@ class PageForm(forms.ModelForm):
 
     class Meta:
         model = Page
-        fields = ['title', 'story', 'tag']  
+        fields = ['title', 'story', 'tag']
+        widgets = {
+          'story': Textarea(attrs={'rows':20, 'cols':100}),
+        }
