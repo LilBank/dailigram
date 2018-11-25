@@ -57,12 +57,32 @@ span.psw {
     transition-duration: 200ms;
 }
 
+.newbutton2{
+    font-family: "proxima nova";
+    font-weight: 100; 
+    font-size: 16px;
+    text-align: center;
 
+    border: solid 1.5px #04070a;
+
+    padding: 1px 15px;
+
+    -webkit-transition-duration: 200ms;
+    transition-duration: 200ms;
+}
 .newbutton1:hover{
 
     -webkit-transition-duration: 200ms;
     transition-duration: 200ms;
 }
+
+.newbottun2:hover{
+
+    background-color: #777;
+    color: #fff;    
+}
+
+
 
 
 .newbottun2:hover{

@@ -74,11 +74,6 @@ class DetailView(generic.DetailView):
     template_name = 'diary/detail.html'
     queryset = Page.objects.all()
 
-class CreateSettings(View):
-    template_name = 'diary/settings.html'
-
-    def get(self, request):
-        return render(request, self.template_name)
 
 class CreateFormat(View):
     template_name = 'diary/format.html'
@@ -111,6 +106,7 @@ class CreatePage(View):
 
     def get(self, request):
         form = self.form_class(None)
+
         return render(request, self.template_name, {'form': form})
 
     def post(self, request):
@@ -144,6 +140,9 @@ class DeleteDiary(DeleteView):
         imgurUtil = ImgurUtil()
         page = self.get_object()
         description = page.title + ':' + page.date
+        username = self.request.user.username
+        hashes = imgurUtil.get_album_hash(username)
+        imgurUtil.set_album_hash(hashes)
         image_hash = imgurUtil.get_image_hash(description)
         imgurUtil.delete_image(image_hash)
         page.delete()
