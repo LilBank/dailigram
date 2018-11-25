@@ -2,7 +2,7 @@
 <div class="container-fluid">
     <div align="center">
         <h2 class="text-center" style='display: inline; border:2px black solid; font-size:25px; padding: 9px;'>
-            <img src="{% static 'pictures/book.jpg' %}" height="30px" width="35px"> {{ user.username }}'s diary</h2>
+            <img src="{% static 'pictures/icon.jpg' %}" height="30px" width="35px"> {{ user.username }}'s diary</h2>
     </div>
     <br><br><br>
     <div style="text-align: center">
@@ -13,15 +13,13 @@
         {% if all_pages %} {% for page in all_pages %}
         <div class="col-sm-3 col-lg-3">
         <div style=" padding-bottom: 30px;">
-            <div class="thumbnail" class="caption" style='border:1.5px rgb(15, 9, 9) solid;'>
-                {% if page.picture %}
+            <div class="thumbnail" class="caption" style='border:1.5px rgb(15, 9, 9) solid; overflow: hidden; block:inline; vertical-align:middle;'>
                 <a href=" {% url 'diary:detail' page.id %}">
                     <img src="{{ page.picture }}" class="img-responsive" style='height: 100%; width: 100%; object-fit: contain'>
                 </a>
-                {% endif %}
                 <div>
                     {% comment %} <h2>{{ page.diary }}</h2> {% endcomment %}
-                    <h2>{{ page.title }}</h2>
+                        <h2>{{ page.title }}</h2>
                     {% comment %} <h3>{{ page.tag }}</h3> {% endcomment %}
                     {% comment %} <h4>{{ page.story }}</h4> {% endcomment %}
                     <h4>{{ page.date }}</h4>
@@ -33,7 +31,6 @@
                     <input type="hidden" name="page_id" value="{{ page.id }}" />
                     <button type="submit">Delete</button>
                 </form>
-
             </div>
             </div>
         </div>

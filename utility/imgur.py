@@ -1,8 +1,9 @@
 from imgurpython import ImgurClient
 from decouple import config
 import requests
+from singleton_decorator import singleton
 
-
+@singleton
 class ImgurUtil:
 
     imgur_id = config('IMGUR_CLIENT_ID')
