@@ -2,7 +2,7 @@
 <div class="container-fluid">
     <div align="center">
         <h2 class="text-center" style='display: inline; border:2px black solid; font-size:25px; padding: 9px;'>
-            <img src="{% static 'pictures/book.jpg' %}" height="30px" width="35px"> {{ user.username }}'s diary</h2>
+            <img src="{% static 'pictures/icon.jpg' %}" height="30px" width="35px"> {{ user.username }}'s diary</h2>
     </div>
     <br><br><br>
     <div style="text-align: center">
@@ -14,11 +14,9 @@
         <div class="col-sm-3 col-lg-3">
         <div style=" padding-bottom: 30px;">
             <div class="thumbnail" class="caption" style='border:1.5px rgb(15, 9, 9) solid;'>
-                {% if page.picture %}
                 <a href=" {% url 'diary:detail' page.id %}">
-                    <img src="{{ page.picture }}" class="img-responsive" style='height: 100%; width: 100%; object-fit: contain'>
+                    <img src="{% static 'pictures/diary_book.jpg' %}" class="img-responsive" style='height: 100%; width: 100%; object-fit: contain'>
                 </a>
-                {% endif %}
                 <div>
                     {% comment %} <h2>{{ page.diary }}</h2> {% endcomment %}
                     <h2>{{ page.title }}</h2>
