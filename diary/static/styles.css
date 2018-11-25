@@ -30,7 +30,21 @@ span.psw {
 }
 
 .newbutton1{
-    color: #070707;
+    color: #06090c;
+    font-family: "proxima nova";
+    font-weight: 100; 
+    font-size: 20px;
+    text-align: center;
+
+    border: solid 1.5px #050505;
+    padding: 0.5px 132px;
+
+    -webkit-transition-duration: 200ms;
+    transition-duration: 200ms;
+}
+
+.newbutton2{
+    color: #06090c;
     font-family: "proxima nova";
     font-weight: 100; 
     font-size: 20px;
@@ -58,14 +72,23 @@ span.psw {
 }
 .newbutton1:hover{
 
-    background-color: rgb(143, 140, 140);
-    color: #fff;
+    -webkit-transition-duration: 200ms;
+    transition-duration: 200ms;
 }
 
 .newbottun2:hover{
 
     background-color: #777;
     color: #fff;    
+}
+
+
+
+
+.newbottun2:hover{
+
+    -webkit-transition-duration: 200ms;
+    transition-duration: 200ms;
 }
 
 
@@ -93,7 +116,6 @@ padding : 50px 0;
 .container{
     background:#fff; 
     border-radius: 10px; 
-    box-shadow:15px 20px 0px rgba(0,0,0,0.1);
 }
 
 .carousel-inner{
@@ -191,3 +213,12 @@ padding : 50px 0;
     box-shadow: 0 5px #666;
     transform: translateY(4px);
 }
+
+.bottomright {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    color: #472d23;
+    font-weight: 600;
+    font-size: 3vh;
+  }

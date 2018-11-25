@@ -17,6 +17,9 @@ import datetime
 
 
 def login_user(request):
+    """
+    If the user is not authenticated, get user's request and execute login. 
+    """
     if not request.user.is_authenticated:
         form = UserForm(request.POST or None)
         username = request.POST.get('username')
@@ -30,9 +33,13 @@ def login_user(request):
                 return render(request, 'registration/login.html', {'form': form})
         else:
             return render(request, 'registration/login.html', {'form': form})
-    return HttpResponseRedirect(reverse('diary:index'))    
+    return HttpResponseRedirect(reverse('diary:index'))
+
 
 def logout_user(request):
+    """
+    Function to logout user and redirect to login page. 
+    """
     logout(request)
     return HttpResponseRedirect('/login')
 
@@ -43,7 +50,7 @@ class IndexView(generic.ListView):
 
     def get_queryset(self):
         """
-        Return all of the objects in the list
+        Return all of the objects in the list of diary.
         """
         username = self.request.user.username
         diaries = Diary.objects.filter(username=username)
@@ -61,6 +68,7 @@ class IndexView(generic.ListView):
 class DetailView(generic.DetailView):
     model = Page
     template_name = 'diary/detail.html'
+    queryset = Page.objects.all()
 
 
 class CreateFormat(View):
@@ -69,36 +77,28 @@ class CreateFormat(View):
     def get(self, request):
         return render(request, self.template_name)
 
-class CreatePage1(View):
-    form_class = PageForm
+class Layout_1(View):
     template_name = 'diary/layout1.html'
 
     def get(self, request):
-        form = self.form_class(None)
+        return render(request, self.template_name)
 
-        return render(request, self.template_name, {'form': form})
+# class Layout_2(View):
+#     template_name = 'diary/layout2.html'
 
-    def post(self, request):
-        form = self.form_class(request.POST)
-        if form.is_valid() and request.FILES['myfile']:
-            page = form.save(commit=False)
-            page.date = str(datetime.date.today())
-            imgurUtil = ImgurUtil()
-            my_file = request.FILES['myfile']
-            description = page.title + ':' + page.date
-            username = self.request.user.username
-            hashes = imgurUtil.get_album_hash(username)
-            imgurUtil.set_album_hash(hashes)
-            response = imgurUtil.upload_image_locally(description, my_file)
-            if(response.status_code == requests.codes.ok):
-                uploader_url = response.json()["data"]["link"]
-                page.picture = uploader_url
-                page.save()
-        return HttpResponseRedirect("/diary/")
+#     def get(self, request):
+#         return render(request, self.template_name)
 
-class CreatePage2(View):
+# class Layout_3(View):
+#     template_name = 'diary/layout3.html'
+
+#     def get(self, request):
+#         return render(request, self.template_name)
+
+
+class CreatePage(View):
     form_class = PageForm
-    template_name = 'diary/layout2.html'
+    template_name = 'diary/page_form.html'
 
     def get(self, request):
         form = self.form_class(None)
@@ -108,39 +108,14 @@ class CreatePage2(View):
     def post(self, request):
         form = self.form_class(request.POST)
         if form.is_valid() and request.FILES['myfile']:
+            username = self.request.user.username
             page = form.save(commit=False)
             page.date = str(datetime.date.today())
+            diary = Diary.objects.filter(username=username)
+            page.diary = diary[0]
             imgurUtil = ImgurUtil()
             my_file = request.FILES['myfile']
             description = page.title + ':' + page.date
-            username = self.request.user.username
-            hashes = imgurUtil.get_album_hash(username)
-            imgurUtil.set_album_hash(hashes)
-            response = imgurUtil.upload_image_locally(description, my_file)
-            if(response.status_code == requests.codes.ok):
-                uploader_url = response.json()["data"]["link"]
-                page.picture = uploader_url
-                page.save()
-        return HttpResponseRedirect("/diary/")
-
-class CreatePage3(View):
-    form_class = PageForm
-    template_name = 'diary/layout3.html'
-
-    def get(self, request):
-        form = self.form_class(None)
-
-        return render(request, self.template_name, {'form': form})
-
-    def post(self, request):
-        form = self.form_class(request.POST)
-        if form.is_valid() and request.FILES['myfile']:
-            page = form.save(commit=False)
-            page.date = str(datetime.date.today())
-            imgurUtil = ImgurUtil()
-            my_file = request.FILES['myfile']
-            description = page.title + ':' + page.date
-            username = self.request.user.username
             hashes = imgurUtil.get_album_hash(username)
             imgurUtil.set_album_hash(hashes)
             response = imgurUtil.upload_image_locally(description, my_file)
@@ -155,6 +130,21 @@ class DeleteDiary(DeleteView):
     form_class = PageForm
     model = Page
     success_url = reverse_lazy('diary:index')
+ 
+    def delete(self, request, *args, **kwargs):
+        """
+        Function to delete picture from database and imgur.
+        """
+        imgurUtil = ImgurUtil()
+        page = self.get_object()
+        description = page.title + ':' + page.date
+        username = self.request.user.username
+        hashes = imgurUtil.get_album_hash(username)
+        imgurUtil.set_album_hash(hashes)
+        image_hash = imgurUtil.get_image_hash(description)
+        imgurUtil.delete_image(image_hash)
+        page.delete()
+        return HttpResponseRedirect('/diary/')
 
     def post(self, request, *args, **kwargs):
         form = self.form_class(request.POST)
@@ -193,6 +183,3 @@ class UserFormView(View):
                     return redirect('/login')
 
         return render(request, self.template_name, {'form': form})
-
-
-    
