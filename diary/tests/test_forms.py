@@ -45,6 +45,7 @@ class TestingForms(TestCase):
 
         form = PageForm(
             data={'title': "title", 'story': "short", 'tag': "happy"})
+        self.full_clean()
         self.assertTrue(form.is_valid())
 
     
