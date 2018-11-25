@@ -18,5 +18,5 @@ class PageForm(forms.ModelForm):
         model = Page
         fields = ['title', 'story', 'tag']
         widgets = {
-          'story': Textarea(attrs={'rows':10, 'cols':61}),
+          'story': Textarea(attrs={'rows':10, 'cols':50}),
         }
