@@ -20,7 +20,7 @@
           <p>Username: {{ form.username }}</p>
           <p>Password : {{ form.password }}</p>
           <div style="text-align:center">
-            <input name="login" class="newbutton1" type="submit" value="Login">
+            <input name="login" style="color: rgb(6, 19, 6)" class="newbutton1" type="submit" value="Login">
           </div>
           <input type="hidden" name="next" value="{{ next }}">
         </form>
@@ -38,9 +38,7 @@
           </a>
           
           <p align="left">
-            <button class="newbutton2">
-            <a href="{% url 'diary:register' %}"><font color="#04070a"> Register</font></a>
-          </button>
+            <a style="color: rgb(6, 19, 6)" href="{% url 'diary:register' %}"> Register</font></a>
           <span class="psw">Forgot
             <a href="">password?</a>
           </span>

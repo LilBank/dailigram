@@ -5,3 +5,4 @@ social-auth-app-django
 python-decouple
 imgurpython
 selenium
+singleton-decorator

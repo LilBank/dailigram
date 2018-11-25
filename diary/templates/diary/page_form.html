@@ -6,21 +6,30 @@
 <p><strong>{{ error_message }}</strong></p>
 {% endif %}
 
-<div class="container">
+<div class="container" style="border: 1.5px solid black; border-radius: 15px; padding-bottom: 10px; ">
+  <br>
+  <div align="center" style="background-color: rgb(219,213,213); border-radius: 15px;">
+    <h1>Create Diary</h1>
+  </div>
   <form class="form-horizontal" method="post" enctype="multipart/form-data">
+    <br>
     {% csrf_token %}
     {% for field in form %}
+    <br>
     {{field.label_tag}}
-    {{field}} <br><br>
+    <div>
+      {{field}}
+    </div>
     {% endfor %}
+    <br>
     <h6>Picture: </h6>
-    <input type="file" name="myfile">
+    <input type="file" name="myfile"><br><br>
     <button type="submit">Upload</button>
   </form>
-
-  {% if uploaded_file_url %}
-  <p>File uploaded at: <a target="_blank" href="{{ uploaded_file_url }}">{{ uploaded_file_url }}</a></p>
-  <img src="{{ uploaded_file_url }}" alt="">
-  {% endif %}
-  {% endblock %}
+</div>
+{% if uploaded_file_url %}
+<p>File uploaded at: <a target="_blank" href="{{ uploaded_file_url }}">{{ uploaded_file_url }}</a></p>
+<img src="{{ uploaded_file_url }}">
+{% endif %}
+{% endblock %}
 </div>

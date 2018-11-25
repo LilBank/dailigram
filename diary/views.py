@@ -59,8 +59,12 @@ class IndexView(generic.ListView):
         if len(diaries) == 0:
             Diary.objects.create(username=username)
 
-        if(imgurUtil.get_album_hash(username) is None):
+        hashes = imgurUtil.get_album_hash(username)
+
+        if(hashes is None):
             imgurUtil.create_album(username)
+        else:
+            imgurUtil.set_album_hash(hashes)
 
         return Page.objects.filter(diary__username=username)
 
@@ -68,13 +72,37 @@ class IndexView(generic.ListView):
 class DetailView(generic.DetailView):
     model = Page
     template_name = 'diary/detail.html'
+    queryset = Page.objects.all()
 
+class CreateSettings(View):
+    template_name = 'diary/settings.html'
+
+    def get(self, request):
+        return render(request, self.template_name)
 
 class CreateFormat(View):
     template_name = 'diary/format.html'
 
     def get(self, request):
         return render(request, self.template_name)
+
+class Layout_1(View):
+    template_name = 'diary/layout1.html'
+
+    def get(self, request):
+        return render(request, self.template_name)
+
+# class Layout_2(View):
+#     template_name = 'diary/layout2.html'
+
+#     def get(self, request):
+#         return render(request, self.template_name)
+
+# class Layout_3(View):
+#     template_name = 'diary/layout3.html'
+
+#     def get(self, request):
+#         return render(request, self.template_name)
 
 
 class CreatePage(View):
@@ -83,23 +111,19 @@ class CreatePage(View):
 
     def get(self, request):
         form = self.form_class(None)
-        # form.fields['diary'].widget = forms.HiddenInput()
-        # form.fields['date'].widget = forms.HiddenInput()
-        # form.fields['diary'].label = ''
-        # form.fields['date'].label = ''
         return render(request, self.template_name, {'form': form})
 
     def post(self, request):
         form = self.form_class(request.POST)
         if form.is_valid() and request.FILES['myfile']:
+            username = self.request.user.username
             page = form.save(commit=False)
             page.date = str(datetime.date.today())
+            diary = Diary.objects.filter(username=username)
+            page.diary = diary[0]
             imgurUtil = ImgurUtil()
             my_file = request.FILES['myfile']
             description = page.title + ':' + page.date
-            username = self.request.user.username
-            hashes = imgurUtil.get_album_hash(username)
-            imgurUtil.set_album_hash(hashes)
             response = imgurUtil.upload_image_locally(description, my_file)
             if(response.status_code == requests.codes.ok):
                 uploader_url = response.json()["data"]["link"]
@@ -120,9 +144,6 @@ class DeleteDiary(DeleteView):
         imgurUtil = ImgurUtil()
         page = self.get_object()
         description = page.title + ':' + page.date
-        username = self.request.user.username
-        hashes = imgurUtil.get_album_hash(username)
-        imgurUtil.set_album_hash(hashes)
         image_hash = imgurUtil.get_image_hash(description)
         imgurUtil.delete_image(image_hash)
         page.delete()
