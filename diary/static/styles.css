@@ -37,7 +37,7 @@ span.psw {
     text-align: center;
 
     border: solid 1.5px #050505;
-    padding: 0.5px 132px;
+    padding: 0.5px 72px;
 
     -webkit-transition-duration: 200ms;
     transition-duration: 200ms;
@@ -51,7 +51,7 @@ span.psw {
     text-align: center;
 
     border: solid 1.5px #050505;
-    padding: 0.5px 132px;
+    padding: 0.5px 100px;
 
     -webkit-transition-duration: 200ms;
     transition-duration: 200ms;
