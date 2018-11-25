@@ -59,8 +59,12 @@ class IndexView(generic.ListView):
         if len(diaries) == 0:
             Diary.objects.create(username=username)
 
-        if(imgurUtil.get_album_hash(username) is None):
+        hashes = imgurUtil.get_album_hash(username)
+
+        if(hashes is None):
             imgurUtil.create_album(username)
+        else:
+            imgurUtil.set_album_hash(hashes)
 
         return Page.objects.filter(diary__username=username)
 
@@ -120,8 +124,6 @@ class CreatePage(View):
             imgurUtil = ImgurUtil()
             my_file = request.FILES['myfile']
             description = page.title + ':' + page.date
-            hashes = imgurUtil.get_album_hash(username)
-            imgurUtil.set_album_hash(hashes)
             response = imgurUtil.upload_image_locally(description, my_file)
             if(response.status_code == requests.codes.ok):
                 uploader_url = response.json()["data"]["link"]
@@ -142,9 +144,6 @@ class DeleteDiary(DeleteView):
         imgurUtil = ImgurUtil()
         page = self.get_object()
         description = page.title + ':' + page.date
-        username = self.request.user.username
-        hashes = imgurUtil.get_album_hash(username)
-        imgurUtil.set_album_hash(hashes)
         image_hash = imgurUtil.get_image_hash(description)
         imgurUtil.delete_image(image_hash)
         page.delete()
