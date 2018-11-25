@@ -60,8 +60,8 @@ class IndexView(generic.ListView):
         query = self.request.GET.get("q")
 
         if query:
-            return diaries.filter(
-                Q(id__icontains=query)
+            return page.filter(
+                Q(title__icontains=query)
             ).distinct()
 
         if len(diaries) == 0:
