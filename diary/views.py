@@ -78,13 +78,14 @@ class DetailView(generic.DetailView):
     template_name = 'diary/detail.html'
     queryset = Page.objects.all()
 
-class CreateSettings(View):
+class Settings(UpdateView):
+    models = Diary
     template_name = 'diary/settings.html'
 
     def get(self, request):
         return render(request, self.template_name)
 
-class CreateFormat(View):
+class Format(View):
     template_name = 'diary/format.html'
 
     def get(self, request):
