@@ -5,7 +5,6 @@ import datetime
 
 class Diary(models.Model):
     username = models.CharField(max_length=100, unique=True)
-    # is_favorite = models.BooleanField(default = False)
 
     def __str__(self):
         return self.username
