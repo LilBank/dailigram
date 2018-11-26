@@ -127,7 +127,7 @@ class CreatePage(View):
             page.diary = diary[0]
             imgurUtil = ImgurUtil()
             my_file = request.FILES['myfile']
-            description = page.title + ':' + page.date
+            description = str(page.diary) + ':' + page.title + ':' + page.date
             response = imgurUtil.upload_image_locally(description, my_file)
             if(response.status_code == requests.codes.ok):
                 uploader_url = response.json()["data"]["link"]
@@ -147,7 +147,7 @@ class DeleteDiary(DeleteView):
         """
         imgurUtil = ImgurUtil()
         page = self.get_object()
-        description = page.title + ':' + page.date
+        description = str(page.diary) + ':' + page.title + ':' + page.date
         image_hash = imgurUtil.get_image_hash(description)
         imgurUtil.delete_image(image_hash)
         page.delete()
