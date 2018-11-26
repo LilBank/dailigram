@@ -9,6 +9,7 @@ from django.contrib.auth.models import User
 from django.urls import reverse
 from django.urls import reverse_lazy
 from utility.imgur import ImgurUtil
+from django.db.models import Q
 
 from django import forms
 
@@ -43,7 +44,6 @@ def logout_user(request):
     logout(request)
     return HttpResponseRedirect('/login')
 
-
 class IndexView(generic.ListView):
     template_name = 'diary/index.html'
     context_object_name = 'all_pages'
@@ -54,7 +54,15 @@ class IndexView(generic.ListView):
         """
         username = self.request.user.username
         diaries = Diary.objects.filter(username=username)
+        page = Page.objects.all()
         imgurUtil = ImgurUtil()
+
+        query = self.request.GET.get("q")
+
+        if query:
+            return page.filter(
+                Q(title__icontains=query)
+            ).distinct()
 
         if len(diaries) == 0:
             Diary.objects.create(username=username)
