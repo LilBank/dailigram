@@ -6,6 +6,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
+from django.contrib import messages
 from django.urls import reverse
 from django.urls import reverse_lazy
 from utility.imgur import ImgurUtil
@@ -33,6 +34,7 @@ def login_user(request):
             else:
                 return render(request, 'registration/login.html', {'form': form})
         else:
+            messages.error(request,'username or password is not correct')
             return render(request, 'registration/login.html', {'form': form})
     return HttpResponseRedirect(reverse('diary:index'))
 
@@ -83,17 +85,16 @@ class Settings(UpdateView):
     template_name = 'diary/settings.html'
     success_url = reverse_lazy('diary:index')
 
-        #get object
     def get_object(self, queryset=None): 
         return self.request.user
 
-        #override form_valid method
-    def form_valid(self, form):
-        #save cleaned post data
-        clean = form.cleaned_data 
-        context = {}        
-        self.object = context.save(clean) 
-        return super(Settings, self).form_valid(form)    
+    #     #override form_valid method
+    # def form_valid(self, form):
+    #     #save cleaned post data
+    #     clean = form.cleaned_data 
+    #     context = {}        
+    #     self.object = context.save(clean) 
+    #     return super(Settings, self).form_valid(form)    
 
 class Format(View):
     template_name = 'diary/format.html'
