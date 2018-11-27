@@ -5,6 +5,7 @@ import datetime
 
 class Diary(models.Model):
     username = models.CharField(max_length=100, unique=True)
+    profile_picture = models.FileField()
 
     def __str__(self):
         return self.username

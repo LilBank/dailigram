@@ -1,7 +1,7 @@
 from diary.models import Tag, Page, Diary
 from django.views import generic, View
 from django.views.generic.edit import UpdateView, DeleteView, CreateView
-from .forms import UserForm, PageForm
+from .forms import UserForm, PageForm, ProfileForm
 from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect
 from django.contrib.auth import authenticate, login, logout
@@ -79,11 +79,21 @@ class DetailView(generic.DetailView):
     queryset = Page.objects.all()
 
 class Settings(UpdateView):
-    models = Diary
+    form_class = ProfileForm
     template_name = 'diary/settings.html'
+    success_url = reverse_lazy('diary:index')
 
-    def get(self, request):
-        return render(request, self.template_name)
+        #get object
+    def get_object(self, queryset=None): 
+        return self.request.user
+
+        #override form_valid method
+    def form_valid(self, form):
+        #save cleaned post data
+        clean = form.cleaned_data 
+        context = {}        
+        self.object = context.save(clean) 
+        return super(Settings, self).form_valid(form)    
 
 class Format(View):
     template_name = 'diary/format.html'
