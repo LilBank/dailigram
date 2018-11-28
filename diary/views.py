@@ -23,20 +23,43 @@ def login_user(request):
     If the user is not authenticated, get user's request and execute login. 
     """
     if not request.user.is_authenticated:
+        print('enter login user')
         form = UserForm(request.POST or None)
         username = request.POST.get('username')
         password = request.POST.get('password')
         user = authenticate(username=username, password=password)
         if user is not None:
+            print('user is not non')
             if user.is_active:
+                print('user is active')
                 login(request, user)
                 HttpResponseRedirect(reverse('diary:index'))
             else:
+                print('user is not active')
                 return render(request, 'registration/login.html', {'form': form})
         else:
+            print('user is non')           
             messages.error(request,'username or password is not correct')
             return render(request, 'registration/login.html', {'form': form})
     return HttpResponseRedirect(reverse('diary:index'))
+
+    # if request.method == "POST":
+    #     form = UserForm(request.POST)
+    #     username = request.POST['username']
+    #     password = request.POST['password']
+    #     user = authenticate(username=username, password=password)
+    #     if user is not None:
+    #         if user.is_active:
+    #             print('user is active')
+    #             login(request, user)
+    #             redirect(reverse('diary:index'))
+    #         else:
+    #             return render(request, 'registration/login.html',{'form': form})
+    #     else:
+    #         messages.error(request,'username or password is not correct')
+    #         return render(request, 'registration/login.html', {'form': form})
+    
+    # return render(request, 'regust/login.html')
 
 
 def logout_user(request):
@@ -132,14 +155,14 @@ class CreatePage(View):
     def post(self, request):
         form = self.form_class(request.POST)
         if form.is_valid() and request.FILES['myfile']:
-            username = self.request.user.username
-            page = form.save(commit=False)
-            page.date = str(datetime.date.today())
-            diary = Diary.objects.filter(username=username)
-            page.diary = diary[0]
             imgurUtil = ImgurUtil()
             my_file = request.FILES['myfile']
-            description = str(page.diary) + ':' + page.title + ':' + page.date
+            username = self.request.user.username
+            page = form.save()
+            diary = Diary.objects.filter(username=username)
+            page.date = str(datetime.date.today())
+            page.diary = diary[0]
+            description = str(page.diary) + ':' + str(page.id) + ':' + page.date
             response = imgurUtil.upload_image_locally(description, my_file)
             if(response.status_code == requests.codes.ok):
                 uploader_url = response.json()["data"]["link"]
@@ -159,7 +182,7 @@ class DeleteDiary(DeleteView):
         """
         imgurUtil = ImgurUtil()
         page = self.get_object()
-        description = str(page.diary) + ':' + page.title + ':' + page.date
+        description = str(page.diary) + ':' + str(page.id) + ':' + page.date
         image_hash = imgurUtil.get_image_hash(description)
         imgurUtil.delete_image(image_hash)
         page.delete()
@@ -176,7 +199,7 @@ class UserFormView(View):
 
     def post(self, request):
         form = self.form_class(request.POST)
-
+        
         if form.is_valid():
             user = form.save(commit=False)
             username = form.cleaned_data['username']
