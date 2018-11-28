@@ -5,6 +5,12 @@
 {% if error_message %}
 <p><strong>{{ error_message }}</strong></p>
 {% endif %}
+{% for message in messages %}
+  <div class="alert alert-danger">
+  <a class="close" href="#" data-dismiss="alert">×</a>
+{{ message }}
+</div>
+{% endfor %}
 
 <div class="container" style="border: 1.5px solid black; border-radius: 15px; padding-bottom: 10px; ">
   <br>

@@ -42,25 +42,6 @@ def login_user(request):
        
     return HttpResponseRedirect(reverse('diary:index'))
 
-    # if request.method == "POST":
-    #     form = UserForm(request.POST)
-    #     username = request.POST['username']
-    #     password = request.POST['password']
-    #     user = authenticate(username=username, password=password)
-    #     if user is not None:
-    #         if user.is_active:
-    #             print('user is active')
-    #             login(request, user)
-    #             HttpResponseRedirect(reverse('diary:index'))
-    #         else:
-    #             return render(request, 'registration/login.html',{'form': form})
-    #     else:
-    #         messages.error(request,'username or password is not correct')
-    #         return render(request, 'registration/login.html', {'form': form})
-    
-    # return HttpResponseRedirect(reverse('diary:index'))
-
-
 def logout_user(request):
     """
     Function to logout user and redirect to login page. 
@@ -154,10 +135,16 @@ class CreatePage(View):
     def post(self, request):
         form = self.form_class(request.POST)
         if form.is_valid() and request.FILES['myfile']:
+
+            for page in Page.objects.all():
+                if page.title == form.cleaned_data.get("title"):
+                    messages.error(request,'You already used this title')
+                    return HttpResponseRedirect("/diary/create_page")
+
+            page = form.save()
             imgurUtil = ImgurUtil()
             my_file = request.FILES['myfile']
             username = self.request.user.username
-            page = form.save()
             diary = Diary.objects.filter(username=username)
             page.date = str(datetime.date.today())
             page.diary = diary[0]
@@ -167,6 +154,9 @@ class CreatePage(View):
                 uploader_url = response.json()["data"]["link"]
                 page.picture = uploader_url
                 page.save()
+            else:
+                messages.error(request,'Please select valid file')
+                return HttpResponseRedirect("/diary/create_page")
         return HttpResponseRedirect("/diary/")
 
 
