@@ -23,24 +23,23 @@ def login_user(request):
     If the user is not authenticated, get user's request and execute login. 
     """
     if not request.user.is_authenticated:
-        print('enter login user')
         form = UserForm(request.POST or None)
-        username = request.POST.get('username')
-        password = request.POST.get('password')
-        user = authenticate(username=username, password=password)
-        if user is not None:
-            print('user is not non')
-            if user.is_active:
-                print('user is active')
-                login(request, user)
-                HttpResponseRedirect(reverse('diary:index'))
-            else:
-                print('user is not active')
+        if request.method == "POST":
+            username = request.POST.get('username')
+            password = request.POST.get('password')
+            user = authenticate(username=username, password=password)
+            if user is not None:
+                if user.is_active:      
+                    login(request, user)
+                    HttpResponseRedirect(reverse('diary:index'))
+                else:          
+                    return render(request, 'registration/login.html', {'form': form})
+            else:      
+                messages.error(request,'username or password is not correct')
                 return render(request, 'registration/login.html', {'form': form})
         else:
-            print('user is non')           
-            messages.error(request,'username or password is not correct')
             return render(request, 'registration/login.html', {'form': form})
+       
     return HttpResponseRedirect(reverse('diary:index'))
 
     # if request.method == "POST":
@@ -52,14 +51,14 @@ def login_user(request):
     #         if user.is_active:
     #             print('user is active')
     #             login(request, user)
-    #             redirect(reverse('diary:index'))
+    #             HttpResponseRedirect(reverse('diary:index'))
     #         else:
     #             return render(request, 'registration/login.html',{'form': form})
     #     else:
     #         messages.error(request,'username or password is not correct')
     #         return render(request, 'registration/login.html', {'form': form})
     
-    # return render(request, 'regust/login.html')
+    # return HttpResponseRedirect(reverse('diary:index'))
 
 
 def logout_user(request):
