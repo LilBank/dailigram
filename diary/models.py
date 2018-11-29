@@ -5,7 +5,6 @@ import datetime
 
 class Diary(models.Model):
     username = models.CharField(max_length=30, unique=True)
-    profile_picture = models.FileField()
 
     def __str__(self):
         return self.username
@@ -26,7 +25,7 @@ class Page(models.Model):
     diary = models.ForeignKey(Diary, on_delete=models.SET_NULL, null=True)
     title = models.CharField(max_length=15)
     tag = models.ForeignKey(Tag, on_delete=models.SET_NULL, null=True)
-    story = models.TextField(help_text='Write your story.')
+    story = models.TextField()
     date = models.CharField(max_length=10)
     picture = models.FileField()
 

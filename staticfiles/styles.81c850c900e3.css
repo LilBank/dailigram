@@ -26,89 +26,42 @@ div.fixed {
 
 span.psw {
     float: right;
-    padding-top: 6px
+    padding-top: 16px;
 }
 
 .newbutton1{
-    color: #06090c;
+    color: #31a6ff;
     font-family: "proxima nova";
     font-weight: 100; 
     font-size: 20px;
     text-align: center;
 
-    border: solid 1.5px #050505;
-    padding: 0.5px 72px;
+    border: solid 1.5px #31a6ff;
+    border-radius: 30px;
+
+    padding: 4px 40px;
 
     -webkit-transition-duration: 200ms;
     transition-duration: 200ms;
 }
 
-.newbutton2{
-    color: #06090c;
-    font-family: "proxima nova";
-    font-weight: 100; 
-    font-size: 20px;
-    text-align: center;
 
-    border: solid 1.5px #050505;
-    padding: 0.5px 100px;
-
-    -webkit-transition-duration: 200ms;
-    transition-duration: 200ms;
-}
-
-.newbutton2{
-    font-family: "proxima nova";
-    font-weight: 100; 
-    font-size: 16px;
-    text-align: center;
-
-    border: solid 1.5px #04070a;
-
-    padding: 1px 15px;
-
-    -webkit-transition-duration: 200ms;
-    transition-duration: 200ms;
-}
 .newbutton1:hover{
 
-    -webkit-transition-duration: 200ms;
-    transition-duration: 200ms;
+    background-color: #31a6ff;
+    color: #fff;
 }
-
-.newbottun2:hover{
-
-    background-color: #777;
-    color: #fff;    
-}
-
-
-
-
-.newbottun2:hover{
-
-    -webkit-transition-duration: 200ms;
-    transition-duration: 200ms;
-}
-
-
 
 
 @import url("//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css");
 
 .login-block{
-background: rgb(255, 255, 255); 
+    background: rgb(255, 255, 255); 
 background: -webkit-linear-gradient(to bottom, rgb(185, 199, 194), rgb(255, 255, 255)); 
 background: linear-gradient(to bottom, rgb(185, 199, 194), rgb(255, 255, 255));
 float:left;
 width:100%;
 padding : 50px 0;
-}
-
-.back-color{
-    background: rgb(255, 255, 255); 
-    background: -webkit-linear-gradient(to bottom, rgb(185, 199, 194), rgb(255, 255, 255)); 
-    background: linear-gradient(to bottom, rgb(185, 199, 194), rgb(255, 255, 255));
 }
 
 .banner-sec{
@@ -122,6 +75,7 @@ padding : 50px 0;
 .container{
     background:#fff; 
     border-radius: 10px; 
+    box-shadow:15px 20px 0px rgba(0,0,0,0.1);
 }
 
 .carousel-inner{
@@ -150,14 +104,14 @@ padding : 50px 0;
     margin-bottom:10px; 
     font-weight:800; 
     font-size:30px; 
-    color: rgb(221, 48, 48)
+    color: #777
 }
 
 .login-sec h2:after{
     content:" "; 
     width:200px; 
     height:5px; 
-    background:#777; 
+    background:rgb(185, 199, 194); 
     display:block; 
     margin-top:20px; 
     border-radius:3px; 
@@ -220,14 +174,16 @@ padding : 50px 0;
     transform: translateY(4px);
 }
 
-.bottomright {
-    position: fixed;
-    bottom: 5px;
-    right: 5px;
-    color: #472d23;
-    font-weight: 600;
-    font-size: 3vh;
-  }
+.boxes{
+    display: grid;
+    grid-gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(200px , 1fr));
 
-  
+}
 
+.box{
+    background: var(--primary);
+    text-align: center;
+    padding: 1.5rem 2rem;
+    box-shadow: var(--shadow);
+}

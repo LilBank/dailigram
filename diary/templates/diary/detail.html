@@ -1,18 +1,15 @@
-{% extends 'base.html' %}
-
-{% block content %}
-<div align="center" style="padding: 20px;">
-    <div text-align: center;>
-    <h1>{{ page.title }}</h1>
-    <br>
+{% extends 'base.html' %} {% block content %}
+<div style="text-align: center;">
+    <div style="word-wrap: break-word; padding: 75px">
+        <h1>{{ page.title }}</h1>
     </div>
-    <img src="{{ page.picture }}" class="img-responsive" style='height: 20%; width: 20%; object-fit: contain'>
-    <div text-align: center;>
-    <br><br>
-    <div style="width:1000px; margin:0 auto;">
-        {{ page.story }}
-    </div>
+    <div>
+        <img src="{{ page.picture }}" class="img-responsive" style='height: 50%; width: 50%; object-fit: contain'>
+        <div style="padding: 100px; word-wrap: break-word;">
+            {{ page.story }}
+        </div>
     </div>
 </div>
-  <div class="bottomright">{{ page.date }}</div>
+</div>
+<div class="bottomright">{{ page.date }}</div>
 {% endblock %}

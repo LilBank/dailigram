@@ -37,7 +37,7 @@ span.psw {
     text-align: center;
 
     border: solid 1.5px #050505;
-    padding: 0.5px 132px;
+    padding: 0.5px 72px;
 
     -webkit-transition-duration: 200ms;
     transition-duration: 200ms;
@@ -51,18 +51,38 @@ span.psw {
     text-align: center;
 
     border: solid 1.5px #050505;
-    padding: 0.5px 132px;
+    padding: 0.5px 100px;
 
     -webkit-transition-duration: 200ms;
     transition-duration: 200ms;
 }
 
+.newbutton2{
+    font-family: "proxima nova";
+    font-weight: 100; 
+    font-size: 16px;
+    text-align: center;
 
+    border: solid 1.5px #04070a;
+
+    padding: 1px 15px;
+
+    -webkit-transition-duration: 200ms;
+    transition-duration: 200ms;
+}
 .newbutton1:hover{
 
     -webkit-transition-duration: 200ms;
     transition-duration: 200ms;
 }
+
+.newbottun2:hover{
+
+    background-color: #777;
+    color: #fff;    
+}
+
+
 
 
 .newbottun2:hover{
@@ -77,12 +97,18 @@ span.psw {
 @import url("//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css");
 
 .login-block{
-    background: rgb(255, 255, 255); 
+background: rgb(255, 255, 255); 
 background: -webkit-linear-gradient(to bottom, rgb(185, 199, 194), rgb(255, 255, 255)); 
 background: linear-gradient(to bottom, rgb(185, 199, 194), rgb(255, 255, 255));
 float:left;
 width:100%;
 padding : 50px 0;
+}
+
+.back-color{
+    background: rgb(255, 255, 255); 
+    background: -webkit-linear-gradient(to bottom, rgb(185, 199, 194), rgb(255, 255, 255)); 
+    background: linear-gradient(to bottom, rgb(185, 199, 194), rgb(255, 255, 255));
 }
 
 .banner-sec{
@@ -195,10 +221,13 @@ padding : 50px 0;
 }
 
 .bottomright {
-    position: absolute;
+    position: fixed;
     bottom: 5px;
     right: 5px;
     color: #472d23;
     font-weight: 600;
     font-size: 3vh;
   }
+
+  
+
