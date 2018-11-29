@@ -26,10 +26,10 @@
                 </div>
 
                 <!-- delete button -->
-                <form action="{% url 'diary:delete_diary' page.id%} " method="post">
+                <form onsubmit="disableDeleteButton()" action="{% url 'diary:delete_diary' page.id%} " method="post">
                     {% csrf_token %}
                     <input type="hidden" name="page_id" value="{{ page.id }}" />
-                    <button type="submit">Delete</button>
+                    <button id="delete-button" class="btn btn-secondary" type="submit">Delete</button><br><br>
                 </form>
 
             </div>
