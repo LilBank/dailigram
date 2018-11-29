@@ -20,7 +20,7 @@
             <div style=" padding-bottom: 30px;">
                 <div class="thumbnail" class="caption" style='border:1.5px rgb(15, 9, 9) solid; overflow: hidden; block:inline; padding-bottom: 10px;'>
                     <a href=" {% url 'diary:detail' page.id %}">
-                            <img src="{{ page.picture }}" style="width: 100%; height: 225px; margin: 0 auto;" />
+                            <img src="{{ page.picture }}" style=" width: auto; height: auto; max-width: 100%; height: 200px; margin: 0 auto;" />
                     </a>
                     <div style="word-wrap: break-word;">
                         <h2>{{ page.title }}</h2>

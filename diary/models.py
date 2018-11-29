@@ -26,7 +26,7 @@ class Page(models.Model):
     diary = models.ForeignKey(Diary, on_delete=models.SET_NULL, null=True)
     title = models.CharField(max_length=20, blank=True)
     tag = models.ForeignKey(Tag, on_delete=models.SET_NULL, null=True)
-    story = models.TextField(help_text='Write your story.')
+    story = models.TextField()
     date = models.CharField(max_length=50, blank=True)
     picture = models.FileField()
 
