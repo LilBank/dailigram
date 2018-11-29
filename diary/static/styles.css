@@ -97,12 +97,18 @@ span.psw {
 @import url("//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css");
 
 .login-block{
-    background: rgb(255, 255, 255); 
+background: rgb(255, 255, 255); 
 background: -webkit-linear-gradient(to bottom, rgb(185, 199, 194), rgb(255, 255, 255)); 
 background: linear-gradient(to bottom, rgb(185, 199, 194), rgb(255, 255, 255));
 float:left;
 width:100%;
 padding : 50px 0;
+}
+
+.back-color{
+    background: rgb(255, 255, 255); 
+    background: -webkit-linear-gradient(to bottom, rgb(185, 199, 194), rgb(255, 255, 255)); 
+    background: linear-gradient(to bottom, rgb(185, 199, 194), rgb(255, 255, 255));
 }
 
 .banner-sec{
