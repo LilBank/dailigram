@@ -8,7 +8,7 @@ Procfile.windows
 __pycache__/
 chromedriver.exe
 /media
-/.venv
+/venv
 htmlcov/
 # dont ignore these files
 !.gitignore
