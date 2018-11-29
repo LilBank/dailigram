@@ -24,7 +24,7 @@ def login_user(request):
         form = UserForm(request.POST or None)
         if request.method == "POST":
             username = request.POST.get('username')
-               password = request.POST.get('password')
+            password = request.POST.get('password')
             user = authenticate(username=username, password=password)
             if user is not None:
                 if user.is_active:
@@ -120,13 +120,20 @@ class CreatePage(View):
 
     def post(self, request):
         form = self.form_class(request.POST)
-        if form.is_valid() and request.FILES['myfile']:
+        if form.is_valid():
+            try:
+                request.FILES['myfile']
+            except:
+                messages.error(
+                    request, 'Please select a file.')
+                return HttpResponseRedirect("/diary/create_page")
 
             for page in Page.objects.all():
                 if page.title == form.cleaned_data.get("title"):
                     messages.error(
                         request, 'You already used this title. Please try another one.')
                     return HttpResponseRedirect("/diary/create_page")
+
             page = form.save()
             imgurUtil = ImgurUtil()
             my_file = request.FILES['myfile']
@@ -141,9 +148,10 @@ class CreatePage(View):
                 uploader_url = response.json()["data"]["link"]
                 page.picture = uploader_url
                 page.save()
+
             else:
                 messages.error(
-                    request, 'The file is invalid. Please select the valid one')
+                    request, 'Please select a valid file.')
                 return HttpResponseRedirect("/diary/create_page")
         return HttpResponseRedirect("/diary/")
 
