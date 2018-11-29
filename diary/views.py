@@ -102,7 +102,7 @@ class Layout_1(View):
 
 class CreatePage(View):
     form_class = PageForm
-    template_name = 'diary/page_form.html'
+    template_name = 'diary/create_page.html'
 
     def get(self, request):
         form = self.form_class(None)
