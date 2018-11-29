@@ -6,9 +6,8 @@
 <p><strong>{{ error_message }}</strong></p>
 {% endif %}
 {% for message in messages %}
-  <div class="alert alert-danger">
-  <a class="close" href="#" data-dismiss="alert">×</a>
-{{ message }}
+  <div class="alert alert-warning text-center">
+  <a class="close" href="#" data-dismiss="alert">×</a><strong>Sorry!</strong> {{ message }}
 </div>
 {% endfor %}
 

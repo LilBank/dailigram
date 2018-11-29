@@ -126,7 +126,7 @@ class Layout_1(View):
 
 class CreatePage(View):
     form_class = PageForm
-    template_name = 'diary/page_form.html'
+    template_name = 'diary/creat===========================e_page.html'
 
     def get(self, request):
         form = self.form_class(None)
@@ -138,7 +138,7 @@ class CreatePage(View):
 
             for page in Page.objects.all():
                 if page.title == form.cleaned_data.get("title"):
-                    messages.error(request,'You already used this title')
+                    messages.error(request,'You already used this title. Please try another one.')
                     return HttpResponseRedirect("/diary/create_page")
 
             page = form.save()
@@ -155,7 +155,7 @@ class CreatePage(View):
                 page.picture = uploader_url
                 page.save()
             else:
-                messages.error(request,'Please select valid file')
+                messages.error(request,'The file is invalid. Please select the valid one')
                 return HttpResponseRedirect("/diary/create_page")
         return HttpResponseRedirect("/diary/")
 
