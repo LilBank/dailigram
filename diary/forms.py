@@ -20,3 +20,9 @@ class PageForm(forms.ModelForm):
         widgets = {
           'story': Textarea(attrs={'rows':15, 'cols':60, 'style': 'width: 100%'}),
         }
+
+class ProfileForm(forms.ModelForm):
+
+      class Meta:
+            model = Diary
+            fields = ['profile_picture', 'username']

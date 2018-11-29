@@ -77,7 +77,7 @@ class TestingModels(TestCase):
 
         diary = Diary(username='tony')
         max_length = diary._meta.get_field('username').max_length
-        self.assertEquals(max_length, 100)
+        self.assertEquals(max_length, 30)
 
     def test_get_absolute_url(self):
         """

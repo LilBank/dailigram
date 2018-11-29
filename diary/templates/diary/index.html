@@ -9,13 +9,20 @@
         <h2 class="text-center" style='display: inline; border:2px black solid; font-size:25px; padding: 9px;'>
             <img src="{% static 'pictures/icon.jpg' %}" height="30px" width="35px"> {{ user.username }}'s diary</h2>
     </div>
+<<<<<<< HEAD
     <br>
     <div style="border: 2px black solid; border-radius: 100%; width: 230px; height: 230px; margin-left: auto; margin-right: auto; ">
         <img src="http://cgright.com/icon/1044_thum.jpg" height="180px" width="180px" class="rounded-circle" style='height: 100%; width: 100%; overflow: hidden;'>
+=======
+    <br><br><br>
+    <div style="text-align: center">
+        <img src="http://cgright.com/icon/1044_thum.jpg" height="180px" width="180px" class='rounded-circle'>
+>>>>>>> 9c23889c23952f7e7b38219637e5f5bc08add422
     </div>
     <br>
     <div class="row text-center">
         {% if all_pages %} {% for page in all_pages %}
+<<<<<<< HEAD
         <div class="col-sm-3 col-lg-3" style="min-width:320px;">
             <div style=" padding-bottom: 30px;">
                 <div class="thumbnail" class="caption" style='border:1.5px rgb(15, 9, 9) solid; overflow: hidden; block:inline; padding-bottom: 10px; min-width: 230px;'>
@@ -31,6 +38,28 @@
                         {% comment %} <h4>{{ page.story }}</h4> {% endcomment %}
                         <h4>{{ page.date }}</h4>
                     </div>
+=======
+        <div class="col-sm-3 col-lg-3">
+        <div style=" padding-bottom: 30px;">
+            <div class="thumbnail" class="caption" style='border:1.5px rgb(15, 9, 9) solid;'>
+                <a href=" {% url 'diary:detail' page.id %}">
+                    <img src="{% static 'pictures/diary_book.jpg' %}" class="img-responsive" style='height: 100%; width: 100%; object-fit: contain'>
+                </a>
+                <div>
+                    {% comment %} <h2>{{ page.diary }}</h2> {% endcomment %}
+                    <h2>{{ page.title }}</h2>
+                    {% comment %} <h3>{{ page.tag }}</h3> {% endcomment %}
+                    {% comment %} <h4>{{ page.story }}</h4> {% endcomment %}
+                    <h4>{{ page.date }}</h4>
+                </div>
+
+                <!-- delete button -->
+                <form onsubmit="disableDeleteButton()" action="{% url 'diary:delete_diary' page.id%} " method="post">
+                    {% csrf_token %}
+                    <input type="hidden" name="page_id" value="{{ page.id }}" />
+                    <button id="delete-button" class="btn btn-secondary" type="submit">Delete</button><br><br>
+                </form>
+>>>>>>> 9c23889c23952f7e7b38219637e5f5bc08add422
 
                     <!-- delete button -->
                     <form action="{% url 'diary:delete_diary' page.id%} " method="post">
