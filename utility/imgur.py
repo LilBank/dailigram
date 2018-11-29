@@ -177,7 +177,6 @@ class ImgurUtil:
             'cache-control': 'no-cache',
         }
         response = requests.post(url, files=files, headers=headers, data=body)
-        print('album hash in upload locally: '+self.album_hash )
         return response
 
     # Public

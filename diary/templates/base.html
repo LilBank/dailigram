@@ -1,5 +1,12 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
 
 <head>
   <!-- Required meta tags -->
@@ -11,72 +18,75 @@
     crossorigin="anonymous"> {% load staticfiles %}
   <link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}">
 
-  <title>Your Journey!</title>
-</head>
+  <body>
+    <div>
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="{% url 'diary:index' %}">
+          <i class="glyphicon glyphicon-book"></i> <b><h3><strong>Dailigram</strong></h3></b>
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span id="expand" class="navbar-toggler-icon"></span>
+        </button>
 
-
-
-<body>
-  <div>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <a class="navbar-brand" href="{% url 'diary:index' %}">
-        <i class="glyphicon glyphicon-book"></i>
-        <b> Dailigram</b>
-      </a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-        aria-expanded="false" aria-label="Toggle navigation">
-        <span id="expand" class="navbar-toggler-icon"></span>
-      </button>
-
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="nav navbar-nav navbar-right ml-auto">
-          <li class="nav-item active">
-            <a href="{% url 'diary:index' %}" class="nav-link">
-              <i class="fa fa-home"></i>
-              <span> {{ user.username }}'s diary</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="{% url 'diary:create_page' %}" class="nav-link">
-              <i class="glyphicon glyphicon-plus"></i>
-              <span> Create</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="fa fa-gear"></i>
-              <span> Settings</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a id="logout" href="{% url 'logout' %}" class="nav-link">
-              <i class="glyphicon glyphicon-log-out"></i>
-              <span> Logout</span>
-            </a>
-          </li>
-        </ul>
-        <form class="form-inline my-2 my-lg-0">
-          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
-      </div>
-    </nav>
-  </div>
-  <br>
-  <br> {% block content %}{% endblock %}
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-    crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
-    crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
-    crossorigin="anonymous"></script>
-  <script>
-    window.onpageshow = event =>{
-      if (event.persisted) {
-        window.location.reload()
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="nav navbar-nav navbar-right ml-auto">
+            <li class="nav-item active">
+              <a href="{% url 'diary:index' %}" class="nav-link">
+                <i class="fa fa-home"></i>
+                <span><h5>{{ user.username }}'s diary </h5></span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{% url 'diary:create_page' %}" class="nav-link">
+                <i class="glyphicon glyphicon-plus"></i> <span><h5>Create</h5></span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a id="logout" href="{% url 'logout' %}" class="nav-link">
+                <i class="glyphicon glyphicon-log-out"></i> <span><h5>Logout</h5></span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+    <br />
+    {% block content %}{% endblock %}
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+      integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+      integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      function disableUploadButton() {
+        document.getElementById("upload-button").disabled = true
       }
-    }
-  </script>
-</body>
-
+      function disableDeleteButton() {
+        document.getElementById("delete-button").disabled = true
+      }
+      window.onpageshow = event => {
+        if (event.persisted) {
+          window.location.reload();
+        }
+      };
+    </script>
+  </body>
 </html>
