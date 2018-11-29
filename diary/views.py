@@ -1,39 +1,43 @@
 from diary.models import Tag, Page, Diary
 from django.views import generic, View
 from django.views.generic.edit import UpdateView, DeleteView, CreateView
-from .forms import UserForm, PageForm
+from .forms import UserForm, PageForm, ProfileForm
 from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
+from django.contrib import messages
 from django.urls import reverse
 from django.urls import reverse_lazy
 from utility.imgur import ImgurUtil
 from django.db.models import Q
-
 from django import forms
-
 import requests
 import datetime
 
 
 def login_user(request):
     """
-    If the user is not authenticated, get user's request and execute login. 
+    If the user is not authenticated, get user's request and execute login.
     """
     if not request.user.is_authenticated:
         form = UserForm(request.POST or None)
-        username = request.POST.get('username')
-        password = request.POST.get('password')
-        user = authenticate(username=username, password=password)
-        if user is not None:
-            if user.is_active:
-                login(request, user)
-                HttpResponseRedirect(reverse('diary:index'))
+        if request.method == "POST":
+            username = request.POST.get('username')
+            password = request.POST.get('password')
+            user = authenticate(username=username, password=password)
+            if user is not None:
+                if user.is_active:
+                    login(request, user)
+                    HttpResponseRedirect(reverse('diary:index'))
+                else:
+                    return render(request, 'registration/login.html', {'form': form})
             else:
+                messages.error(request, 'username or password is not correct')
                 return render(request, 'registration/login.html', {'form': form})
         else:
             return render(request, 'registration/login.html', {'form': form})
+
     return HttpResponseRedirect(reverse('diary:index'))
 
 
@@ -44,13 +48,14 @@ def logout_user(request):
     logout(request)
     return HttpResponseRedirect('/login')
 
+
 class IndexView(generic.ListView):
     template_name = 'diary/index.html'
     context_object_name = 'all_pages'
 
     def get_queryset(self):
         """
-        Return all of the objects in the list of diary.
+        Get the queryset to look an object up against.
         """
         username = self.request.user.username
         diaries = Diary.objects.filter(username=username)
@@ -78,40 +83,36 @@ class DetailView(generic.DetailView):
     template_name = 'diary/detail.html'
     queryset = Page.objects.all()
 
-class CreateSettings(View):
+    def get_queryset(self):
+        """
+        Get the queryset to look an object up against. This will only display the specific diary's username.
+        """
+        username = self.request.user.username
+        return Page.objects.filter(diary__username=username)
+
+
+class Settings(UpdateView):
+    form_class = ProfileForm
     template_name = 'diary/settings.html'
+    success_url = reverse_lazy('diary:index')
 
-    def get(self, request):
-        return render(request, self.template_name)
+    def get_object(self, queryset=None):
+        """
+        Returns the object the view is displaying.
+        """
+        return self.request.user
 
-class CreateFormat(View):
+
+class Format(View):
     template_name = 'diary/format.html'
 
     def get(self, request):
         return render(request, self.template_name)
 
-class Layout_1(View):
-    template_name = 'diary/layout1.html'
-
-    def get(self, request):
-        return render(request, self.template_name)
-
-# class Layout_2(View):
-#     template_name = 'diary/layout2.html'
-
-#     def get(self, request):
-#         return render(request, self.template_name)
-
-# class Layout_3(View):
-#     template_name = 'diary/layout3.html'
-
-#     def get(self, request):
-#         return render(request, self.template_name)
-
 
 class CreatePage(View):
     form_class = PageForm
-    template_name = 'diary/page_form.html'
+    template_name = 'diary/create_page.html'
 
     def get(self, request):
         form = self.form_class(None)
@@ -119,35 +120,59 @@ class CreatePage(View):
 
     def post(self, request):
         form = self.form_class(request.POST)
-        if form.is_valid() and request.FILES['myfile']:
-            username = self.request.user.username
-            page = form.save(commit=False)
-            page.date = str(datetime.date.today())
-            diary = Diary.objects.filter(username=username)
-            page.diary = diary[0]
+        if form.is_valid():
+            try:
+                request.FILES['myfile']
+            except:
+                messages.error(
+                    request, 'Please select a file.')
+                return HttpResponseRedirect("/diary/create_page")
+
+            error = self.__check_title(form)
+
+            if (error is not None):
+                messages.error(request, error)
+                return HttpResponseRedirect("/diary/create_page")
+
+            page = form.save()
             imgurUtil = ImgurUtil()
             my_file = request.FILES['myfile']
-            description = str(page.diary) + ':' + page.title + ':' + page.date
+            username = self.request.user.username
+            diary = Diary.objects.filter(username=username)
+            page.date = str(datetime.date.today())
+            page.diary = diary[0]
+            description = str(page.diary) + ':' + \
+                str(page.id) + ':' + page.date
             response = imgurUtil.upload_image_locally(description, my_file)
             if(response.status_code == requests.codes.ok):
                 uploader_url = response.json()["data"]["link"]
                 page.picture = uploader_url
                 page.save()
+
+            else:
+                messages.error(
+                    request, 'Please select a valid file.')
+                return HttpResponseRedirect("/diary/create_page")
         return HttpResponseRedirect("/diary/")
+
+    def __check_title(self, form):
+        for page in Page.objects.all():
+            if page.title == form.cleaned_data.get("title"):
+                return 'You already used this title. Please try another one.'
 
 
 class DeleteDiary(DeleteView):
     form_class = PageForm
     model = Page
     success_url = reverse_lazy('diary:index')
- 
+
     def delete(self, request, *args, **kwargs):
         """
         Function to delete picture from database and imgur.
         """
         imgurUtil = ImgurUtil()
         page = self.get_object()
-        description = str(page.diary) + ':' + page.title + ':' + page.date
+        description = str(page.diary) + ':' + str(page.id) + ':' + page.date
         image_hash = imgurUtil.get_image_hash(description)
         imgurUtil.delete_image(image_hash)
         page.delete()

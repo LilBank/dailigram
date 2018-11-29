@@ -1,0 +1,15 @@
+{% extends 'base.html' %} {% block content %}
+<div class="text-center" >
+  <form
+    class="form-horizontal"
+    action=""
+    method="post"
+    enctype="multipart/form-data"
+  >
+    <img src=" {{page.picture}}" class="rounded-circle">  
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-success">Submit</button>
+  </form>
+</div>
+{% endblock %}
