@@ -46,7 +46,7 @@ Open the Terminal and type the following command:
 
 Using virtualenv allows you to avoid installing Python packages globally which could break system tools or other projects.
 
-    virtualenv .venv
+    virtualenv venv
 
 ### Step 4: Activate the virtualenv.
 
@@ -54,11 +54,11 @@ Activate it before you start installing packages.
 
 ***On MacOS and Linux:***
 
-    source .venv/bin/activate
+    source venv/bin/activate
 
 ***On Windows:***
 
-    .venv\Scripts\activate
+    venv\Scripts\activate
 
 ### Step 5: Install the dependencies.
 

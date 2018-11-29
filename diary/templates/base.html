@@ -22,7 +22,7 @@
     <div>
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="{% url 'diary:index' %}">
-          <i class="glyphicon glyphicon-book"></i> <b> Dailigram</b>
+          <i class="glyphicon glyphicon-book"></i> <b><h3><strong>Dailigram</strong></h3></b>
         </a>
         <button
           class="navbar-toggler"
@@ -41,29 +41,23 @@
             <li class="nav-item active">
               <a href="{% url 'diary:index' %}" class="nav-link">
                 <i class="fa fa-home"></i>
-                <span> {{ user.username }}'s diary</span>
+                <span><h5>{{ user.username }}'s diary </h5></span>
               </a>
             </li>
             <li class="nav-item">
               <a href="{% url 'diary:create_page' %}" class="nav-link">
-                <i class="glyphicon glyphicon-plus"></i> <span> Create</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="{% url 'diary:settings' %}" class="nav-link">
-                <i class="fa fa-gear"></i> <span> Settings</span>
+                <i class="glyphicon glyphicon-plus"></i> <span><h5>Create</h5></span>
               </a>
             </li>
             <li class="nav-item">
               <a id="logout" href="{% url 'logout' %}" class="nav-link">
-                <i class="glyphicon glyphicon-log-out"></i> <span> Logout</span>
+                <i class="glyphicon glyphicon-log-out"></i> <span><h5>Logout</h5></span>
               </a>
             </li>
           </ul>
         </div>
       </nav>
     </div>
-    <br />
     <br />
     {% block content %}{% endblock %}
     <script
