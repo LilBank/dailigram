@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-
+<div style="font-family: 'Ubuntu', sans-serif;">
 {% if error_message %}
 <p><strong>{{ error_message }}</strong></p>
 {% endif %}
@@ -10,8 +10,10 @@
   <a class="close" href="#" data-dismiss="alert">×</a><strong>Sorry!</strong> {{ message }}
 </div>
 {% endfor %}
+</div>
 
-<div class="container" style="border: 1.5px solid black; border-radius: 15px; padding-bottom: 20px; ">
+<div class="container" style="font-family: 'Ubuntu', sans-serif;
+border: 1.5px solid black; border-radius: 15px; padding-bottom: 20px; ">
   <br>
   <div align="center" style="background-color: rgb(180, 180, 180); border-radius: 15px;">
     <h1>Create Diary</h1>
@@ -25,5 +27,5 @@
     </h5>
       <h4><button id="upload-button" type="submit" class="btn btn-dark btn-lg btn-block">Upload</button></h4> 
   </div>
-  
+
 {% endblock %}
