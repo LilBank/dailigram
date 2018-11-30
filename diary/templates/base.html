@@ -79,8 +79,8 @@
       function disableUploadButton() {
         document.getElementById("upload-button").disabled = true
       }
-      function disableDeleteButton() {
-        document.getElementById("delete-button").disabled = true
+      function disableDeleteButton(id) {
+        document.getElementById(id).disabled = true
       }
       window.onpageshow = event => {
         if (event.persisted) {

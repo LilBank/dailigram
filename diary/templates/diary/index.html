@@ -33,10 +33,10 @@
                     </div>
 
                     <!-- delete button -->
-                    <form onsubmit="disableDeleteButton()" action="{% url 'diary:delete_diary' page.id%} " method="post">
+                    <form onsubmit="disableDeleteButton( {{page.id}} )" action="{% url 'diary:delete_diary' page.id%} " method="post">
                         {% csrf_token %}
                         <input type="hidden" name="page_id" value="{{ page.id }}" />
-                        <button id="delete-button" type="submit">Delete</button>
+                        <button id="{{page.id}}" class="btn btn-secondary" type="submit">Delete</button>
                     </form>
                 </div>
             </div>
