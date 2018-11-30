@@ -72,9 +72,6 @@ class IndexView(generic.ListView):
         if len(diaries) == 0:
             Diary.objects.create(username=username)
 
-        hashes = '9DACERm'
-        imgurUtil.set_album_hash(hashes)
-
         return Page.objects.filter(diary__username=username)
 
 
