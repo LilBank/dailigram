@@ -4,7 +4,7 @@
 
 [![codecov](https://codecov.io/gh/bankkeez/dailigram/branch/master/graph/badge.svg)](https://codecov.io/gh/bankkeez/dailigram)
 
-**Dailigram** is an online diary which provides users free space to instantly preserve their moments and memories, including pictures, and share them online to exchange user’s life stories. Plus, it's accessible anywhere and anytime through the internet, which is surely more convenient than carrying a diary book.
+**Dailigram** is an online diary which provides users free space to instantly preserve their moments and memories, including pictures. Plus, it's accessible anywhere and anytime through the internet, which is surely more convenient than carrying a diary book.
 Our target group is a typical internet users who prefer writing journal online. 
 
 ## Team Members
@@ -25,10 +25,10 @@ Kittinske15  |   Kittin Vatabutr        |              Developer
 
 You must download the following to be able to run.
 
-- `Python`  [download](https://www.python.org/downloads/)
-- `Heroku`  [download](https://devcenter.heroku.com/articles/heroku-cli)
-- `Node.js` [download](https://nodejs.org/en/download/package-manager/)
-- `.env`  **Please ask project owner privately for the environment variables.**
+- `Python (ver.3.5 or newer)` [download site](https://www.python.org/downloads/)
+- `Heroku CLI` [download site](https://devcenter.heroku.com/articles/heroku-cli)
+- `Node.js` [download site](https://nodejs.org/en/download/package-manager/)
+- `local environment variable` **Please ask project owner privately for the environment variables.**
 
 ## Installation Steps
 
@@ -46,7 +46,7 @@ Open the Terminal and type the following command:
 
 Using virtualenv allows you to avoid installing Python packages globally which could break system tools or other projects.
 
-    virtualenv .venv
+    virtualenv venv
 
 ### Step 4: Activate the virtualenv.
 
@@ -54,11 +54,11 @@ Activate it before you start installing packages.
 
 ***On MacOS and Linux:***
 
-    source .venv/bin/activate
+    source venv/bin/activate
 
 ***On Windows:***
 
-    .venv\Scripts\activate
+    venv\Scripts\activate
 
 ### Step 5: Install the dependencies.
 

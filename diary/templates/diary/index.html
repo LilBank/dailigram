@@ -1,43 +1,51 @@
 {% extends 'base.html' %} {% load static %} {% block content %} {% if user.is_authenticated %}
-<div class="container-fluid">
+<body>
+    <form class="form-inline my-2 my-lg-0 " style="font-family: 'Ubuntu', sans-serif; padding-left: 10px; width: 380px">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-dark my-2 my-sm-0" type="submit">Search</button>
+    </form>
+<div style="font-family: 'Ubuntu', sans-serif;" class="container-fluid">
     <div align="center">
         <h2 class="text-center" style='display: inline; border:2px black solid; font-size:25px; padding: 9px;'>
             <img src="{% static 'pictures/icon.jpg' %}" height="30px" width="35px"> {{ user.username }}'s diary</h2>
     </div>
-    <br><br><br>
-    <div style="text-align: center">
-        <img src="http://cgright.com/icon/1044_thum.jpg" height="180px" width="180px">
+    <br><br>
+    <div style="border: 2px white solid; border-radius: 100%; width: 230px; height: 230px; margin-left: auto; margin-right: auto; ">
+        <img src="{% static 'pictures/user.png' %}" height="180px" width="180px" class="rounded-circle" style='height: 100%; width: 100%; overflow: hidden;'>
     </div>
     <br><br>
     <div class="row text-center">
         {% if all_pages %} {% for page in all_pages %}
-        <div class="col-sm-3 col-lg-3">
-        <div style=" padding-bottom: 30px;">
-            <div class="thumbnail" class="caption" style='border:1.5px rgb(15, 9, 9) solid;'>
-                <a href=" {% url 'diary:detail' page.id %}">
-                    <img src="{% static 'pictures/diary_book.jpg' %}" class="img-responsive" style='height: 100%; width: 100%; object-fit: contain'>
-                </a>
-                <div>
-                    {% comment %} <h2>{{ page.diary }}</h2> {% endcomment %}
-                    <h2>{{ page.title }}</h2>
-                    {% comment %} <h3>{{ page.tag }}</h3> {% endcomment %}
-                    {% comment %} <h4>{{ page.story }}</h4> {% endcomment %}
-                    <h4>{{ page.date }}</h4>
+        <div class="col-sm-3 col-lg-3" style="min-width:320px;">
+            <div style=" padding-bottom: 30px;">
+                <div class="thumbnail" class="caption" style='border:1.5px rgb(15, 9, 9) solid; overflow: hidden; block:inline; padding-bottom: 10px; min-width: 230px;'>
+                    <a href=" {% url 'diary:detail' page.id %}">
+                            <img src="{{ page.picture }}" style=" width: auto; height: auto; max-width: 100%; height: 200px; margin: 0 auto;" />
+                    </a>
+                    <div style="word-wrap: break-word;">
+                        <h2>{{ page.title }}</h2>
+                    </div>
+                    <div>
+                        {% comment %} <h2>{{ page.diary }}</h2> {% endcomment %}
+                        {% comment %} <h3>{{ page.tag }}</h3> {% endcomment %}
+                        {% comment %} <h4>{{ page.story }}</h4> {% endcomment %}
+                        <h4>{{ page.date }}</h4>
+                    </div>
+
+                    <!-- delete button -->
+                    <form onsubmit="disableDeleteButton( {{page.id}} )" action="{% url 'diary:delete_diary' page.id%} " method="post">
+                        {% csrf_token %}
+                        <input type="hidden" name="page_id" value="{{ page.id }}" />
+                        <button id="{{page.id}}" class="btn btn-secondary" type="submit">Delete</button>
+                    </form>
                 </div>
-
-                <!-- delete button -->
-                <form action="{% url 'diary:delete_diary' page.id%} " method="post">
-                    {% csrf_token %}
-                    <input type="hidden" name="page_id" value="{{ page.id }}" />
-                    <button type="submit">Delete</button>
-                </form>
-
-            </div>
             </div>
         </div>
+
         {% endfor %} {% endif %}
     </div>
 </div>
 {% else %}
 <a href="{% url 'login'%}">Login</a>
 {% endif %} {% endblock %}
+</body>

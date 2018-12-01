@@ -34,7 +34,7 @@ class ImgurUtilUploadTest(TestCase):
         album_hash = imgurUtil.get_album_hash('test_only')
         imgurUtil.set_album_hash(album_hash)
         image1_link = 'https://instagram.fbkk2-2.fna.fbcdn.net/vp/a7af227dd8e1cf5b352e6bf4b87cefba/5C7A4F55/t51.2885-19/s320x320/42437542_2213514032250422_4515480103911686144_n.jpg'
-        image2_link = 'https://instagram.fbkk2-2.fna.fbcdn.net/vp/c7b753a360b321b5968a7e1e7bdead75/5C711690/t51.2885-19/s320x320/28763805_2016317825302323_4003330482501582848_n.jpg'
+        image2_link = 'https://instagram.fbkk22-1.fna.fbcdn.net/vp/e8379b291ba024e9d8872ffc8de465d5/5C9493DE/t51.2885-19/s320x320/22794246_352255698554015_5072593132353224704_n.jpg'
         image3_link = 'https://instagram.fbkk2-2.fna.fbcdn.net/vp/1f1cf2cea82f1d792ca848f7b5a4597c/5C7562C1/t51.2885-19/s320x320/44392027_1870453886342960_1282978848111067136_n.jpg'
         response1 = imgurUtil.upload_image('temp2', image1_link)
         response2 = imgurUtil.upload_image('temp3', image2_link)

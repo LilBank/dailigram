@@ -4,8 +4,7 @@ import datetime
 
 
 class Diary(models.Model):
-    username = models.CharField(max_length=100, unique=True)
-    # is_favorite = models.BooleanField(default = False)
+    username = models.CharField(max_length=30, unique=True)
 
     def __str__(self):
         return self.username
@@ -24,10 +23,10 @@ class Tag(models.Model):
 
 class Page(models.Model):
     diary = models.ForeignKey(Diary, on_delete=models.SET_NULL, null=True)
-    title = models.CharField(max_length=100, blank=True)
+    title = models.CharField(max_length=15)
     tag = models.ForeignKey(Tag, on_delete=models.SET_NULL, null=True)
-    story = models.TextField(help_text='Write your story.')
-    date = models.CharField(max_length=50, blank=True)
+    story = models.TextField()
+    date = models.CharField(max_length=10)
     picture = models.FileField()
 
     def __str__(self):
