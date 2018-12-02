@@ -32,13 +32,6 @@ class TestingViews(TestCase):
 
         response = self.client.get('/login/')
         self.assertEqual(response.status_code, 200)
-    
-    def test_using_correct_template(self):
-        """
-        Test that the login is using the correct template path.
-        """
-        response = self.client.get(reverse('login'))
-        self.assertTemplateUsed(response, 'registration/login.html')
 
     def test_post_request(self):
         """
@@ -57,6 +50,37 @@ class TestingViews(TestCase):
         response = self.client.post(
             '/login/', self.credentials, follow=True)
         self.assertTrue(response.context['user'].is_authenticated)
-    
-    
-    
+
+    def test_login_required_index_page(self):
+        """
+        Test that index page should redirect to login page when it's not authenticated.
+        """
+
+        response = self.client.get(reverse('diary:index'))
+        self.assertTrue(response.status_code, 302)
+
+    def test_index_accessible(self):
+        """
+        Test if index page is accessible or not.
+        """
+
+        self.client.login(username='user', password='user')
+        response = self.client.get(reverse('diary:index'))
+        self.assertEqual(response.status_code, 200)
+
+    def test_login_using_template(self):
+        """
+        Test that the login page is using the correct template path.
+        """
+
+        response = self.client.get(reverse('login'))
+        self.assertTemplateUsed(response, 'registration/login.html')
+
+    def test_index_using_template(self):
+        """
+        Test that the index page is using the correct template path.
+        """
+
+        self.client.login(username='user', password='user')
+        response = self.client.get(reverse('diary:index'))
+        self.assertTemplateUsed(response, 'diary/index.html')
