@@ -2,6 +2,7 @@ from imgurpython import ImgurClient
 from decouple import config
 import requests
 from singleton_decorator import singleton
+from decouple import config
 
 @singleton
 class ImgurUtil:
@@ -11,7 +12,7 @@ class ImgurUtil:
     imgur_username = config('IMGUR_USERNAME')
     client = ImgurClient(imgur_id, imgur_key)
     token = config('ACCESS_TOKEN')
-    album_hash = ''
+    album_hash = config('ALBUM_HASH')
 
     # Public
     def create_album(self, album_title):

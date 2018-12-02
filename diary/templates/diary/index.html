@@ -1,10 +1,10 @@
 {% extends 'base.html' %} {% load static %} {% block content %} {% if user.is_authenticated %}
 <body>
-        <form class="form-inline my-2 my-lg-0 " style=" padding-left: 10px; width: 380px">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-dark my-2 my-sm-0" type="submit">Search</button>
-              </form>
-<div class="container-fluid">
+    <form class="form-inline my-2 my-lg-0 " style="font-family: 'Ubuntu', sans-serif; padding-left: 10px; width: 380px">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-dark my-2 my-sm-0" type="submit">Search</button>
+    </form><br>
+<div style="font-family: 'Ubuntu', sans-serif;" class="container-fluid">
     <div align="center">
         <h2 class="text-center" style='display: inline; border:2px black solid; font-size:25px; padding: 9px;'>
             <img src="{% static 'pictures/icon.jpg' %}" height="30px" width="35px"> {{ user.username }}'s diary</h2>
@@ -33,10 +33,10 @@
                     </div>
 
                     <!-- delete button -->
-                    <form onsubmit="disableDeleteButton()" action="{% url 'diary:delete_diary' page.id%} " method="post">
+                    <form onsubmit="disableDeleteButton( {{page.id}} )" action="{% url 'diary:delete_diary' page.id%} " method="post">
                         {% csrf_token %}
                         <input type="hidden" name="page_id" value="{{ page.id }}" />
-                        <button id="delete-button" type="submit">Delete</button>
+                        <button id="{{page.id}}" class="btn btn-secondary" type="submit">Delete</button>
                     </form>
                 </div>
             </div>
