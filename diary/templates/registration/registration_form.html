@@ -14,7 +14,7 @@ background-blend-mode: screen;">
 <br>
 <div align="center" >
  <h2>   
-<div class="container-fluid" style=" border:2px black solid; border-radius: 5px;  width: 70%; background-image: linear-gradient(to left, #BDBBBE 0%, #9D9EA3 100%), radial-gradient(88% 271%, rgba(255, 255, 255, 0.25) 0%, rgba(254, 254, 254, 0.25) 1%, rgba(0, 0, 0, 0.25) 100%), radial-gradient(50% 100%, rgba(255, 255, 255, 0.30) 0%, rgba(0, 0, 0, 0.30) 100%); background-blend-mode: normal, lighten, soft-light;">
+<div class="container-fluid" style=" border:2px black solid; border-radius: 5px;  width: 70%; background-image: linear-gradient(to left, #BDBBBE 0%, #E7E6E4 100%), radial-gradient(88% 271%, rgba(255, 255, 255, 0.25) 0%, rgba(254, 254, 254, 0.25) 1%, rgba(0, 0, 0, 0.25) 100%), radial-gradient(50% 100%, rgba(255, 255, 255, 0.30) 0%, rgba(0, 0, 0, 0.30) 100%); background-blend-mode: normal, lighten, soft-light;">
     
         <div class="panel panel-default">
             <div class="panel-body"></div>
@@ -25,7 +25,7 @@ background-blend-mode: screen;">
                 <div class="form-group">
                     
                     {% if field.errors %}
-                        <div class="alert alert-danger">
+                        <div class="alert alert-warning">
                             <a class="close" data-dismiss="alert"></a>{{ field.errors }}
                         </div>
                     {% endif %}
@@ -33,11 +33,11 @@ background-blend-mode: screen;">
                     <label class="control-label col-sm-2">{{ field.label_tag }}</label>
                     <div class="col-sm-10"> {{ field }}</div>
                 </div>
-            </h3>
+                </h3>
                 {% endfor %}
                 <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">
-                        <button type="submit" class="btn btn-black" style="width: 60px; height:30px;">Submit</button>
+                        <button type="submit" class="btn btn-black" style="width: 30px; height:30px;">Submit</button>
                     </div>
                 </div>
             </form>
