@@ -10,9 +10,10 @@ class UserForm(forms.ModelForm):
         model = User
         fields = ['username', 'email', 'password']
         widgets = {
-          'username': TextInput(attrs={'style': 'width: 74%'}),
+          'username': TextInput(attrs={'style': 'width: 74%','maxlength': '20'}),
           'password': PasswordInput(attrs={'style': 'width: 74%'}),
         }
+        help_texts = {'username': "Please insert between 6-20 letters",}
     
 
 class PageForm(forms.ModelForm):
