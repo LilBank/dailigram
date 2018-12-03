@@ -9,6 +9,7 @@ class ImgurUtil:
 
     token = config('ACCESS_TOKEN')
     album_hash = config('ALBUM_HASH')
+    imgur_username = config('IMGUR_USERNAME')
 
     # Public
     def create_album(self, album_title):
