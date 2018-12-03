@@ -176,3 +176,7 @@ class ImgurUtil:
         }
         response = requests.post(url, files=files, headers=headers, data=body)
         return response
+
+    def set_album_hash(self,album_hash):
+
+        self.album_hash = album_hash
