@@ -113,7 +113,9 @@ class CreatePage(View):
                     request, 'Please select a file.')
                 return HttpResponseRedirect("/diary/create_page")
 
-            error = self.__check_title(form)
+            username = self.request.user.username
+            diary = Diary.objects.filter(username=username)
+            error = self.__check_title(form,diary)
 
             if (error is not None):
                 messages.error(request, error)
@@ -122,10 +124,8 @@ class CreatePage(View):
             page = form.save()
             imgurUtil = ImgurUtil()
             my_file = request.FILES['myfile']
-            username = self.request.user.username
-            diary = Diary.objects.filter(username=username)
-            page.date = str(datetime.date.today())
             page.diary = diary[0]
+            page.date = str(datetime.date.today())
             description = str(page.diary) + ':' + \
                 str(page.id) + ':' + page.date
             response = imgurUtil.upload_image_locally(description, my_file)
@@ -140,10 +140,11 @@ class CreatePage(View):
                 return HttpResponseRedirect("/diary/create_page")
         return HttpResponseRedirect("/diary/")
 
-    def __check_title(self, form):
-        for page in Page.objects.all():
-            if page.title == form.cleaned_data.get("title"):
-                return 'You already used this title. Please try another one.'
+    def __check_title(self, form , diary):
+        if Diary.username == diary[0]:
+            for page in Page.objects.all():
+                if page.title == form.cleaned_data.get("title"):
+                    return 'You already used this title. Please try another one.'
 
 
 class DeleteDiary(DeleteView):
