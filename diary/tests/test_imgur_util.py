@@ -21,7 +21,7 @@ class ImgurUtilUploadTest(TestCase):
         imgurUtil = ImgurUtil()
         album_hash = imgurUtil.get_album_hash('test_only')
         imgurUtil.set_album_hash(album_hash)
-        image_link = 'https://instagram.fbkk2-1.fna.fbcdn.net/vp/023846f9e0ee789276fac6acbb4b52db/5C907D3F/t51.2885-19/s320x320/43015374_539422033135700_7786680724446248960_n.jpg'
+        image_link = 'https://instagram.fbkk10-1.fna.fbcdn.net/vp/32fca421863cca50988741b338de6165/5CAFF2AE/t51.2885-19/s320x320/45476686_1153987844754206_6755756503161896960_n.jpg'
         response = imgurUtil.upload_image('temp', image_link)
         self.assertEqual(response.status_code, 200)
 
@@ -167,7 +167,7 @@ class ImgurUtilUploadTest(TestCase):
         create_album_response = imgurUtil.create_album(album_title)
         album_hash = imgurUtil.get_album_hash(album_title)
         imgurUtil.set_album_hash(album_hash)
-        image_link = 'https://instagram.fbkk2-1.fna.fbcdn.net/vp/023846f9e0ee789276fac6acbb4b52db/5C907D3F/t51.2885-19/s320x320/43015374_539422033135700_7786680724446248960_n.jpg'
+        image_link = 'https://instagram.fbkk10-1.fna.fbcdn.net/vp/32fca421863cca50988741b338de6165/5CAFF2AE/t51.2885-19/s320x320/45476686_1153987844754206_6755756503161896960_n.jpg'
         upload_response = imgurUtil.upload_image('test', image_link)
         hashes = imgurUtil.get_image_hash('test')
         delete_image_response = imgurUtil.delete_image(hashes)
