@@ -7,10 +7,6 @@ from decouple import config
 @singleton
 class ImgurUtil:
 
-    imgur_id = config('IMGUR_CLIENT_ID')
-    imgur_key = config('IMGUR_SECRET_KEY')
-    imgur_username = config('IMGUR_USERNAME')
-    client = ImgurClient(imgur_id, imgur_key)
     token = config('ACCESS_TOKEN')
     album_hash = config('ALBUM_HASH')
 
@@ -179,12 +175,3 @@ class ImgurUtil:
         }
         response = requests.post(url, files=files, headers=headers, data=body)
         return response
-
-    # Public
-
-    def set_album_hash(self, album_hash):
-        """
-        Set a default album hash.
-        """
-
-        self.album_hash = album_hash
