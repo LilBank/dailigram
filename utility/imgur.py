@@ -8,8 +8,8 @@ from decouple import config
 class ImgurUtil:
 
     token = config('ACCESS_TOKEN')
-    album_hash = config('ALBUM_HASH')
     imgur_username = config('IMGUR_USERNAME')
+    album_hash = config('ALBUM_HASH')
 
     # Public
     def create_album(self, album_title):
@@ -177,6 +177,10 @@ class ImgurUtil:
         response = requests.post(url, files=files, headers=headers, data=body)
         return response
 
-    def set_album_hash(self,album_hash):
+    # Public
+    def set_album_hash(self, album_hash):
+        """
+        Set a default album hash.
+        """
 
         self.album_hash = album_hash
