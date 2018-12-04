@@ -11,10 +11,11 @@ class UserForm(forms.ModelForm):
         fields = ['username', 'email', 'password']
         widgets = {
           'username': TextInput(attrs={
-              'style': 'margin: 0 auto',
-              
-              'maxlength': '20'}),
-          'password': PasswordInput(),
+              'style': 'margin: 0 auto'}),
+
+          'password': PasswordInput(attrs={
+            'style': 'margin: 0 auto',
+            'id': 'password'}),
         }
         help_texts = {'username': "Enter between 6-20 letters",}
     

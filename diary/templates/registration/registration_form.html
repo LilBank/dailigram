@@ -30,16 +30,29 @@
                     <div style="font-size: 20; color:rgb(150, 150, 150) ">
                         {{ field.help_text }}
                     </div>
-                    <br><br>
-        {% endfor %}
-            </h3>
+                    <br>
+                    {% endfor %}
+                    <h4>
+                    <input type="checkbox" onclick="showPassword()"> Show Password
+                    </h4> 
+                </div>   
+            </h3><br>
         <div class="form-group" align="center">
             <div class="col-sm-offset-2 col-sm-10">
                 <button type="submit" class="btn btn-secondary btn-lg" style="font-size: 25;">Submit</button>
             </div>
         </div>
     </form>       
-    </div>
 </div>
 </h2>
+<script>
+function showPassword() {
+    var x = document.getElementById("password");
+    if (x.type === "password") {
+      x.type = "text";
+    } else {
+      x.type = "password";
+    }
+  }
+</script>
 </body>
