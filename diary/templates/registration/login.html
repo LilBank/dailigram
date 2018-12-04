@@ -25,10 +25,11 @@
           {% csrf_token %}
           <p>Username: {{ form.username }}</p>
           <p>Password : {{ form.password }}</p>
-            <input name="login" class="btn btn-secondary btn-lg btn-block" style="height: 40px; font-size: 20;" type="submit" value="Login">
+          <br>
+            <input name="login" class="btn btn-secondary btn-lg btn-block" style="font-size: 22;" type="submit" value="Login">
           <input type="hidden" name="next" value="{{ next }}">
         </form>
-        <a href="{% url 'diary:register' %}" class="btn btn-secondary btn-lg btn-block" style="height:40px; font-size: 20; padding-bottom:15px;"> Register</a>
+        <a href="{% url 'diary:register' %}" class="btn btn-secondary btn-lg btn-block" style="font-size: 22;"> Register</a>
         <br>
         <form class="login-form">
           <label class="form-check-label">
