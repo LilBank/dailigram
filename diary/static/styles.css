@@ -97,9 +97,6 @@ span.psw {
 @import url("//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css");
 
 .login-block{
-background: rgb(255, 255, 255); 
-background: -webkit-linear-gradient(to bottom, rgb(185, 199, 194), rgb(255, 255, 255)); 
-background: linear-gradient(to bottom, rgb(185, 199, 194), rgb(255, 255, 255));
 float:left;
 width:100%;
 padding : 50px 0;
@@ -112,7 +109,8 @@ padding : 50px 0;
 }
 
 .banner-sec{
-    background:url(https://static.pexels.com/photos/33972/pexels-photo.jpg)  no-repeat left bottom; 
+    background-image: radial-gradient(73% 147%, #EADFDF 59%, #ECE2DF 100%), radial-gradient(91% 146%, rgba(255,255,255,0.50) 47%, rgba(0,0,0,0.50) 100%);
+ background-blend-mode: screen;
     background-size:cover; 
     min-height:500px; 
     border-radius: 0 10px 10px 0; 

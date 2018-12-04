@@ -14,8 +14,7 @@ class UserForm(forms.ModelForm):
               'style': 'margin: 0 auto'}),
 
           'password': PasswordInput(attrs={
-            'style': 'margin: 0 auto',
-            'id': 'password'}),
+            'style': 'margin: 0 auto'}),
         }
         help_texts = {'username': "Enter between 6-20 letters",}
     

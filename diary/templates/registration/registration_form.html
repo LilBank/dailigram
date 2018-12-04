@@ -32,9 +32,9 @@
                     </div>
                     <br>
                     {% endfor %}
-                    <h4>
+                    <h5>
                     <input type="checkbox" onclick="showPassword()"> Show Password
-                    </h4> 
+                    </h5> 
                 </div>   
             </h3><br>
         <div class="form-group" align="center">
@@ -47,7 +47,7 @@
 </h2>
 <script>
 function showPassword() {
-    var x = document.getElementById("password");
+    var x = document.getElementById("id_password");
     if (x.type === "password") {
       x.type = "text";
     } else {
