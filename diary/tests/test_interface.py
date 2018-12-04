@@ -1,6 +1,7 @@
 from django.test import LiveServerTestCase
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
+from decouple import config
 
 
 
@@ -41,8 +42,8 @@ class TestingWeb(LiveServerTestCase):
         selenium.get('https://dailigram.herokuapp.com/')
         username = selenium.find_element_by_xpath('//*[@id="id_username"]')
         password = selenium.find_element_by_xpath('//*[@id="id_password"]')
-        username.send_keys('rootuser')
-        password.send_keys('root')
+        username.send_keys(config('TEST_USER'))
+        password.send_keys(config('TEST_PASS'))
         selenium.find_element_by_name("login").click()
         # selenium.find_element_by_xpath("//nav/div/ul/li[4]/a").click()
 
