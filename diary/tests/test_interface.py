@@ -33,7 +33,7 @@ class TestingWeb(LiveServerTestCase):
     #     driver.find_element_by_xpath("//nav/div/ul/li[4]/a").click()
 
     def setUp(self):
-        self.selenium = webdriver.Safari()
+        self.selenium = webdriver.Chrome()
         super(TestingWeb, self).setUp()
 
 
