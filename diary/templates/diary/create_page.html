@@ -18,7 +18,7 @@ border: 1.5px solid black; border-radius: 15px; padding-bottom: 20px; ">
   <div align="center" style="background-color: rgb(180, 180, 180); border-radius: 15px;">
     <h1>Create Diary</h1>
   </div><br>
-  <form onsubmit="disableUploadButton()" class="form-horizontal" method="post" enctype="multipart/form-data">
+  <form onsubmit="disableUploadButton()" class="form-horizontal" method="post" enctype="multipart/form-data" autocomplete="off">
     <h5>
     {% csrf_token %}
     {{form.as_p}}
