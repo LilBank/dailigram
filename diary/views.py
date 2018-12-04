@@ -87,6 +87,7 @@ class DetailView(generic.DetailView):
         username = self.request.user.username
         return Page.objects.filter(diary__username=username)
 
+
 class Format(View):
     template_name = 'diary/format.html'
 
@@ -115,7 +116,8 @@ class CreatePage(View):
 
             username = self.request.user.username
             diary = Diary.objects.filter(username=username)
-            error = self.__check_title(form,diary)
+            
+            error = self.__check_title(form, diary)
 
             if (error is not None):
                 messages.error(request, error)
@@ -140,9 +142,9 @@ class CreatePage(View):
                 return HttpResponseRedirect("/diary/create_page")
         return HttpResponseRedirect("/diary/")
 
-    def __check_title(self, form , diary):
-        if Diary.username == diary[0]:
-            for page in Page.objects.all():
+    def __check_title(self, form, diary):
+        for page in Page.objects.all():
+            if page.diary == diary[0]:
                 if page.title == form.cleaned_data.get("title"):
                     return 'You already used this title. Please try another one.'
 

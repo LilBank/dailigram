@@ -1,4 +1,4 @@
-![Alt text](diary/static/pictures/logo.png)
+<a href="https://dailigram.herokuapp.com/"><img src="diary/static/pictures/logo.png"></a>
 
 [![Build Status](https://travis-ci.com/bankkeez/dailigram.svg?branch=master)](https://travis-ci.com/bankkeez/dailigram)
 
