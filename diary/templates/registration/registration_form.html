@@ -1,32 +1,46 @@
-{% block content %}
-<h1>Registration</h1>
-<div class="container-fluid">
-    <div class="row">
-        <div class="panel panel-default">
-            <div class="panel-body"></div>
-            <h3>Create a new account</h3>
-            {% if error_message %}
-            <p><strong>{{ error_message }}</strong></p>
-            {% endif %}
-            <form class="form-horizontal" action="" method="post" enctype="multipart/form-data" autocomplete="off">
-                {% csrf_token %}
-                {% for field in form %}
-                <div class="form-group">
-                    <div class="col-sm-offset-2 col-sm-10">
-                        <span class="text-danger small"> {{ field.errors }}</span>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<!-- <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script> -->
+<!-- <script src="//code.jquery.com/jquery-1.11.1.min.js"></script> -->
+{% load static %}
+<link rel="stylesheet" href="{% static 'styles.css' %}">
+<link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+
+<body style="font-family: 'Ubuntu', sans-serif;">
+    
+<div  style="text-align: center; background-color: rgb(180, 180, 180);">
+    <h1>Create a new account</h1>
+</div>
+<br><br>
+
+ <h2>   
+<div class="container-fluid" style=" border:3px black solid; border-radius: 50px;  width: 55%; height: auto; padding-top: 50px;">
+    <form class="form-horizontal" action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {% for field in form %}
+            <h3>
+                <div class="form-group">     
+                    {% if field.errors %}
+                        <div class="alert alert-warning">
+                            <a class="close" data-dismiss="alert"></a>{{ field.errors }}
+                        </div>
+                    {% endif %}
+                    
+                    {{ field.label_tag }} <br>
+                    <div style="font-size: 20; color:rgb(150, 150, 150) ">
+                        {{ field.help_text }}
                     </div>
-                    <label class="control-label col-sm-2">{{ field.label_tag }}</label>
-                    {{field.help_text}}
-                    <div class="col-sm-10"> {{ field }}</div>
+                    {{ field }}<br><br><br>
+        {% endfor %}
+                Confirm-password: <br><input style="width: 100%;" type="password"><br><br>
                 </div>
-                {% endfor %}
-                <div class="form-group">
-                    <div class="col-sm-offset-2 col-sm-10">
-                        <button type="submit" class="btn btn-success">Submit</button>
-                    </div>
-                </div>
-            </form>
+            </h3>
+        <div class="form-group" align="center">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-secondary btn-lg">Submit</button>
+            </div>
         </div>
+    </form>       
     </div>
 </div>
-{% endblock %}
+</h2>
+</body>
