@@ -229,5 +229,16 @@ padding : 50px 0;
     font-size: 3vh;
   }
 
+#id_username {
+    width: 100%;
+}
   
+#id_email {
+    width: 100%;
+}
+
+#id_password{
+    width: 100%;
+}
+
 

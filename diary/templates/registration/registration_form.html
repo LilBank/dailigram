@@ -13,7 +13,7 @@
 <br><br>
 
  <h2>   
-<div class="container-fluid" style=" border:3px black solid; border-radius: 50px;  width: 55%; height: 65%; padding-top: 50px;">
+<div class="container-fluid" style=" border:3px black solid; border-radius: 50px;  width: 55%; height: auto; padding-top: 50px;">
     <form class="form-horizontal" action="" method="post" enctype="multipart/form-data">
         {% csrf_token %}
         {% for field in form %}
@@ -24,11 +24,14 @@
                             <a class="close" data-dismiss="alert"></a>{{ field.errors }}
                         </div>
                     {% endif %}
-
-                    {{ field.label_tag }}
+                    
+                    {{ field.label_tag }} <br>
+                    <div style="font-size: 20; color:rgb(150, 150, 150) ">
+                        {{ field.help_text }}
+                    </div>
                     {{ field }}<br><br><br>
         {% endfor %}
-                Confirm-password: <input style="width: 55%;" type="password"><br><br>
+                Confirm-password: <br><input style="width: 100%;" type="password"><br><br>
                 </div>
             </h3>
         <div class="form-group" align="center">
