@@ -26,10 +26,11 @@
                     {% endif %}
                     
                     {{ field.label_tag }} <br>
+                    {{ field }}
                     <div style="font-size: 20; color:rgb(150, 150, 150) ">
                         {{ field.help_text }}
                     </div>
-                    {{ field }}<br><br><br>
+                    <br><br>
         {% endfor %}
             </h3>
         <div class="form-group" align="center">

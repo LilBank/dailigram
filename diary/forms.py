@@ -16,7 +16,7 @@ class UserForm(forms.ModelForm):
               'maxlength': '20'}),
           'password': PasswordInput(),
         }
-        help_texts = {'username': "Please insert between 6-20 letters",}
+        help_texts = {'username': "Enter between 6-20 letters",}
     
 
 class PageForm(forms.ModelForm):
