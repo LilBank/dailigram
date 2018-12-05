@@ -25,6 +25,3 @@ env:
 
 after_success:
   - codecov
-
-addons:
-  chrome: stable
