@@ -34,7 +34,8 @@ class TestingWeb(LiveServerTestCase):
 
     def setUp(self):
         options = webdriver.ChromeOptions()
-        options.binary_location = '/diary/tests/chromedriver.exe'
+        # options.binary_location = '/diary/tests/chromedriver.exe'
+        options.binary_location = '/path/to/google-chrome-stable'
         self.selenium = webdriver.Chrome()
         # self.selenium = webdriver.Chrome()
         super(TestingWeb, self).setUp()
