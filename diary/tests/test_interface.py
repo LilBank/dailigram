@@ -34,11 +34,16 @@ class TestingWeb(LiveServerTestCase):
 
     def setUp(self):
         options = webdriver.ChromeOptions()
+        options.binary_location = 'chromedriver'
+        options.add_argument("--start-maximized")
+        options.add_argument('--ignore-certificate-errors')
+        options.add_argument('--test-type')
         options.add_argument('--headless')
-        # options.binary_location = '/diary/tests/chromedriver.exe'
-        options.binary_location = '/usr/bin/google-chrome-stable /usr/bin/X11/google-chrome-stable /usr/share/man/man1/google-chrome-stable.1.gz'
-        self.selenium = webdriver.Chrome()
-        # self.selenium = webdriver.Chrome()
+        options.add_argument('--no-sandbox')
+        options.add_argument('--disable-gpu')
+        options.add_argument('--disable-dev-shm-usage')
+        # options.binary_location = '/usr/bin/google-chrome-stable /usr/bin/X11/google-chrome-stable /usr/share/man/man1/google-chrome-stable.1.gz'
+        self.selenium = webdriver.Chrome(chrome_options = options)
         super(TestingWeb, self).setUp()
 
 

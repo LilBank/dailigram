@@ -9,11 +9,6 @@ services:
 before_script:
    - psql -c 'create database travis_ci_test;' -U postgres
 
-sudo: required
-
-addons:
-  chrome: stable
-
 test:
     adapter: postgresql
     database: travis_ci_test
@@ -23,8 +18,6 @@ install:
     - pip install codecov
 
 script:
-    - whereis google-chrome-stable
-    - whereis chromedriver
     - coverage run manage.py test diary/tests
 
 env:
