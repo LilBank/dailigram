@@ -33,7 +33,10 @@ class TestingWeb(LiveServerTestCase):
     #     driver.find_element_by_xpath("//nav/div/ul/li[4]/a").click()
 
     def setUp(self):
-        self.selenium = webdriver.Chrome()
+        # options = webdriver.ChromeOptions()
+        # options.binary_location = "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe"
+        self.selenium = webdriver.Chrome("chromedriver")
+        # self.selenium = webdriver.Chrome()
         super(TestingWeb, self).setUp()
 
 
