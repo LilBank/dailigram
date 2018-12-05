@@ -6,7 +6,6 @@ Procfile.windows
 *.pyc
 *.py[cod]
 __pycache__/
-chromedriver.exe
 /media
 /venv
 htmlcov/
