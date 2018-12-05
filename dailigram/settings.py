@@ -2,7 +2,6 @@ import os
 from decouple import config
 import django_heroku
 import base64
-from selenium import webdriver
 
 SECRET_KEY = base64.b64decode(config('SECRET_KEY')).decode('utf-8')
 SOCIAL_AUTH_GITHUB_KEY = config('SOCIAL_AUTH_GITHUB_KEY')
@@ -78,14 +77,6 @@ DATABASES = {
         'HOST': config('DB_HOST'),
         'PORT': '5432',
     }
-}
-
-SELENIUM_WEBDRIVERS = {
-     'default': {
-          'callable': webdriver.Chrome,
-          'args': (),
-          'kwargs': {},
-     },
 }
 
 AUTH_PASSWORD_VALIDATORS = [
