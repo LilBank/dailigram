@@ -34,7 +34,7 @@ class TestingWeb(LiveServerTestCase):
 
     def setUp(self):
         options = webdriver.ChromeOptions()
-        options.binary_location = 'chromedriver.exe'
+        # options.binary_location = 'chromedriver.exe'
         options.add_argument("--start-maximized")
         options.add_argument('--ignore-certificate-errors')
         options.add_argument('--test-type')
