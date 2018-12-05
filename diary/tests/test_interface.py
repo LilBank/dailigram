@@ -33,14 +33,14 @@ class TestingWeb(LiveServerTestCase):
     #     driver.find_element_by_xpath("//nav/div/ul/li[4]/a").click()
 
     def setUp(self):
-        self.selenium = webdriver.Chrome()
+        self.selenium = webdriver.Safari()
         super(TestingWeb, self).setUp()
 
 
     def test_register(self):
         selenium = self.selenium
         selenium.get('https://dailigram.herokuapp.com/')
-        username = selenium.find_element_by_xpath('//*[@id="id_username"]')
+        username = selenium.find_element_by_xpath('//*[@id="id_username"]' )
         password = selenium.find_element_by_xpath('//*[@id="id_password"]')
         username.send_keys(config('TEST_USER'))
         password.send_keys(config('TEST_PASS'))
