@@ -63,11 +63,11 @@ class IndexView(generic.ListView):
         imgurUtil = ImgurUtil()
 
         query = self.request.GET.get("q")
-
-        if query:
-            return page.filter(
-                Q(title__icontains=query)
-            ).distinct()
+        if diaries == page[0].diary:
+            if query:
+                return page.filter(
+                    Q(title__icontains=query)
+                    ).distinct()
 
         if len(diaries) == 0:
             Diary.objects.create(username=username)
