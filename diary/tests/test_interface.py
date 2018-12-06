@@ -47,17 +47,17 @@ class TestingWeb(LiveServerTestCase):
         self.selenium = webdriver.Chrome(chrome_options = options)
         super(TestingWeb, self).setUp()
 
-    def test_alert(self):
-        selenium = self.selenium
-        selenium.maximize_window()
-        selenium.get('https://dailigram.herokuapp.com/')
-        username = selenium.find_element_by_xpath('//*[@id="id_username"]' )
-        password = selenium.find_element_by_xpath('//*[@id="id_password"]')
-        username.send_keys('testalert')
-        password.send_keys('testalert')
-        selenium.find_element_by_name("login").click()
-        wait = WebDriverWait(driver, 3)
-        selenium.wait.quit()
+    # def test_alert(self):
+    #     selenium = self.selenium
+    #     selenium.maximize_window()
+    #     selenium.get('https://dailigram.herokuapp.com/')
+    #     username = selenium.find_element_by_xpath('//*[@id="id_username"]' )
+    #     password = selenium.find_element_by_xpath('//*[@id="id_password"]')
+    #     username.send_keys('testalert')
+    #     password.send_keys('testalert')
+    #     selenium.find_element_by_name("login").click()
+    #     wait = WebDriverWait(driver, 3)
+    #     selenium.wait.quit()
 
         # selenium.find_element_by_xpath("//nav/div/ul/li[4]/a").click()
 
@@ -75,10 +75,11 @@ class TestingWeb(LiveServerTestCase):
         story = selenium.find_element_by_id('id_story')  
         title.send_keys('sample story')
         story.send_keys('This is an example story')
-        mySelect = Select(selenium.find_element_by_id("id_tag"))
-        mySelect.select_by_visible_text("Happy")
-        # Imagepath = "Desktop\background-image-vertical-lines-and-stripes-seamless-tileable-black-white-22rjhc.png"
-        selenium.find_element_by_xpath("//div[2]/h5/input").click()        
+        tag = Select(selenium.find_element_by_id("id_tag"))
+        tag.select_by_visible_text("Happy")
+        # Imagepath = "‎⁨Macintosh HD⁩/Users⁩/kittin⁩/Desktop/thin-long-vertical-lines-are-replaced-each-other-matte-mask-transitions_bxhwnoxwe_thumbnail-full03.png"
+        upload = selenium.find_element_by_name('myfile').click()
+        upload.send_keys("Macintosh HD⁩/Users⁩/kittin⁩/Desktop/thin-long-vertical-lines-are-replaced-each-other-matte-mask-transitions_bxhwnoxwe_thumbnail-full03.png")
         selenium.find_element_by_xpath("//nav/div/ul/li[4]/a").click()
         wait = WebDriverWait(driver, 3)
         selenium.wait.quit()
