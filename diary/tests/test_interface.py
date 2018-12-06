@@ -47,17 +47,17 @@ class TestingWeb(LiveServerTestCase):
         self.selenium = webdriver.Chrome(chrome_options = options)
         super(TestingWeb, self).setUp()
 
-    # def test_alert(self):
-    #     selenium = self.selenium
-    #     selenium.maximize_window()
-    #     selenium.get('https://dailigram.herokuapp.com/')
-    #     username = selenium.find_element_by_xpath('//*[@id="id_username"]' )
-    #     password = selenium.find_element_by_xpath('//*[@id="id_password"]')
-    #     username.send_keys('testalert')
-    #     password.send_keys('testalert')
-    #     selenium.find_element_by_name("login").click()
-    #     wait = WebDriverWait(driver, 3)
-    #     selenium.wait.quit()
+    def test_alert(self):
+        selenium = self.selenium
+        selenium.maximize_window()
+        selenium.get('https://dailigram.herokuapp.com/')
+        username = selenium.find_element_by_xpath('//*[@id="id_username"]' )
+        password = selenium.find_element_by_xpath('//*[@id="id_password"]')
+        username.send_keys('testalert')
+        password.send_keys('testalert')
+        selenium.find_element_by_name("login").click()
+        wait = WebDriverWait(driver, 3)
+        selenium.wait.quit()
 
         # selenium.find_element_by_xpath("//nav/div/ul/li[4]/a").click()
 
