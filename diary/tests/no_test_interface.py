@@ -49,6 +49,7 @@ class TestingWeb(LiveServerTestCase):
 
     def test_alert(self):
         selenium = self.selenium
+        self.driver = webdriver.Chrome("chromedriver.exe")
         selenium.maximize_window()
         selenium.get('https://dailigram.herokuapp.com/')
         username = selenium.find_element_by_xpath('//*[@id="id_username"]' )
@@ -79,7 +80,7 @@ class TestingWeb(LiveServerTestCase):
         tag.select_by_visible_text("Happy")
         # Imagepath = "‎⁨Macintosh HD⁩/Users⁩/kittin⁩/Desktop/thin-long-vertical-lines-are-replaced-each-other-matte-mask-transitions_bxhwnoxwe_thumbnail-full03.png"
         upload = selenium.find_element_by_name('myfile').click()
-        upload.send_keys("Macintosh HD⁩/Users⁩/kittin⁩/Desktop/thin-long-vertical-lines-are-replaced-each-other-matte-mask-transitions_bxhwnoxwe_thumbnail-full03.png")
+        upload.send_keys("C:/Users/hp/Desktop")
         selenium.find_element_by_xpath("//nav/div/ul/li[4]/a").click()
         wait = WebDriverWait(driver, 3)
         selenium.wait.quit()
