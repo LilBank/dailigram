@@ -6,3 +6,4 @@ python-decouple
 imgurpython
 selenium
 singleton-decorator
+codecov

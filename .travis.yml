@@ -15,25 +15,9 @@ test:
 
 install:
     - pip install -r requirements.txt
-    - pip install codecov
 
 script:
     - coverage run manage.py test diary/tests
 
 env:
     - TRAVIS_SECURE_ENV_VARS = true
-
-addons: 
-  chrome: stable
-  
-install: 
-  - wget -N http://chromedriver.storage.googleapis.com/2.30/chromedriver_linux64.zip -P ~/
-  - unzip ~/chromedriver_linux64.zip -d ~/
-  - rm ~/chromedriver_linux64.zip
-  - sudo mv -f ~/chromedriver /usr/local/share/
-  - sudo chmod +x /usr/local/share/chromedriver
-  - sudo ln -s /usr/local/share/chromedriver /usr/local/bin/chromedriver
-
-script:
-  - whereis google-chrome-stable
-  - whereis chromedriver
